@@ -142,3 +142,12 @@ Model the entirety of Cyber City in Blender as the battle arena. The buildings w
 ## Our Process
 
 We are implementing an agile framework, Scrum, to organize this project. The time period of August to December 2021 is broken up into four Sprints. Details about each Sprint can be found below. The purpose of a Sprint is to continuously improve our product and build out content in manageable chunks.
+
+<ul>
+  <li><a href="https://github.com/jkrutz/capstone-2021/sprint1">Sprint 1</a>
+    <ul>
+      <li>Research and planning phase</li>
+      <li>Familiarize team with Unreal Engine</li>
+      <li>Synthesize a basic 3D "<a href=https://en.wikipedia.org/wiki/Mario">Mario</a>" game</li>
+    </ul>
+  </li>

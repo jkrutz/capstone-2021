@@ -31,7 +31,7 @@
       <ul>
         <li><a href="#graphics">Graphics</a></li>
         <li><a href="#multiplayer">Multiplayer</a></li>
-        <li><a href="#ai">Artificial Intelligence</a></li>
+        <li><a href="#artificial-intelligence">Artificial Intelligence</a></li>
       </ul>
     </li>
     <li><a href="#game">The Game</a>

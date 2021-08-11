@@ -65,32 +65,29 @@
 
 The magic in this game is inspired by <a href="https://www.youtube.com/watch?v=02pr2W7FT-c">this scene</a> from Harry Potter and the Order of the Pheonix. In this battle, no spell is necessarily more powerful than the next, moves take a conscious effort and wit. We wanted to emulate this same kind of mechanic and throw it into an arena. In most conventional magic games, there seems to be a <a href="https://en.wikipedia.org/wiki/Rock_paper_scissors">rock-paper-scissors</a> relationship between casted spells; most often water beats fire, wind beats fire, etc. This greatly simplifies the thought process behind making moves and we believe this diminishes enjoyment. The complex and limitless interactions between two spells is what makes this game unique.
 
+### The Developers
+
+<ul>
+  <li><a href="mailto:C22Holden.Caraway@afacademy.af.edu">Holden Caraway</a>: Game developer and network manager. Holden is a cyber major at the United States Air Force Academy</li>
+  <li><a href="mailto:C22Caleb.Price@afacademy.af.edu">Caleb Price</a>: Lead developer and graphics manager. Caleb is a computer science major with a Russian minor also at USAFA</li>
+  <li><a href="mailto:C22Joshua.Krutz@afacademy.af.edu">Joshua Krutz</a>: Game developer and AI manager. Joshua is a computer science and cyber science major at USAFA.</li>
+</ul>
+
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Core Concepts
 
-To get a local copy up and running follow these simple steps.
+### Graphics
 
-### Prerequisites
+Initially this development team will employ Unreal Engine Assets and free public use avatars, environments, and sounds. Later on we will explore creating our own assets using a combination of blender, cadet voice actors, and ambient sound recordings.
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+### Multiplayer
 
-### Installation
+Players will be able to join the same game via a local host connection. If time permits, this developer team will pursue hosting games on a local server. 
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/jkrutz/capstone-2021.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
+### Artificial Intelligence
 
-
+Spell casting movements will be appropriately classified into a spell type. The movement of casted entities will move and attack aided by AI. Computer players may be added if time permits.
 
 <!-- USAGE EXAMPLES -->
 ## Usage

@@ -1,20 +1,3 @@
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -26,15 +9,6 @@
 
   <p align="center">
     A third-person fantasy combat game that positions players in the middle of a magic arena armed with nothing except a spell-casting wand. Team up and battle other mages. Become champion.
-    <br />
-    <a href="https://github.com/jkrutz/capstone-2021"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/jkrutz/capstone-2021">View Demo</a>
-    ·
-    <a href="https://github.com/jkrutz/capstone-2021/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/jkrutz/capstone-2021/issues">Request Feature</a>
   </p>
 </p>
 
@@ -48,21 +22,31 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#inspiration">Inspiration</a></li>
+        <li><a href="#devs">The Developers</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#core-concepts">Core Concepts</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#graphics">Graphics</a></li>
+        <li><a href="#multiplayer">Multiplayer</a></li>
+        <li><a href="#ai">Artificial Intelligence</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#game">The Game</a>
+      <ul>
+        <li><a href="#player">The Player</a></li>
+        <li><a href="#arena">The Arena</a></li>
+        <li><a href="#spells">Spellcasting</a></li>
+        <li><a href="#consumables">Consumables</a></li>
+        <li><a href="#match">Match Mode</a></li>
+        <li><a href="#sandbox">Sandbox Mode</a></li>
+      </ul>
+    </li>
+    <li><a href="#extras">Extras</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#process">Our Process</a></li>
   </ol>
 </details>
 
@@ -71,15 +55,15 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-
 ### Built With
 
-* []()
-* []()
-* []()
+* <a href="https://www.unrealengine.com/en-US/">Unreal Engine 4</a>
+* <a href="https://www.blender.org/">Blender</a>
+* Love
 
+### Inspiration
+
+The magic in this game is inspired by <a href="https://www.youtube.com/watch?v=02pr2W7FT-c">this scene</a> from Harry Potter and the Order of the Pheonix. In this battle, no spell is necessarily more powerful than the next, moves take a conscious effort and wit. We wanted to emulate this same kind of mechanic and throw it into an arena. In most conventional magic games, there seems to be a <a href="https://en.wikipedia.org/wiki/Rock_paper_scissors">rock-paper-scissors</a> relationship between casted spells; most often water beats fire, wind beats fire, etc. This greatly simplifies the thought process behind making moves and we believe this diminishes enjoyment. The complex and limitless interactions between two spells is what makes this game unique.
 
 
 <!-- GETTING STARTED -->

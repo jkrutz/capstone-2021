@@ -23,7 +23,7 @@
       <ul>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#inspiration">Inspiration</a></li>
-        <li><a href="#devs">The Developers</a></li>
+        <li><a href="#the-developers">The Developers</a></li>
       </ul>
     </li>
     <li>
@@ -45,7 +45,7 @@
       </ul>
     </li>
     <li><a href="#extras">Extras</a></li>
-    <li><a href="#process">Our Process</a></li>
+    <li><a href="#our-process">Our Process</a></li>
   </ol>
 </details>
 

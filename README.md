@@ -40,12 +40,11 @@
         <li><a href="#arena">The Arena</a></li>
         <li><a href="#spells">Spellcasting</a></li>
         <li><a href="#consumables">Consumables</a></li>
-        <li><a href="#match">Match Mode</a></li>
-        <li><a href="#sandbox">Sandbox Mode</a></li>
+        <li><a href="#match-mode">Match Mode</a></li>
+        <li><a href="#sandbox-mode">Sandbox Mode</a></li>
       </ul>
     </li>
     <li><a href="#extras">Extras</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#process">Our Process</a></li>
   </ol>
 </details>
@@ -74,7 +73,7 @@ The magic in this game is inspired by <a href="https://www.youtube.com/watch?v=0
 </ul>
 
 
-<!-- GETTING STARTED -->
+<!-- CORE CONCEPTS -->
 ## Core Concepts
 
 ### Graphics
@@ -89,73 +88,57 @@ Players will be able to join the same game via a local host connection. If time 
 
 Spell casting movements will be appropriately classified into a spell type. The movement of casted entities will move and attack aided by AI. Computer players may be added if time permits.
 
-<!-- USAGE EXAMPLES -->
-## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<!-- THE GAME -->
+## The Game
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Player
 
+Players are gifted with magical abilities, basically wizards. Using a wand or staff, players can manifest entities or weather events into the world. Players have a set health amount, healing is possible, and will die if their HP hits zero. Players will respawn at the end of a round. There is no mana or cool down for attacks or movement, instead players are as fast or slow as they can draw our spells. Players are agile and can jump, run, walk, or crouch. 
 
+### Arena
 
-<!-- ROADMAP -->
-## Roadmap
+Players spawn in an enclosed environment, where falling off the map is not possible. To the best of our abilities we will manage glitching through buildings and the ground. This is the location where both game modes will take place. Ambient sounds will make the game feel more real and the addition of a day/night cycle will keep each game feeling a little different.
 
-See the [open issues](https://github.com/jkrutz/capstone-2021/issues) for a list of proposed features (and known issues).
+### Spells
 
+Spells are cast via a specific mouse movement. For example, drawing a star would summon a specific spell, whereas a square would summon a different one. Spells are not projectiles but instead add entities or events into the world. Depending on the strategy of the player, a spell can be either offensive or defensive. Spells are not as simple as rock, paper, scissors; ideally any spell has the potential to undo or weaken an opponent's attack. There is no perfect defense, water does not always beat out fire and vice versa. 
 
+### Consumables
 
-<!-- CONTRIBUTING -->
-## Contributing
+The addition of items found around the arena will require the creation of a player inventory. Consumables have buffing effects, which will boost the effectiveness of spells, player movement speed, or heal the player. 
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+### Match Mode
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Players are evenly assigned to one of two teams. Battling 1v1 up to 4v4, players compete to wipe out the opposing team. The first team to win four of these rounds wins!
 
+### Sandbox Mode
 
+Players will spawn alone in front of dummy players or targets. The idea of this game mode is to practice spell casting and get familiar with movement. This sandbox will also act as our preliminary testing environment as we add additional spells and mechanics.
 
-<!-- LICENSE -->
-## License
+<!-- EXTRAS -->
+## Extras
 
-Distributed under the MIT License. See `LICENSE` for more information.
+If we proceed faster than estimated, we will pull additional features from the non exhaustive list below.
 
+### Server Hosted Multiplayer
 
+Hosting on a server placed at USAFA or from a third party, this option would enable multiplayer from any location. Players no longer need to be connected to the same network.
 
-<!-- CONTACT -->
-## Contact
+### Computer Players
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - C22Joshua.Krutz@afacademy.af.edu
+This option would enable us to fill in teams with Bots. Computer Players would operate under the same abilities and restrictions as normal players and could be set up to operate at a variety of difficulties.
 
-Project Link: [https://github.com/jkrutz/capstone-2021](https://github.com/jkrutz/capstone-2021)
+### Interactive Environment
 
+Spells cast at buildings and the ground could now physically affect the environment.  Buildings can collapse, trees can fall, craters can be formed. All of these can damage a player and add a new dimension into our gameplay and strategy.
 
+### Cyber City Render
 
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
+Model the entirety of Cyber City in Blender as the battle arena. The buildings would be open for players to enter, and similar to above, may be destroyed or modified during game play. 
 
 
+<!-- PROCESS -->
+## Our Process
 
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/jkrutz/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/jkrutz/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/jkrutz/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/jkrutz/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/jkrutz/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/jkrutz/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/jkrutz/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/jkrutz/repo/issues
-[license-shield]: https://img.shields.io/github/license/jkrutz/repo.svg?style=for-the-badge
-[license-url]: https://github.com/jkrutz/repo/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/jkrutz
+We are implementing an agile framework, Scrum, to organize this project. The time period of August to December 2021 is broken up into four Sprints. Details about each Sprint can be found below. The purpose of a Sprint is to continuously improve our product and build out content in manageable chunks.

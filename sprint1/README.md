@@ -6,6 +6,7 @@
   <ol>
     <li>
       <a href="#Summary">Summary</a>
+      <a href="#Tutorials">Tutorials Used</a>
     </li>
   </ol>
 </details>
@@ -16,3 +17,15 @@
 ## Summary
 
 In this sprint the team independently created a version of Mario.
+
+
+<!-- TUTORIALS -->
+## Tutorials
+
+<ul>
+  <li>
+    <a href="s">
+      Resource 1
+    </a>
+  </li>
+</ul>

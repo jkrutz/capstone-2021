@@ -24,8 +24,11 @@ In this sprint the team independently created a version of Mario.
 
 <ul>
   <li>
-    <a href="s">
-      Resource 1
+    <a href="https://learn.unity.com/course/create-with-code">
+      Unity Tutorial
     </a>
+    <ul>
+      <li>This is a 41 hours and 30 minutes tutorial that details Getting Started, Player Control, Basic Gameplay, Sound and Effects, Gameplay Mechanics, and User Interface</li>
+    </ul>
   </li>
 </ul>

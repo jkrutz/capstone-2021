@@ -56,7 +56,7 @@
 
 ### Built With
 
-* <a href="https://www.unrealengine.com/en-US/">Unreal Engine 4</a>
+* <a href="https://unity.com/">Unity</a>
 * <a href="https://www.blender.org/">Blender</a>
 * Love
 
@@ -78,7 +78,7 @@ The magic in this game is inspired by <a href="https://www.youtube.com/watch?v=0
 
 ### Graphics
 
-Initially this development team will employ Unreal Engine Assets and free public use avatars, environments, and sounds. Later on we will explore creating our own assets using a combination of blender, cadet voice actors, and ambient sound recordings.
+Initially this development team will employ Unity Assets and free public use avatars, environments, and sounds. Later on we will explore creating our own assets using a combination of blender, cadet voice actors, and ambient sound recordings.
 
 ### Multiplayer
 
@@ -147,7 +147,7 @@ We are implementing an agile framework, Scrum, to organize this project. The tim
   <li><a href="https://github.com/jkrutz/capstone-2021/tree/main/sprint1">Sprint 1</a>
     <ul>
       <li>Research and planning phase</li>
-      <li>Familiarize team with Unreal Engine</li>
+      <li>Familiarize team with Unity Engine</li>
       <li>Synthesize a basic 3D "<a href=https://en.wikipedia.org/wiki/Mario">Mario</a>" game</li>
     </ul>
   </li>

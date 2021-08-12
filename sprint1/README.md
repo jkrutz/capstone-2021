@@ -34,3 +34,27 @@ In this sprint the team independently created a version of Mario.
     </ul>
   </li>
 </ul>
+
+<!-- RESOURCES USED -->
+## Resources Used
+
+<ul>
+  <li>
+    <a href="https://www.amazon.com/dp/B08ZLC661T?tag=wuuff-20&linkCode=ogi&th=1&psc=1">
+      Low-End Game Development Laptop
+      $799.99
+    </a>
+  </li>
+  <li>
+    <a href="https://www.amazon.com/dp/B08FJ4F8ZG?tag=wuuff-20&linkCode=ogi&th=1&psc=1">
+      Mid-Range Game Development Laptop
+      $1,499.00
+    </a>
+  </li>
+  <li>
+    <a href="https://www.amazon.com/dp/B01GQVA114?tag=wuuff-20&linkCode=ogi&th=1">
+      High-End Game Development Laptop
+      $1,879.95
+    </a>
+  </li>
+</ul>

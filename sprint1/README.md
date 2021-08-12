@@ -59,6 +59,7 @@ In this sprint the team independently created a version of Mario.
     OS - Windows 10
   </li>
 </ul>
+
 #### Recommended Specs
 <ul>
   <li>
@@ -80,6 +81,7 @@ In this sprint the team independently created a version of Mario.
     OS - Windows 10
   </li>
 </ul>
+
 #### Options
 <ul>
   <li>

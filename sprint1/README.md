@@ -35,8 +35,8 @@ In this sprint the team independently created a version of Mario.
   </li>
 </ul>
 
-<!-- RESOURCES USED -->
-## Resources Used
+<!-- RESOURCES REQUESTED -->
+## Resources Requested
 
 <ul>
   <li>

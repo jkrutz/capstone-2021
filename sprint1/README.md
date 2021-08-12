@@ -33,6 +33,11 @@ In this sprint the team independently created a version of Mario.
       <li>This is a 41 hours and 30 minutes tutorial that details Getting Started, Player Control, Basic Gameplay, Sound and Effects, Gameplay Mechanics, and User Interface</li>
     </ul>
   </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=SviIeTt2_Lc&list=PLFt_AvWsXl0ctd4dgE1F8g3uec4zKNRV0">
+      Sebastian Lague "Unity Create a Game Series"
+    </a>
+  </li>
 </ul>
 
 <!-- RESOURCES REQUESTED -->

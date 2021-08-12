@@ -6,6 +6,8 @@
   <ol>
     <li>
       <a href="#Summary">Summary</a>
+    </li>
+    <li>
       <a href="#Tutorials">Tutorials Used</a>
     </li>
   </ol>

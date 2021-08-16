@@ -38,6 +38,11 @@ In this sprint the team independently created a version of Mario.
       Sebastian Lague "Unity Create a Game Series"
     </a>
   </li>
+  <li>
+    <a href="https://gamedevacademy.org/unity-3d-first-and-third-person-view-tutorial/">
+      GameDevAcademy Third person camera
+    </a>
+  </li>
 </ul>
 
 <!-- RESOURCES REQUESTED -->

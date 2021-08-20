@@ -9,18 +9,25 @@ public class PlayerController : MonoBehaviour
     private float forwardInput;
     private float range = 5.5f;
     private Rigidbody playerRb;
-    public float jumpForce = 5f;
+    private AudioSource playerAudio;
+    public float jumpForce = 10f;
     private bool isOnGround = true;
+
+    public AudioClip jumpSound;
+    public AudioClip crashSound;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        EnemyController[] enemies = GameObject.FindObjectsOfType<EnemyController>();
+
         // Get player input
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
@@ -42,13 +49,23 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.z, transform.position.y, range);
         }
 
+        if(transform.position.y < 0)
+        {
+            for(int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].gameOver = true;
+            }
+            Destroy(gameObject);
+        }
+
         // Move vehicle on vertical input (W, S) then rotate on horizontal (A, D)
         transform.Translate(transform.forward * Time.deltaTime * speed * forwardInput);
         transform.Translate(transform.right * Time.deltaTime * speed * horizontalInput);
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerRb.AddForce(Vector3.up * jumpForce/2, ForceMode.Impulse);
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
             isOnGround = false;
         }
     }
@@ -61,9 +78,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
+            playerAudio.PlayOneShot(crashSound, 1.0f);
             Debug.Log("Hit!");
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject.transform.parent.gameObject);
         }
 
     }

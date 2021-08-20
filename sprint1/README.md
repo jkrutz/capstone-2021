@@ -43,6 +43,19 @@ In this sprint the team independently created a version of Mario.
       GameDevAcademy Third person camera
     </a>
   </li>
+  <li>
+    <a href="https://answers.unity.com/questions/652694/destroy-parent-when-child-is-destroyed.html">
+      GameDevAcademy How to destroy parent when child is acted on
+    </a>
+  </li>
+  <li>
+    <a href="https://forum.unity.com/threads/invokerepeating-random-interval.105107/">
+      Invoke vs Invoke Repeating, when to use which
+    </a>
+  </li>
+  
+  
+  
 </ul>
 
 <!-- RESOURCES REQUESTED -->

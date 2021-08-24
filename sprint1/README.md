@@ -24,9 +24,9 @@
 <!-- SUMMARY -->
 ## Summary
 
-To begin this Sprint, the team followed Unity's tutorial "Create with Code." This tutorial introduced C# fundamentals, basic player control, gameplay mechanics, sound and effects, and user interface creation. Examples of these units and the resulting example projects can be found <a href="/sprint1/tutorial/">here</a>. Following the tutorial walkthroughs, this team created a simple "Mario Game" that consists of the following features:
+To begin this Sprint, the team followed Unity's tutorial <a href="https://learn.unity.com/course/create-with-code">"Create with Code"</a>. This tutorial introduced C# fundamentals, basic player control, gameplay mechanics, sound and effects, and user interface creation. Examples of these units and the resulting example projects can be found <a href="/sprint1/tutorial/">here</a>. Following the tutorial walkthroughs, this team created a simple "Mario Game" that consists of the following features:
 
-<ol>
+<ul>
   <li>
     <a href="#Player-Controls">Player Control</a>
   </li>
@@ -36,11 +36,11 @@ To begin this Sprint, the team followed Unity's tutorial "Create with Code." Thi
   <li>
     <a href="#Enemy-Players">Enemy Players</a>
   </li>
-</ol>
+</ul>
 
 These features provide a good base that will later be applied to the development of the base game. The base game provided by the end of this Sprint will feature these same features along side:
 
-<ol>
+<ul>
   <li>
     <a href="#Placeholder-Player-Model">Placeholder Player Model</a>
   </li>
@@ -59,10 +59,12 @@ These features provide a good base that will later be applied to the development
   <li>
     <a href="#Title-Screen--Menu">Title Screen & Menu</a>
   </li>
-</ol>
+</ul>
 
 <!-- PRACTICE -->
 ## "Mario Game"
+
+In order to practice the material learned in the Unity <a href="https://learn.unity.com/course/create-with-code">tutorial series</a>, a very rudimentary game was constructed that was inspired by the Nintendo Mario Classics. In this world, a player can move and jump and destroy enemies by jumping on them. The skills applied to this game are the base concepts that will also be applied to the game delivered at the end of this Sprint.
 
 ### Player Controls
 
@@ -79,6 +81,8 @@ The presence of enemies makes the game interesting. You could take damage, you c
 
 <!-- BASE GAME -->
 ## Sprint Game
+
+Borrowing the concepts from the <a href="https://learn.unity.com/course/create-with-code">Unity tutorial</a> and <a href="#Mario-Game">"Mario Game"</a>, this game incorporates features that expand on the magical universe that is unofficially "Wizard 404." Giving players an arena and bestowing magical fire-casting powers upon them, the capsule shaped players finally feel at home in our wizarding world.
 
 ### Placeholder Character
 
@@ -114,6 +118,11 @@ The presence of enemies makes the game interesting. You could take damage, you c
     <a href="https://gamedevacademy.org/unity-3d-first-and-third-person-view-tutorial/">
       GameDevAcademy Third person camera
     </a>
+  </li>
+  <li>
+    <a href="https://code.tutsplus.com/tutorials/unity3d-third-person-cameras--mobile-11230">
+      Code Tuts Plus TPC
+  </a>
   </li>
   <li>
     <a href="https://answers.unity.com/questions/652694/destroy-parent-when-child-is-destroyed.html">

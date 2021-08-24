@@ -16,6 +16,9 @@
     <li>
       <a href="#Tutorials">Tutorials Used</a>
     </li>
+    <li>
+      <a href="#Resources-Requested">Requested Resources</a>
+    </li>
   </ol>
 </details>
 

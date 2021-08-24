@@ -8,7 +8,7 @@
       <a href="#Summary">Summary</a>
     </li>
     <li>
-      <a href="#Mario_Game">"Mario Game"</a>
+      <a href="#Mario-Game">"Mario Game"</a>
     </li>
     <li>
       <a href="#Summary">Summary</a>

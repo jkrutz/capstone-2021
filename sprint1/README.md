@@ -8,31 +8,10 @@
       <a href="#Summary">Summary</a>
     </li>
     <li>
-      <a href="#Control">Player Control</a>
+      <a href="#Mario_Game">"Mario Game"</a>
     </li>
     <li>
-      <a href="#Camera">Third Person Camera</a>
-    </li>
-    <li>
-      <a href="#Enemies">Enemy Players</a>
-    </li>
-    <li>
-      <a href="#Placeholder">Placeholder Player Model</a>
-    </li>
-    <li>
-      <a href="#Arena">Testing Arena</a>
-    </li>
-    <li>
-      <a href="#Health">Health System</a>
-    </li>
-    <li>
-      <a href="#Grid">Grid Spell Casting System</a>
-    </li>
-    <li>
-      <a href="#Fire">Fire Spell</a>
-    </li>
-    <li>
-      <a href="#Menu">Title Screen & Menu</a>
+      <a href="#Summary">Summary</a>
     </li>
     <li>
       <a href="#Tutorials">Tutorials Used</a>
@@ -49,7 +28,7 @@ To begin this Sprint, the team followed Unity's tutorial "Create with Code." Thi
 
 <ol>
   <li>
-    <a href="#Control">Player Control</a>
+    <a href="#Controls">Player Control</a>
   </li>
   <li>
     <a href="#Camera">Third Person Camera</a>

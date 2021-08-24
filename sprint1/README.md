@@ -28,13 +28,13 @@ To begin this Sprint, the team followed Unity's tutorial "Create with Code." Thi
 
 <ol>
   <li>
-    <a href="#Controls">Player Control</a>
+    <a href="#Player-Controls">Player Control</a>
   </li>
   <li>
-    <a href="#Camera">Third Person Camera</a>
+    <a href="#Third-Person-Camera">Third Person Camera</a>
   </li>
   <li>
-    <a href="#Enemies">Enemy Players</a>
+    <a href="#Enemy-Players">Enemy Players</a>
   </li>
 </ol>
 
@@ -42,37 +42,37 @@ These features provide a good base that will later be applied to the development
 
 <ol>
   <li>
-    <a href="#Placeholder">Placeholder Player Model</a>
+    <a href="#Placeholder-Player-Model">Placeholder Player Model</a>
   </li>
   <li>
-    <a href="#Arena">Testing Arena</a>
+    <a href="#Testing-Arena">Testing Arena</a>
   </li>
   <li>
-    <a href="#Health">Health System</a>
+    <a href="#Health-System">Health System</a>
   </li>
   <li>
-    <a href="#Grid">Grid Spell Casting System</a>
+    <a href="#Grid-Spell-Casting-System">Grid Spell Casting System</a>
   </li>
   <li>
-    <a href="#Fire">Fire Spell</a>
+    <a href="#Fire-Spell">Fire Spell</a>
   </li>
   <li>
-    <a href="#Menu">Title Screen & Menu</a>
+    <a href="#Title-Screen-&-Menu">Title Screen & Menu</a>
   </li>
 </ol>
 
 <!-- PRACTICE -->
 ## "Mario Game"
 
-### Controls
+### Player Controls
 
 Player movement is a core tenet of any interactive game. This enables a gamer to control where the on-screen avatar is located. We binded player movement to the most common controls, the W, A, S, D keys and the Up, Left, Down, Right keys. The SPACE bar when pressed applies an upward force to the player emulating a Jump.
 
-### Camera
+### Third Person Camera
 
 Third person camera mechanics increase useablility and level of comfort for our gamer base. When moving the mouse to the left or right, you are simulating a player looking left or right. With this feature added, moving feels "more natural" and less restrictive.
 
-### Enemies
+### Enemy Players
 
 The presence of enemies makes the game interesting. You could take damage, you can deal damage, or you can run around the map away from the enemies. This game features waves of enemies (increasing with the progression of waves) that randomly spawn on the map. To make this game more like a "Mario Game," the way to kill an enemy is by simply jumping on their head. If an enemy collides with a player, the game ends and the player dies.
 
@@ -84,7 +84,7 @@ The presence of enemies makes the game interesting. You could take damage, you c
 
 ### Testing Arena
 
-### Health
+### Health System
 
 ### Grid Spell Casting System
 

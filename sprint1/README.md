@@ -8,6 +8,33 @@
       <a href="#Summary">Summary</a>
     </li>
     <li>
+      <a href="#Control">Player Control</a>
+    </li>
+    <li>
+      <a href="#Camera">Third Person Camera</a>
+    </li>
+    <li>
+      <a href="#Enemies">Enemy Players</a>
+    </li>
+    <li>
+      <a href="#Placeholder">Placeholder Player Model</a>
+    </li>
+    <li>
+      <a href="#Arena">Testing Arena</a>
+    </li>
+    <li>
+      <a href="#Health">Health System</a>
+    </li>
+    <li>
+      <a href="#Grid">Grid Spell Casting System</a>
+    </li>
+    <li>
+      <a href="#Fire">Fire Spell</a>
+    </li>
+    <li>
+      <a href="#Menu">Title Screen & Menu</a>
+    </li>
+    <li>
       <a href="#Tutorials">Tutorials Used</a>
     </li>
   </ol>
@@ -18,7 +45,73 @@
 <!-- SUMMARY -->
 ## Summary
 
-In this sprint the team independently created a version of Mario.
+To begin this Sprint, the team followed Unity's tutorial "Create with Code." This tutorial introduced C# fundamentals, basic player control, gameplay mechanics, sound and effects, and user interface creation. Examples of these units and the resulting example projects can be found <a href="/sprint1/tutorial/">here</a>. Following the tutorial walkthroughs, this team created a simple "Mario Game" that consists of the following features:
+
+<ol>
+  <li>
+    <a href="#Control">Player Control</a>
+  </li>
+  <li>
+    <a href="#Camera">Third Person Camera</a>
+  </li>
+  <li>
+    <a href="#Enemies">Enemy Players</a>
+  </li>
+</ol>
+
+These features provide a good base that will later be applied to the development of the base game. The base game provided by the end of this Sprint will feature these same features along side:
+
+<ol>
+  <li>
+    <a href="#Placeholder">Placeholder Player Model</a>
+  </li>
+  <li>
+    <a href="#Arena">Testing Arena</a>
+  </li>
+  <li>
+    <a href="#Health">Health System</a>
+  </li>
+  <li>
+    <a href="#Grid">Grid Spell Casting System</a>
+  </li>
+  <li>
+    <a href="#Fire">Fire Spell</a>
+  </li>
+  <li>
+    <a href="#Menu">Title Screen & Menu</a>
+  </li>
+</ol>
+
+<!-- PRACTICE -->
+## "Mario Game"
+
+### Controls
+
+Player movement is a core tenet of any interactive game. This enables a gamer to control where the on-screen avatar is located. We binded player movement to the most common controls, the W, A, S, D keys and the Up, Left, Down, Right keys. The SPACE bar when pressed applies an upward force to the player emulating a Jump.
+
+### Camera
+
+Third person camera mechanics increase useablility and level of comfort for our gamer base. When moving the mouse to the left or right, you are simulating a player looking left or right. With this feature added, moving feels "more natural" and less restrictive.
+
+### Enemies
+
+The presence of enemies makes the game interesting. You could take damage, you can deal damage, or you can run around the map away from the enemies. This game features waves of enemies (increasing with the progression of waves) that randomly spawn on the map. To make this game more like a "Mario Game," the way to kill an enemy is by simply jumping on their head. If an enemy collides with a player, the game ends and the player dies.
+
+
+<!-- BASE GAME -->
+## Sprint Game
+
+### Placeholder Character
+
+### Testing Arena
+
+### Health
+
+### Grid Spell Casting System
+
+### Fire Spell
+
+### Title Screen & Menu
 
 
 <!-- TUTORIALS -->

@@ -57,7 +57,7 @@ These features provide a good base that will later be applied to the development
     <a href="#Fire-Spell">Fire Spell</a>
   </li>
   <li>
-    <a href="#Title-Screen-&-Menu">Title Screen & Menu</a>
+    <a href="#Title-Screen--Menu">Title Screen & Menu</a>
   </li>
 </ol>
 

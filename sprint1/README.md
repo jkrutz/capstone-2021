@@ -11,7 +11,7 @@
       <a href="#Mario-Game">"Mario Game"</a>
     </li>
     <li>
-      <a href="#Summary">Summary</a>
+      <a href="#Sprint-Game">Sprint Game</a>
     </li>
     <li>
       <a href="#Tutorials">Tutorials Used</a>

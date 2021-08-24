@@ -133,10 +133,6 @@ This option would enable us to fill in teams with Bots. Computer Players would o
 
 Spells cast at buildings and the ground could now physically affect the environment.  Buildings can collapse, trees can fall, craters can be formed. All of these can damage a player and add a new dimension into our gameplay and strategy.
 
-### Cyber City Render
-
-Model the entirety of Cyber City in Blender as the battle arena. The buildings would be open for players to enter, and similar to above, may be destroyed or modified during game play. 
-
 
 <!-- PROCESS -->
 ## Our Process

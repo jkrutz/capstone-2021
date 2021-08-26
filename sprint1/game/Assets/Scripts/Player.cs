@@ -8,12 +8,23 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float jumpSpeed = 5.0f;
     private PlayerController controller;
+    private MeshRenderer playerMesh;
     public bool isGrounded = true;
+
+    public int health;
+    private float damageDelay = 0;
+    private float damageTick = 1;
+    private int fireDamage = 10;
+    private Color damageColor = Color.red;
+    private Color restColor;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<PlayerController>();
+        playerMesh = GetComponent<MeshRenderer>();
+        health = 100;
+        restColor = playerMesh.material.color;
     }
 
     // Update is called once per frame
@@ -29,6 +40,8 @@ public class Player : MonoBehaviour
             controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
             isGrounded = false;
         }
+
+        Debug.Log("Health: " + health);
     }
 
     private void OnCollisionStay(Collision c)
@@ -37,5 +50,33 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
         }
+    }
+
+    private void OnCollisionEnter(Collision c)
+    {
+        if (c.gameObject.tag == "Fire")
+        {
+            InvokeRepeating("TakeDamage", damageDelay, damageTick);
+        }
+    }
+
+    private void OnCollisionExit(Collision c)
+    {
+        if (c.gameObject.tag == "Fire")
+        {
+            CancelInvoke("TakeDamage");
+        }
+    }
+
+    public void TakeDamage()
+    {
+        playerMesh.material.color = damageColor;
+        health -= fireDamage;
+        Invoke("RestoreColor", damageTick/4);
+    }
+
+    private void RestoreColor()
+    {
+        playerMesh.material.color = restColor;
     }
 }

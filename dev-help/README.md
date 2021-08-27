@@ -1,31 +1,19 @@
-# Sprint 1
+# Developer Cheat Sheet
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li>
-      <a href="#Summary">Summary</a>
-    </li>
-    <li>
-      <a href="#Mario-Game">"Mario Game"</a>
-    </li>
-    <li>
-      <a href="#Sprint-Game">Sprint Game</a>
-    </li>
-    <li>
-      <a href="#Tutorials">Tutorials Used</a>
-    </li>
-    <li>
-      <a href="#Resources-Requested">Requested Resources</a>
+      <a href="#Git">Git</a>
     </li>
   </ol>
 </details>
 
 
 
-<!-- SUMMARY -->
-## Summary
+<!-- GIT -->
+## GIT
 
 To begin this Sprint, the team followed Unity's tutorial <a href="https://learn.unity.com/course/create-with-code">"Create with Code"</a>. This tutorial introduced C# fundamentals, basic player control, gameplay mechanics, sound and effects, and user interface creation. Examples of these units and the resulting example projects can be found <a href="/sprint1/tutorial/">here</a>. Following the tutorial walkthroughs, this team created a simple "Mario Game" that consists of the following features:
 

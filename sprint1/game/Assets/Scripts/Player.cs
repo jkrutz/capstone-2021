@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float jumpSpeed = 5.0f;
     private PlayerController controller;
-    public bool isGrounded = true;
+    private bool isGrounded = true;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision c)
+    private void OnCollisionEnter(Collision c)
     {
         if (c.gameObject.tag == "Ground")
         {

@@ -8,7 +8,7 @@
   <h3 align="center">Capstone 2021</h3>
 
   <p align="center">
-    A third-person fantasy combat game that positions players in the middle of a magic arena armed with nothing except a spell-casting wand. Team up and battle other mages. Become champion.
+    A third-person fantasy combat game that positions players in the middle of a magic arena armed with nothing except a spell-casting wand.
   </p>
 </p>
 

@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
 
         float desiredAngleY = playerObject.transform.eulerAngles.y;
         rotation = Quaternion.Euler(-desiredAngleX * rotateSpeed, desiredAngleY, 0.0f);
-
+        
         transform.position = playerObject.transform.position - (rotation * offset);
         transform.LookAt(playerObject.transform);
     }

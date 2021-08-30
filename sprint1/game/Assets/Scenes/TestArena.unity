@@ -1892,6 +1892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 7007761070237993371, guid: 600b55b46428fbc4ea458fbfe668d40f, type: 3}
+  point: {fileID: 0}
   cameraController: {fileID: 0}
 --- !u!4 &1197433853
 Transform:

@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GameObject))]
+[RequireComponent(typeof(SpellClassifier))]
 public class SpellManager : MonoBehaviour
 {
     public GameObject fire;
     public GameObject point;
     private GameObject playerObject;
+    private SpellClassifier classifier;
     public CameraController cameraController;
-    private float pointTimer;
-    private float lastInterval = 0.0f;
-    private float interval = 0.01f;
-    //private List<Vector2> mouseInputPoints = new List<Vector2>();
-    //private bool drawing = false;
+    private List<Vector2> mouseInputPoints = new List<Vector2>();
+    private bool firstTime = true;
+    private bool drawing = false;
 
     private string spell;
 
     // Start is called before the first frame update
     void Start()
     {
+        classifier = GetComponent<SpellClassifier>();
         playerObject = GameObject.Find("Temp Player");
         cameraController = GetComponentInParent<CameraController>();
         spell = "None";
@@ -39,25 +40,21 @@ public class SpellManager : MonoBehaviour
                 spell = "None";
             }
         }
-
-        pointTimer += Time.deltaTime;
     }
 
     private void LateUpdate()
     {
-        Vector2 mousePosition = Input.mousePosition;
-
         if (Input.GetMouseButton(1))
         {
             if (Input.GetMouseButton(0))
             {
-                /*
-                drawing = true;
-                if (shouldCollectNewPoint())
+                if (firstTime)
                 {
-                    mouseInputPoints.Add(mousePosition);
+                    InvokeRepeating("collectPoints", 0.0f, 0.01f);
+                    firstTime = false;
+                    drawing = true;
                 }
-                */
+                /*
                 if (mousePosition.x > 0.0f && mousePosition.x < 950.0f)
                 {
                     if (mousePosition.y > 450.0f && mousePosition.y < 900.0f)
@@ -65,25 +62,24 @@ public class SpellManager : MonoBehaviour
                         spell = "Fire";
                     }
                 }
-
-            } /*else
+                */
+            } else
             {
-                drawing = false;
+                if (drawing)
+                {
+                    CancelInvoke("collectPoints");
+                    classifier.Resample(mouseInputPoints, 64);
+                    firstTime = true;
+                    drawing = false;
+                }
             }
-            */
         }
     }
 
-    private bool shouldCollectNewPoint()
+    private void collectPoints()
     {
-        bool a = false;
+        Vector2 mousePosition = Input.mousePosition;
 
-        if (pointTimer - lastInterval > interval)
-        {
-            a = true;
-            lastInterval = pointTimer;
-        }
-
-        return a;
+        mouseInputPoints.Add(mousePosition);
     }
 }

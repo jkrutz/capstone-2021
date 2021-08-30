@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpellClassifier : MonoBehaviour
 {
-    private List<Vector2> Resample(List<Vector2> points, int n)
+    public List<Vector2> Resample(List<Vector2> points, int n)
     {
         //1 I ← PATH-LENGTH(points) / (n – 1)
-        //2 D ← 0
         float I = PathLength(points) / (n - 1);
+        //2 D ← 0
         float D = 0;
 
         //3 newPoints ← points0
@@ -16,7 +16,7 @@ public class SpellClassifier : MonoBehaviour
         newPoints.Add(points[0]);
 
         //4 foreach point pi for i ≥ 1 in points do
-        for (int i = 1; i <= points.Count; i++)
+        for (int i = 1; i < points.Count; i++)
         {
             //5 d ← DISTANCE(pi-1, pi) 
             float d = Vector2.Distance(points[i - 1], points[i]);
@@ -49,7 +49,7 @@ public class SpellClassifier : MonoBehaviour
         //1 d ← 0 
         float d = 0.0f;
         //2 for i from 1 to |A| step 1 do
-        for (int i = 1; i <= A.Count; i++)
+        for (int i = 1; i < A.Count; i++)
         {
             //3 d ← d + DISTANCE(Ai-1, Ai)
             d = d + Vector2.Distance(A[i - 1], A[i]);

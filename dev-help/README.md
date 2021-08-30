@@ -74,7 +74,7 @@ When working with branches it is important to see what has changed since you, we
 ## Project Sequence
 The following sequence/practice is what we will do to ensure our development stays organized.
 
-1. Create a new branch
+1. Create a new branch (sprintx-
 2. Modify, create, and delete files within this branch
 3. Create and link a pull request to this branch (the name should be relatively the same to the branch)
 4. Review the pull request

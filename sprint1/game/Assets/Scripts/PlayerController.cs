@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRigidBody = GetComponent<Rigidbody>();
         playerObject = GameObject.Find("Temp Player");
+        
     }
 
     void FixedUpdate()

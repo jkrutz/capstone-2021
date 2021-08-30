@@ -137,6 +137,15 @@ Borrowing the concepts from the <a href="https://learn.unity.com/course/create-w
       Invoke vs Invoke Repeating, when to use which
     </a>
   </li>
+  <li>
+    <a href="http://faculty.washington.edu/wobbrock/pubs/uist-07.01.pdf">
+      $1 gesture recognizer
+    </a>
+    <ul>
+      <li>A one press and hold euclidean distance gesture recognition tool. Could be very instrumental in the development of our spell casting system.</li>
+    </ul>
+  </li>
+  
   
   
   

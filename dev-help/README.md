@@ -62,7 +62,7 @@ The following command is used to tell a user what branch they are currently work
 
     git branch
 
-The next two commands are used to switch between different branches. The main branch (or if you watch Loki, the Sacred Timeline) is called "master." Any other branch names are up to the team's discretion. The first command allows you to create a branch with whatever name you choose. After running, Git creates this new branch and automatically puts you in this working branch (if you run git branch, Git will also tell you that you switched into this new branch). The second command is used to switch between existing branches.
+The next two commands are used to switch between different branches. The main branch (or if you watch Loki, the Sacred Timeline) is called "master." Any other branch names are up to the team's discretion. The first command allows you to create a branch with whatever name you choose. After running, Git creates this new branch and automatically puts you in this working branch (if you run git branch, Git will also tell you that you switched into this new branch). The second command is used to switch between existing branches. We will use the convention sprintx-username-feature to standardize branch names.
 
     git checkout -b <branch>
     git checkout <branch>
@@ -74,7 +74,7 @@ When working with branches it is important to see what has changed since you, we
 ## Project Sequence
 The following sequence/practice is what we will do to ensure our development stays organized.
 
-1. Create a new branch (sprintx-
+1. Create a new branch (sprintx-username-feature)
 2. Modify, create, and delete files within this branch
 3. Create and link a pull request to this branch (the name should be relatively the same to the branch)
 4. Review the pull request

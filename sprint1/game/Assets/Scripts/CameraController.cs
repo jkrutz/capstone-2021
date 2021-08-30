@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 public class CameraController : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
     private PlayerController playerController;
     private Vector3 offset;
     public float rotateSpeed = 2.0f;
@@ -14,7 +14,6 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Temp Player");
         playerController = GetComponent<PlayerController>();
 
         offset = player.transform.position - transform.position;

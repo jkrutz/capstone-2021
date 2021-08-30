@@ -41,7 +41,10 @@ public class Player : MonoBehaviour
             isGrounded = false;
         }
 
-        Debug.Log("Health: " + health);
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionStay(Collision c)

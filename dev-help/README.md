@@ -1,200 +1,88 @@
-# Developer Cheat Sheet
+# How to use GitHub & Git
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#Git">Git</a>
-    </li>
-  </ol>
-</details>
+## Table of Contents
 
+ 1. [What is Git?](#what-is-git)
+ 2. [Installation](#installation)
+ 3. [Important Commands](#important-commands)
+ 4. [Project Sequence](#project-sequence)
 
+## What is Git?
 
-<!-- GIT -->
-## GIT
+Git is an open source version control system that allows a development team to manage changes to documents, programs, web sites, and other collections of information. GitHub hosts multiple Git repositories and is a great tool to connect teams and showcase a code portfolio.
 
-To begin this Sprint, the team followed Unity's tutorial <a href="https://learn.unity.com/course/create-with-code">"Create with Code"</a>. This tutorial introduced C# fundamentals, basic player control, gameplay mechanics, sound and effects, and user interface creation. Examples of these units and the resulting example projects can be found <a href="/sprint1/tutorial/">here</a>. Following the tutorial walkthroughs, this team created a simple "Mario Game" that consists of the following features:
+## Installation
 
-<ul>
-  <li>
-    <a href="#Player-Controls">Player Control</a>
-  </li>
-  <li>
-    <a href="#Third-Person-Camera">Third Person Camera</a>
-  </li>
-  <li>
-    <a href="#Enemy-Players">Enemy Players</a>
-  </li>
-</ul>
+To use Git in its purest form, we recommend using Git Bash. Git Bash is a Linux-feeling command line interface that allows you to work with Git commands at the lowest level (little to no abstraction). Working with Git in this way allows you to have complete understanding of how your work is managed.
 
-These features provide a good base that will later be applied to the development of the base game. The base game provided by the end of this Sprint will feature these same features along side:
+To install Git Bash visit [this link](https://gitforwindows.org/) and download the version appropriate for your machine's operating system.
 
-<ul>
-  <li>
-    <a href="#Placeholder-Player-Model">Placeholder Player Model</a>
-  </li>
-  <li>
-    <a href="#Testing-Arena">Testing Arena</a>
-  </li>
-  <li>
-    <a href="#Health-System">Health System</a>
-  </li>
-  <li>
-    <a href="#Grid-Spell-Casting-System">Grid Spell Casting System</a>
-  </li>
-  <li>
-    <a href="#Fire-Spell">Fire Spell</a>
-  </li>
-  <li>
-    <a href="#Title-Screen--Menu">Title Screen & Menu</a>
-  </li>
-</ul>
+## Important Commands
 
-<!-- PRACTICE -->
-## "Mario Game"
+Understanding the following commands is vital for ensuring correct sequencing and saving of data. While these commands are listed in bulk here, please reference the Project Sequence to see the right way to use these commands.
 
-In order to practice the material learned in the Unity <a href="https://learn.unity.com/course/create-with-code">tutorial series</a>, a very rudimentary game was constructed that was inspired by the Nintendo Mario Classics. In this world, a player can move and jump and destroy enemies by jumping on them. The skills applied to this game are the base concepts that will also be applied to the game delivered at the end of this Sprint.
+### Clone
+Cloning is what enables you to take an online repo and copy it to your local machine. The changes you make on your local machine are not official (as far as the rest of the team is concerned) until you add, commit, and push these changes.
 
-### Player Controls
+    git clone <HTTPS or SSH>
 
-Player movement is a core tenet of any interactive game. This enables a gamer to control where the on-screen avatar is located. We binded player movement to the most common controls, the W, A, S, D keys and the Up, Left, Down, Right keys. The SPACE bar when pressed applies an upward force to the player emulating a Jump.
+### Add
+A simple add command tells Git, "hey I made changes to these files, please track them." This is an important step because if you make any new files, Git doesn't know if you want them included in the project. This all-inclusive or explicit command allows you to do just that. 
 
-### Third Person Camera
+The first command will automatically tell Git to track all modifications that you have made (a .gitignore file filters out any extraneous files that are not important to the project, think temp files). The second allows you to specify a specific file to track.
 
-Third person camera mechanics increase useablility and level of comfort for our gamer base. When moving the mouse to the left or right, you are simulating a player looking left or right. With this feature added, moving feels "more natural" and less restrictive.
+    git add *
+    git add <file>
 
-### Enemy Players
+### Commit
+A commit is essentially the "save" command for repo things. All files that you change (and want on the online repo) need to be staged and saved to a hidden folder in your local repo (you can find it if you look for .git directory). When you run this command, Git will basically copy all your modified files into this directory preparing to send them off to the online repo.
 
-The presence of enemies makes the game interesting. You could take damage, you can deal damage, or you can run around the map away from the enemies. This game features waves of enemies (increasing with the progression of waves) that randomly spawn on the map. To make this game more like a "Mario Game," the way to kill an enemy is by simply jumping on their head. If an enemy collides with a player, the game ends and the player dies.
+All commits need to specify a SHORT commit message (commit title) that answers two questions, 1) Why does this file need to be added, and 2) What is in this commit (what files/functionality)? Optionally, you can add a more verbose description following the first message.
 
+    git commit -m "Commit Title" -m "Commit Description"
 
-<!-- BASE GAME -->
-## Sprint Game
+### Push
+This step takes the contents of your .git directory and sends it off to the online repository. Essentially, your changes can now be seen, downloaded, and modified by the rest of the team.
 
-Borrowing the concepts from the <a href="https://learn.unity.com/course/create-with-code">Unity tutorial</a> and <a href="#Mario-Game">"Mario Game"</a>, this game incorporates features that expand on the magical universe that is unofficially "Wizard 404." Giving players an arena and bestowing magical fire-casting powers upon them, the capsule shaped players finally feel at home in our wizarding world.
+The first command must be run if this is the first time you are on a new branch (or on a new repo). It specifies the up-stream, or where you are committing all of these changes to. Once you have run this command, you can just simply enter "git push." If you forget, don't worry, Git will politely tell you it does not know what the up-stream and will list the command it needs you to run.
 
-### Placeholder Character
+    git push -u origin <branch>
+    git push
 
-### Testing Arena
+### Pull
+A pull is the opposite of a push. Instead of sending changes to the repo, you are downloading updates from the repo. If your friend just "pushed" his/her changes, you can "pull" to see everything he/she just worked on. Similar to push, you may need to enter the first command when working with a new branch. After that it is just "git pull."
 
-### Health System
+    git pull origin master
+    git pull
 
-### Grid Spell Casting System
+### Branch
+Branches are the heart of team development. We will create a new branch (or multiple branches) for each pull request we have. A pull request is essentially a specific, narrow functionality. Say if we have an website, one pull-request/branch may be dedicated to creating a feedback form. A branch basically stems off of the live-application (or main app) and lets you work in a sandbox environment without disrupting the code that is running for users or other purposes.
 
-### Fire Spell
+The following command is used to tell a user what branch they are currently working on.
 
-### Title Screen & Menu
+    git branch
 
+The next two commands are used to switch between different branches. The main branch (or if you watch Loki, the Sacred Timeline) is called "master." Any other branch names are up to the team's discretion. The first command allows you to create a branch with whatever name you choose. After running, Git creates this new branch and automatically puts you in this working branch (if you run git branch, Git will also tell you that you switched into this new branch). The second command is used to switch between existing branches.
 
-<!-- TUTORIALS -->
-## Tutorials
+    git checkout -b <branch>
+    git checkout <branch>
 
-<ul>
-  <li>
-    <a href="https://learn.unity.com/course/create-with-code">
-      Unity Tutorial
-    </a>
-    <ul>
-      <li>This is a 41 hours and 30 minutes tutorial that details Getting Started, Player Control, Basic Gameplay, Sound and Effects, Gameplay Mechanics, and User Interface</li>
-    </ul>
-  </li>
-  <li>
-    <a href="https://www.youtube.com/watch?v=SviIeTt2_Lc&list=PLFt_AvWsXl0ctd4dgE1F8g3uec4zKNRV0">
-      Sebastian Lague "Unity Create a Game Series"
-    </a>
-  </li>
-  <li>
-    <a href="https://gamedevacademy.org/unity-3d-first-and-third-person-view-tutorial/">
-      GameDevAcademy Third person camera
-    </a>
-  </li>
-  <li>
-    <a href="https://code.tutsplus.com/tutorials/unity3d-third-person-cameras--mobile-11230">
-      Code Tuts Plus TPC
-  </a>
-  </li>
-  <li>
-    <a href="https://answers.unity.com/questions/652694/destroy-parent-when-child-is-destroyed.html">
-      GameDevAcademy How to destroy parent when child is acted on
-    </a>
-  </li>
-  <li>
-    <a href="https://forum.unity.com/threads/invokerepeating-random-interval.105107/">
-      Invoke vs Invoke Repeating, when to use which
-    </a>
-  </li>
-  
-  
-  
-</ul>
+When working with branches it is important to see what has changed since you, well, branched. The following command will show the difference between your current branch and its parent. So for example,  if I branched off of master, running git diff would tell me the files and line numbers of those files that have been modified, deleted, or created.
 
-<!-- RESOURCES REQUESTED -->
-## Resources Requested
+    git diff
 
-#### Minimum Specs Required
-<ul>
-  <li>
-    CPU - Intel Core i5 or AMD Ryzen 5
-  </li>
-  <li>
-    RAM - 8GB
-  </li>
-  <li>
-    Storage - 256GB SSD
-  </li>
-  <li>
-    Display - 15.6-inch
-  </li>
-  <li>
-    GPU - NVIDIA GeForce GTX
-  </li>
-  <li>
-    OS - Windows 10
-  </li>
-</ul>
+## Project Sequence
+The following sequence/practice is what we will do to ensure our development stays organized.
 
-#### Recommended Specs
-<ul>
-  <li>
-    CPU - Intel Core i7 or AMD Ryzen 7
-  </li>
-  <li>
-    RAM - 16GB
-  </li>
-  <li>
-    Storage - 512GB SSD
-  </li>
-  <li>
-    Display - 17.0-inch
-  </li>
-  <li>
-    GPU - NVIDIA GeForce GTX
-  </li>
-  <li>
-    OS - Windows 10
-  </li>
-</ul>
+1. Create a new branch
+2. Modify, create, and delete files within this branch
+3. Create and link a pull request to this branch (the name should be relatively the same to the branch)
+4. Review the pull request
+	* Provide reviews, comments, and verification to the pull request
+	* Get the pull request approved by a project manager
+5. Project manager approves request
+6. Branch is merged to parent branch
+7. Delete branch/pull request once merge is successful
+8. Start all over
 
-#### Options
-<ul>
-  <li>
-    <a href="https://www.amazon.com/dp/B08ZLC661T?tag=wuuff-20&linkCode=ogi&th=1&psc=1">
-      Low-End Game Development Laptop
-      $799.99
-    </a>
-  </li>
-  <li>
-    <a href="https://www.amazon.com/dp/B08FJ4F8ZG?tag=wuuff-20&linkCode=ogi&th=1&psc=1">
-      Mid-Range Game Development Laptop
-      $1,499.00
-    </a>
-  </li>
-  <li>
-    <a href="https://www.amazon.com/dp/B01GQVA114?tag=wuuff-20&linkCode=ogi&th=1">
-      High-End Game Development Laptop
-      $1,879.95
-    </a>
-  </li>
-</ul>
+I recommend using GitHub Desktop to manage pull requests.

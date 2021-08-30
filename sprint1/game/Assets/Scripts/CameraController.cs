@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     private GameObject playerObject;
     private PlayerController playerController;
     public Vector3 offset;
+    private Vector3 initOffset = new Vector3(8.0f, 6.0f, -3.0f);
     private Vector3 offsetZoomed;
     private Vector3 offsetRegular;
     public float rotateSpeed = 2.0f;
@@ -20,7 +21,7 @@ public class CameraController : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
 
-        offset = playerObject.transform.position - transform.position;
+        offset = playerObject.transform.position - initOffset;
         offsetRegular = offset;
         offsetZoomed = (offset / 2);
     }

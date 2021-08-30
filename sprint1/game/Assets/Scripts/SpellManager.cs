@@ -12,8 +12,8 @@ public class SpellManager : MonoBehaviour
     private float pointTimer;
     private float lastInterval = 0.0f;
     private float interval = 0.01f;
-    private List<Vector2> mouseInputPoints = new List<Vector2>();
-    private bool drawing = false;
+    //private List<Vector2> mouseInputPoints = new List<Vector2>();
+    //private bool drawing = false;
 
     private string spell;
 
@@ -51,12 +51,13 @@ public class SpellManager : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
+                /*
                 drawing = true;
                 if (shouldCollectNewPoint())
                 {
                     mouseInputPoints.Add(mousePosition);
                 }
-                /*
+                */
                 if (mousePosition.x > 0.0f && mousePosition.x < 950.0f)
                 {
                     if (mousePosition.y > 450.0f && mousePosition.y < 900.0f)
@@ -64,11 +65,12 @@ public class SpellManager : MonoBehaviour
                         spell = "Fire";
                     }
                 }
-                */
-            } else
+
+            } /*else
             {
                 drawing = false;
             }
+            */
         }
     }
 

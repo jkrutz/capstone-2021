@@ -44,26 +44,31 @@ public class SpellManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        Vector2 mousePosition = Input.mousePosition;
+
         if (Input.GetMouseButton(1))
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
+                /*
                 if (firstTime)
                 {
                     InvokeRepeating("collectPoints", 0.0f, 0.01f);
                     firstTime = false;
                     drawing = true;
                 }
-                /*
-                if (mousePosition.x > 0.0f && mousePosition.x < 950.0f)
+                */
+                float vertBoundary = Screen.height / 2.0f;
+                float horizBoundary = Screen.width / 2.0f;
+                if (mousePosition.x > 0.0f && mousePosition.x < horizBoundary)
                 {
-                    if (mousePosition.y > 450.0f && mousePosition.y < 900.0f)
+                    if (mousePosition.y > vertBoundary && mousePosition.y < Screen.height)
                     {
                         spell = "Fire";
                     }
                 }
-                */
-            } else
+                
+            } /*else
             {
                 if (drawing)
                 {
@@ -72,7 +77,7 @@ public class SpellManager : MonoBehaviour
                     firstTime = true;
                     drawing = false;
                 }
-            }
+            }*/
         }
     }
 

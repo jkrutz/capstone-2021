@@ -36,4 +36,10 @@ public class PlayerController : MonoBehaviour
     {
         playerRigidBody.AddForce(jumpVec, ForceMode.Impulse);
     }
+
+    public void Die()
+    {
+        playerObject.SetActive(false);
+    }
+
 }

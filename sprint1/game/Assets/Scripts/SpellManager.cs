@@ -36,6 +36,7 @@ public class SpellManager : MonoBehaviour
             Vector3 spellTarget = new Vector3(cameraToPlayerVector.x, 0.55f, cameraToPlayerVector.z);
             if (spell == "Fire")
             {
+                playerObject.GetComponent<Player>().GetComponent<AudioSource>().PlayOneShot(playerObject.GetComponent<Player>().spellSounds[Random.Range(0, playerObject.GetComponent<Player>().spellSounds.Count)], 1.0f);
                 Instantiate(fire, spellTarget, Quaternion.identity);
                 spell = "None";
             }

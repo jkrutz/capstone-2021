@@ -7,12 +7,16 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     public float jumpSpeed = 5.0f;
+    public List<AudioClip> hurtSounds;
+    public List<AudioClip> deathSounds;
+    public List<AudioClip> spellSounds;
+    private AudioSource playerAudio;
     private PlayerController controller;
     private bool isGrounded = true;
 
     private MeshRenderer playerMesh;
 
-    private float health = 10.0f;
+    private float health = 100.0f;
     private float damageDelay = 0.0f;
     private float damageTick = 1.0f;
     private float fireDamage = 10.0f;
@@ -24,6 +28,7 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<PlayerController>();
         playerMesh = GetComponent<MeshRenderer>();
+        playerAudio = GetComponent<AudioSource>();
         restColor = playerMesh.material.color;
     }
 
@@ -72,6 +77,7 @@ public class Player : MonoBehaviour
     {
         if (health > 0)
         {
+            playerAudio.PlayOneShot(hurtSounds[Random.Range(0, hurtSounds.Count)], 1.0f);
             playerMesh.material.color = damageColor;
             health -= fireDamage;
             Invoke("RestoreColor", damageTick / 4);

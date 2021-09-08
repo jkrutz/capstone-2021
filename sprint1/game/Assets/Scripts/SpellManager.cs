@@ -36,7 +36,6 @@ public class SpellManager : MonoBehaviour
             Vector3 spellTarget = new Vector3(cameraToPlayerVector.x, 0.55f, cameraToPlayerVector.z);
             if (spell == "Fire")
             {
-                playerObject.GetComponent<Player>().GetComponent<AudioSource>().PlayOneShot(playerObject.GetComponent<Player>().spellSounds[Random.Range(0, playerObject.GetComponent<Player>().spellSounds.Count)], 1.0f);
                 Instantiate(fire, spellTarget, Quaternion.identity);
                 spell = "None";
             }
@@ -45,40 +44,41 @@ public class SpellManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector2 mousePosition = Input.mousePosition;
-
         if (Input.GetMouseButton(1))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
-                /*
                 if (firstTime)
                 {
                     InvokeRepeating("collectPoints", 0.0f, 0.01f);
                     firstTime = false;
                     drawing = true;
                 }
-                */
-                float vertBoundary = Screen.height / 2.0f;
-                float horizBoundary = Screen.width / 2.0f;
-                if (mousePosition.x > 0.0f && mousePosition.x < horizBoundary)
+                /*
+                if (mousePosition.x > 0.0f && mousePosition.x < 950.0f)
                 {
-                    if (mousePosition.y > vertBoundary && mousePosition.y < Screen.height)
+                    if (mousePosition.y > 450.0f && mousePosition.y < 900.0f)
                     {
                         spell = "Fire";
                     }
                 }
-                
-            } /*else
+                */
+            } else
             {
                 if (drawing)
                 {
                     CancelInvoke("collectPoints");
+                    for (int i = 1; i < mouseInputPoints.Count; i++)
+                    {
+                        Debug.Log("drawing");
+                        Debug.DrawLine(new Vector3(mouseInputPoints[i].x, mouseInputPoints[i].y), new Vector3(mouseInputPoints[i-1].x, mouseInputPoints[i-1].y), Color.blue);
+                    }
                     classifier.Resample(mouseInputPoints, 64);
+
                     firstTime = true;
                     drawing = false;
                 }
-            }*/
+            }
         }
     }
 

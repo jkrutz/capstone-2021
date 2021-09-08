@@ -50,25 +50,43 @@ The following are all features and concepts we are tackling in this Sprint. Each
 
 ### Gesture Recognizer
 
-Implementing the <a href="http://faculty.washington.edu/wobbrock/pubs/uist-07.01.pdf">$1 Gesture Recognizer</a>, this algorithm allows us to use Euclidean distance calculations to pretty accurately attribute a scribbled spell to a known dictionary of spells.
+- [ ] Completed
+
+Implementing the <a href="http://faculty.washington.edu/wobbrock/pubs/uist-07.01.pdf">$1 Gesture Recognizer</a>, this algorithm allows us to use Euclidean distance calculations to pretty accurately attribute a scribbled spell to a known dictionary of spells
+
 
 ### Computer Player
+
+- [ ] Completed
 
 This computer player moves around the map, can jump, and can most importantly cast spells.
 
 ### More Spells
 
+- [ ] Fire Spell Completed
+- [ ] Wall Spell Completed
+- [ ] Explosion Spell Completed
+- [ ] Disarm Spell Completed
+
 Sprint 1 included one spell: Fire. This sprint improves fire mechanics, as well as adding in 3 new spells: Disarm, Wall, and Explosion. Disarm does exactly that, it prevents the player (or computer) from casting spells, until their wand or staff is retrieved. Wall summons a defensive barrier in front of players. And Explosion, manifests a ball of energy that damages and moves players across the map.
 
 ### Aiming System
+
+- [ ] Completed
 
 Spell casting is not necessarily easy at this point in time, and it is unclear on where a spell is being cast to. A crosshair system seeks to clear up this confusion.
 
 ### Debug HUD
 
+- [ ] Completed
+
 A heads-up display (HUD) provides information that will be vital for the debug process. Containing universal coordinates, rotation, and health we can communicate to the programming team exactly what a player's attributes are and provide context for why things work/don't work.
 
 ### Bug Fixes
+
+- [ ] Gravity Normalized Completed
+- [ ] Stair Collisions Completed
+- [ ] Spell Casting Depth Completed
 
 In this Sprint, we seek to correct the issues from Sprint 1, including but not limited to stair collisions, spell casting depth, and weird gravity.
 

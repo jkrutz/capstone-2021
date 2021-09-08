@@ -36,7 +36,6 @@ public class SpellManager : MonoBehaviour
             Vector3 spellTarget = new Vector3(cameraToPlayerVector.x, 0.55f, cameraToPlayerVector.z);
             if (spell == "Fire")
             {
-                Instantiate(fire, spellTarget, Quaternion.identity);
                 spell = "None";
             }
         }
@@ -44,6 +43,8 @@ public class SpellManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        Vector2 mousePosition = Input.mousePosition;
+
         if (Input.GetMouseButton(1))
         {
             if (Input.GetMouseButton(0))
@@ -54,27 +55,11 @@ public class SpellManager : MonoBehaviour
                     firstTime = false;
                     drawing = true;
                 }
-                /*
-                if (mousePosition.x > 0.0f && mousePosition.x < 950.0f)
-                {
-                    if (mousePosition.y > 450.0f && mousePosition.y < 900.0f)
-                    {
-                        spell = "Fire";
-                    }
-                }
-                */
             } else
             {
                 if (drawing)
                 {
                     CancelInvoke("collectPoints");
-                    for (int i = 1; i < mouseInputPoints.Count; i++)
-                    {
-                        Debug.Log("drawing");
-                        Debug.DrawLine(new Vector3(mouseInputPoints[i].x, mouseInputPoints[i].y), new Vector3(mouseInputPoints[i-1].x, mouseInputPoints[i-1].y), Color.blue);
-                    }
-                    classifier.Resample(mouseInputPoints, 64);
-
                     firstTime = true;
                     drawing = false;
                 }

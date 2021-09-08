@@ -8,10 +8,12 @@ public class CameraController : MonoBehaviour
 {
     private GameObject playerObject;
     private PlayerController playerController;
+
     public Vector3 offset;
     private Vector3 initOffset = new Vector3(8.0f, 6.0f, -3.0f);
     private Vector3 offsetZoomed;
     private Vector3 offsetRegular;
+
     public float rotateSpeed = 2.0f;
     public Quaternion rotation;
     public float desiredAngleX = 0.0f;
@@ -22,6 +24,7 @@ public class CameraController : MonoBehaviour
         playerObject = GameObject.Find("Temp Player");
         playerController = GetComponent<PlayerController>();
 
+        // set zoomed in distance
         offset = playerObject.transform.position - initOffset;
         offsetRegular = offset;
         offsetZoomed = (offset / 2);
@@ -32,6 +35,7 @@ public class CameraController : MonoBehaviour
         float h = Input.GetAxisRaw("Mouse X");
         float v = Input.GetAxisRaw("Mouse Y");
 
+        // constraints on looking too far up or down
         desiredAngleX = desiredAngleX + v;
         if (desiredAngleX < -10.0f)
         {
@@ -41,6 +45,7 @@ public class CameraController : MonoBehaviour
             desiredAngleX = 5.0f;
         }
 
+        // zoom in
         if (Input.GetMouseButton(1))
         {
             offset = offsetZoomed;
@@ -52,6 +57,7 @@ public class CameraController : MonoBehaviour
             playerController.CameraRotate(h * rotateSpeed);
         }
 
+        // base our camera rotation of player rotation
         float desiredAngleY = playerObject.transform.eulerAngles.y;
         rotation = Quaternion.Euler(-desiredAngleX * rotateSpeed, desiredAngleY, 0.0f);
         

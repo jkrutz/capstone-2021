@@ -89,15 +89,27 @@ Borrowing the concepts from the <a href="https://learn.unity.com/course/create-w
 
 ### Placeholder Character
 
+The player is represented as a blue cylinder. It can take damage, shown in cycles of red, and it will play a hurt sound.
+
 ### Testing Arena
+
+This arena houses the player. It contains stairs and a main platform.
 
 ### Health System
 
+The player has 100 health points. If the player touches fire, they take 10 damage. This was purely for testing purposes and is not set in stone.
+
 ### Grid Spell Casting System
+
+If a player selects the upper left quadrant of the screen, while holding down right click, they can enter a "fire spell mode" whereby if they subsequently click on the screen, they can summon fire.
 
 ### Fire Spell
 
+"Fire Spell!" After being in fire spell mode, a player summons a fire entity into the world which can cause damage to the Player.
+
 ### Title Screen & Menu
+
+The title and menu screen will eventually house accessibility controls and allow the player to quit the game.
 
 
 <!-- TUTORIALS -->

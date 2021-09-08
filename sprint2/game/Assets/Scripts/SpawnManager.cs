@@ -19,7 +19,6 @@ public class SpawnManager : MonoBehaviour
     {
         if (!playerObject.activeInHierarchy)
         {
-            player.CancelInvoke("TakeDamage");
             playerObject.transform.position = new Vector3(7.0f, 2.0f, 6.0f);
             playerObject.SetActive(true);
             player.setHealth(100.0f);

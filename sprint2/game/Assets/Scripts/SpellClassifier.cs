@@ -58,4 +58,9 @@ public class SpellClassifier : MonoBehaviour
         //4 return d
         return d;
     }
+
+    public List<Vector2> RotateToZero(List<Vector2> points)
+    {
+        // centroid is average of all points
+    }
 }

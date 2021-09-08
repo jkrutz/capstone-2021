@@ -9,8 +9,10 @@ public class SpellManager : MonoBehaviour
     public GameObject fire;
     public GameObject point;
     private GameObject playerObject;
+
     private SpellClassifier classifier;
     public CameraController cameraController;
+
     private List<Vector2> mouseInputPoints = new List<Vector2>();
     private bool firstTime = true;
     private bool drawing = false;
@@ -60,6 +62,12 @@ public class SpellManager : MonoBehaviour
                 if (drawing)
                 {
                     CancelInvoke("collectPoints");
+                    Debug.Log(mouseInputPoints);
+                    mouseInputPoints = classifier.Resample(mouseInputPoints, 64);
+                    foreach (Vector2 point in mouseInputPoints)
+                    {
+                        Debug.Log(point.ToString());
+                    }
                     firstTime = true;
                     drawing = false;
                 }

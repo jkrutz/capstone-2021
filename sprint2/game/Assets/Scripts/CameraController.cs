@@ -11,39 +11,45 @@ public class CameraController : MonoBehaviour
     private Vector3 initOffset = new Vector3(8.0f, 6.0f, -3.0f);
     private Vector3 offsetZoomed;
     private Vector3 offsetRegular;
-    public float rotateSpeed = 2.0f;
+    private float rotateSpeed = 2.0f;
     public Quaternion rotation;
-    public float desiredAngleX = 0.0f;
+
+    private GameObject target;
+    private float targetDistance;
+
+    private float rotX;
+    private float minTurnAngle = -90.0f;
+    private float maxTurnAngle = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        /*
         playerObject = GameObject.Find("Temp Player");
         playerController = playerObject.GetComponent<PlayerController>();
 
         offset = playerObject.transform.position - initOffset;
         offsetRegular = offset;
         offsetZoomed = (offset / 2);
+        */
+        
+        target = GameObject.Find("Temp Player");
+        targetDistance = Vector3.Distance(transform.position, target.transform.position);
+        target.transform.rotation.SetLookRotation(gameObject.transform.rotation.eulerAngles);
     }
 
     void LateUpdate()
     {
-        float h = Input.GetAxisRaw("Mouse X");
-        float v = Input.GetAxisRaw("Mouse Y");
+        float y = Input.GetAxisRaw("Mouse X") * rotateSpeed;
+        rotX += Input.GetAxisRaw("Mouse Y") * rotateSpeed;
 
-        desiredAngleX = desiredAngleX + v;
-        if (desiredAngleX < -10.0f)
-        {
-            desiredAngleX = -10.0f;
-        } else if (desiredAngleX > 5.0f)
-        {
-            desiredAngleX = 5.0f;
-        }
+        rotX = Mathf.Clamp(rotX, minTurnAngle, maxTurnAngle);
 
+        /*
         if (Input.GetMouseButton(1))
         {
             offset = offsetZoomed;
-            desiredAngleX = 0.0f;
+            v = 0.0f;
         }
         else
         {
@@ -51,10 +57,12 @@ public class CameraController : MonoBehaviour
             playerController.CameraRotate(h * rotateSpeed);
         }
 
-        float desiredAngleY = playerObject.transform.eulerAngles.y;
-        rotation = Quaternion.Euler(-desiredAngleX * rotateSpeed, desiredAngleY, 0.0f);
+        rotation = Quaternion.Euler(-v * rotateSpeed, h, 0.0f);
         
         transform.position = playerObject.transform.position - (rotation * offset);
-        transform.LookAt(playerObject.transform);
+        transform.LookAt(playerObject.transform);*/
+
+        transform.eulerAngles = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
+        transform.position = target.transform.position - (transform.forward * targetDistance);
     }
 }

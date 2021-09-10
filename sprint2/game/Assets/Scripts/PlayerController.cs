@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRigidBody;
     private GameObject playerObject;
 
+    private float rotX;
+    private float minTurnAngle = -90.0f;
+    private float maxTurnAngle = 0f;
+    private float rotateSpeed = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +29,7 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
+        Rotate();
     }
 
     void FixedUpdate()
@@ -36,8 +42,10 @@ public class PlayerController : MonoBehaviour
         velocity = _velocity;
     }
 
-    public void CameraRotate(float h)
+    public void Rotate()
     {
+        rotX += Input.GetAxisRaw("Mouse Y") * rotateSpeed;
+        rotX = Mathf.Clamp(rotX, minTurnAngle, maxTurnAngle);
         playerObject.transform.Rotate(0.0f, h, 0.0f);
     }
 

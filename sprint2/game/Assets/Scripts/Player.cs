@@ -93,4 +93,9 @@ public class Player : MonoBehaviour
     {
         health = _health;
     }
+
+    public float getHealth()
+    {
+        return health;
+    }
 }

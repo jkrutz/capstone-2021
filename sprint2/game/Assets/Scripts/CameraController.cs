@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GameObject))]
-[RequireComponent(typeof(PlayerController))]
 public class CameraController : MonoBehaviour
 {
     private GameObject playerObject;
@@ -20,7 +19,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         playerObject = GameObject.Find("Temp Player");
-        playerController = GetComponent<PlayerController>();
+        playerController = playerObject.GetComponent<PlayerController>();
 
         offset = playerObject.transform.position - initOffset;
         offsetRegular = offset;

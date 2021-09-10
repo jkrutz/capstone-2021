@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Fire
+  - HUD
   layers:
   - Default
   - TransparentFX

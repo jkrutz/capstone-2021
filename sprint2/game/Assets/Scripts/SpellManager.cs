@@ -64,6 +64,7 @@ public class SpellManager : MonoBehaviour
                     CancelInvoke("collectPoints");
                     Debug.Log(mouseInputPoints);
                     mouseInputPoints = classifier.Resample(mouseInputPoints, 64);
+                    mouseInputPoints = classifier.RotateToZero(mouseInputPoints);
                     foreach (Vector2 point in mouseInputPoints)
                     {
                         Debug.Log(point.ToString());

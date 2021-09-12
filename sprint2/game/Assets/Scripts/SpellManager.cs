@@ -31,7 +31,7 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 cameraToPlayerVector = playerObject.transform.position + (cameraController.rotation * cameraController.offset);
+            Vector3 cameraToPlayerVector = playerObject.transform.position;// + (cameraController.rotation * cameraController.offset);
 
             Vector3 spellTarget = new Vector3(cameraToPlayerVector.x, 0.55f, cameraToPlayerVector.z);
             if (spell == "Fire")

@@ -6,14 +6,14 @@ using TMPro;
 public class DebugController : MonoBehaviour
 {
 
-    private TextMeshProUGUI infoBox;
+    public TextMeshProUGUI infoBox;
+    public GameObject crosshair;
     private GameObject playerObject;
     private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        infoBox = gameObject.GetComponent<TextMeshProUGUI>();
         infoBox.enabled = false;
         playerObject = GameObject.Find("Temp Player");
         player = playerObject.GetComponent<Player>();
@@ -22,10 +22,17 @@ public class DebugController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.F3))
         {
             infoBox.enabled = !infoBox.isActiveAndEnabled;
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            crosshair.SetActive(true);
+        }
+        else if(Input.GetMouseButtonUp(1))
+        {
+            crosshair.SetActive(false);
         }
         Vector3 playerPos = playerObject.transform.position;
         int posX = (int) playerPos.x;
@@ -75,13 +82,14 @@ public class DebugController : MonoBehaviour
         }
 
         int health = (int) player.getHealth();
+        string state = player.getState();
 
         infoBox.SetText(
             "XYZ: " + posX + " " + posY + " " + posZ + "\n" +
             "Direction: " + playerDir + "\n" + 
             "Health: " + health + "\n" + 
             "Spell: < None >\n" + 
-            "State: At Rest"
+            "State: " + state
         );
     }
 }

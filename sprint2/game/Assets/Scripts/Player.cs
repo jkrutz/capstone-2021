@@ -23,6 +23,13 @@ public class Player : MonoBehaviour
     private Color damageColor = Color.red;
     private Color restColor;
 
+    public GameObject mainCamera;
+    public GameObject aimCamera;
+
+    string state;
+
+    Vector3 moveVec;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,20 +42,52 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool rightClickDown = Input.GetMouseButtonDown(1);
+        bool rightClickRelease = Input.GetMouseButtonUp(1);
+        if (health <= 0.0f)
+        {
+            controller.Die();
+        }
+
+        if (rightClickDown)
+        {
+            mainCamera.SetActive(false);
+            aimCamera.SetActive(true);
+            state = "Casting";
+        }
+        if (rightClickRelease)
+        {
+            mainCamera.SetActive(true);
+            aimCamera.SetActive(false);
+            state = "At Rest";
+        }
+
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
         Vector3 moveDir = transform.TransformDirection(moveInput);
-        Vector3 moveVec = moveDir.normalized * moveSpeed;
+        moveVec = moveDir.normalized * moveSpeed;
+
+        if((moveVec.x != 0 || moveVec.y != 0) && (state != "Casting" && isGrounded))
+        {
+            state = "Moving";
+        }
+        else if((moveVec.x == 0 || moveVec.y == 0) && (state != "Casting" && isGrounded))
+        {
+            state = "At Rest";
+        }
+    }
+
+    private void LateUpdate()
+    {
         controller.Move(moveVec);
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
+            if (state != "Casting")
+            {
+                state = "Jumping";
+            }
             isGrounded = false;
-        }
-
-        if (health <= 0.0f)
-        {
-            controller.Die();
         }
     }
 
@@ -57,6 +96,10 @@ public class Player : MonoBehaviour
         if (c.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            if (state == "Jumping")
+            {
+                state = "";
+            }
         }
 
         if (c.gameObject.tag == "Fire")
@@ -97,5 +140,10 @@ public class Player : MonoBehaviour
     public float getHealth()
     {
         return health;
+    }
+
+    public string getState()
+    {
+        return state;
     }
 }

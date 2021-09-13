@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GameObject))]
-[RequireComponent(typeof(PlayerController))]
 public class CameraController : MonoBehaviour
 {
     private GameObject playerObject;

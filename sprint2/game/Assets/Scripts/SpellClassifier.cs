@@ -4,7 +4,36 @@ using UnityEngine;
 
 public class SpellClassifier : MonoBehaviour
 {
-    private float size = 350.0f;
+    private readonly float size = 350.0f;
+    private readonly float fi = 0.5f * (-1 + Mathf.Sqrt(5));
+
+    private struct Classification
+    {
+        public List<Vector2> points;
+        public string name;
+        public float score;
+    }
+
+    private List<Classification> templates = new List<Classification>();
+
+    public void CreateTemplates(List<Vector2> points)
+    {
+        //Step 1. Resample a points path into n evenly spaced points.
+        points = Resample(points, 64);
+        //Step 2. Rotate points so that their indicative angle is at 0°
+        points = RotateToZero(points);
+        //Step 3. Scale points so that the resulting bounding box will be of size2 dimension
+        //then translate points to the origin
+        points = ScaleToSquare(points, size);
+        points = TranslateToOrigin(points);
+
+        Classification T = new Classification();
+        T.points = points;
+        T.name = "circle";
+        T.score = 0.0f;
+
+        templates.Add(T);
+    }
 
     public string Classify(List<Vector2> points)
     {
@@ -12,15 +41,17 @@ public class SpellClassifier : MonoBehaviour
         points = Resample(points, 64);
         //Step 2. Rotate points so that their indicative angle is at 0°
         points = RotateToZero(points);
-        //Step 3. Scale points so that the resulting bounding box will be of size2 dimension;
+        //Step 3. Scale points so that the resulting bounding box will be of size2 dimension
         //then translate points to the origin
         points = ScaleToSquare(points, size);
         points = TranslateToOrigin(points);
+        //Step 4. Match points against a set of templates
+        Classification spell = Recognize(points);
 
-        return "Circle";
+        return spell.name;
     }
 
-    public List<Vector2> Resample(List<Vector2> points, int n)
+    private List<Vector2> Resample(List<Vector2> points, int n)
     {
         //1 I ← PATH-LENGTH(points) / (n – 1)
         float I = PathLength(points) / (n - 1);
@@ -53,7 +84,7 @@ public class SpellClassifier : MonoBehaviour
             } else
             {
                 //12 else D ← D + d
-                D = D + d;
+                D += d;
             }
         }
 
@@ -68,38 +99,31 @@ public class SpellClassifier : MonoBehaviour
         for (int i = 1; i < A.Count; i++)
         {
             //3 d ← d + DISTANCE(Ai-1, Ai)
-            d = d + Vector2.Distance(A[i - 1], A[i]);
+            d += Vector2.Distance(A[i - 1], A[i]);
         }
 
         //4 return d
         return d;
     }
 
-    public List<Vector2> RotateToZero(List<Vector2> points)
+    private List<Vector2> RotateToZero(List<Vector2> points)
     {
         //1 c ← CENTROID(points) // computes (x¯, y¯)
-        Vector2 c = new Vector2(0.0f, 0.0f);
-        foreach (Vector2 p in points)
-        {
-            c.x += p.x;
-            c.y += p.y;
-        }
-        c.x = c.x / points.Count;
-        c.y = c.y / points.Count;
+        Vector2 c = Centroid(points);
 
         //2 θ ← ATAN (cy – points0y, cx – points0x) // for -π ≤ θ ≤ π
         float theta = Mathf.Atan2(c.y - points[0].y, c.x - points[0].x);
         //3 newPoints ← ROTATE-BY(points, -θ)
-        List<Vector2> newPoints = RotateBy(points, -theta, c);
+        List<Vector2> newPoints = RotateBy(points, -theta);
 
         //4 return newPoints
         return newPoints;
     }
 
-    private List<Vector2> RotateBy(List<Vector2> points, float theta, Vector2 c)
+    private List<Vector2> RotateBy(List<Vector2> points, float theta)
     {
         //1 c ← CENTROID(points)
-        // just passed from RotateToZero
+        Vector2 c = Centroid(points);
 
         List<Vector2> newPoints = new List<Vector2>();
 
@@ -119,7 +143,21 @@ public class SpellClassifier : MonoBehaviour
         return newPoints;
     }
 
-    public List<Vector2> ScaleToSquare(List<Vector2> points, float size)
+    private Vector2 Centroid(List<Vector2> points)
+    {
+        Vector2 c = new Vector2(0.0f, 0.0f);
+        foreach (Vector2 p in points)
+        {
+            c.x += p.x;
+            c.y += p.y;
+        }
+        c.x /= points.Count;
+        c.y /= points.Count;
+
+        return c;
+    }
+
+    private List<Vector2> ScaleToSquare(List<Vector2> points, float size)
     {
         List<Vector2> newPoints = new List<Vector2>();
 
@@ -166,8 +204,129 @@ public class SpellClassifier : MonoBehaviour
         return newPoints;
     }
 
-    public List<Vector2> TranslateToOrigin(List<Vector2> points)
+    private List<Vector2> TranslateToOrigin(List<Vector2> points)
     {
+        List<Vector2> newPoints = new List<Vector2>();
 
+        //1 c ← CENTROID(points)
+        Vector2 c = Centroid(points);
+
+        //2 foreach point p in points do
+        foreach (Vector2 p in points)
+        {
+            Vector2 q = new Vector2(0.0f, 0.0f);
+
+            //3 qx ← px – cx
+            q.x = p.x - c.x;
+            //4 qy ← py – cy
+            q.y = p.y - c.x;
+
+            //5 APPEND(newPoints, q)
+            newPoints.Add(q);
+        }
+
+        //6 return newPoints
+        return newPoints;
+    }
+
+    private Classification Recognize(List<Vector2> points)
+    {
+        Classification Tprime = new Classification();
+
+        //1 b ← +∞
+        float b = Mathf.Infinity;
+
+        //2 foreach template T in templates do
+        foreach(Classification T in templates)
+        {
+            //3 d ← DISTANCE-AT-BEST-ANGLE(points, T, -θ, θ, θ∆)
+            float d = DistanceAtBestAngle(points, T, -45.0f, 45.0f, 2.0f);
+
+            //4 if d < b then
+            if (d < b)
+            {
+                //5 b ← d
+                b = d;
+                //6 T′ ← T
+                Tprime = T;
+            }
+        }
+        //7 score ← 1 – b / 0.5√(size2+size2
+        Tprime.score = ((1 - b) / 0.5f) * Mathf.Sqrt(Mathf.Pow(size, 2) + Mathf.Pow(size, 2));
+
+        //8 return 〈T′, score〉
+        return Tprime;
+    }
+
+    private float DistanceAtBestAngle(List<Vector2> points, Classification T, float thetaA, float thetaB, float thetaDelta)
+    {
+        //1 x1 ← ϕθa + (1 – ϕ)θb
+        float x1 = (fi * thetaA) + ((1 - fi) * thetaB);
+        //2 f1 ← DISTANCE-AT-ANGLE(points, T, x1)
+        float f1 = DistanceAtAngle(points, T, x1);
+        //3 x2 ← (1 – ϕ)θa + ϕθb
+        float x2 = ((1 - fi) * thetaA) + thetaB;
+        //4 f2 ← DISTANCE-AT-ANGLE(points, T, x2)
+        float f2 = DistanceAtAngle(points, T, x2);
+
+        //5 while |θb – θa| > θ∆ do
+        while (thetaB - thetaA > thetaDelta)
+        {
+            //6 if f1 < f2 then
+            if (f1 > f2)
+            {
+                //7 θb ← x2
+                thetaB = x2;
+                //8 x2 ← x1
+                x2 = x1;
+                //9 f2 ← f1
+                f2 = f1;
+                //10 x1 ← ϕθa + (1 – ϕ)θb
+                x1 = (fi * thetaA) + ((1 - fi) * thetaB);
+                //11 f1 ← DISTANCE-AT-ANGLE(points, T, x1)
+                f1 = DistanceAtAngle(points, T, x1);
+            } else //12 else
+            {
+                //13 θa ← x1
+                thetaA = x1;
+                //14 x1 ← x2
+                x1 = x2;
+                //15 f1 ← f2
+                f1 = f2;
+                //16 x2 ← (1 – ϕ)θa + ϕθb
+                x2 = ((1 - fi) * thetaA) + (fi * thetaB);
+                //17 f2 ← DISTANCE-AT-ANGLE(points, T, x2)
+                f2 = DistanceAtAngle(points, T, x2);
+            }
+        }
+
+        //18 return MIN(f1, f2)
+        return Mathf.Min(f1, f2);
+    }
+
+    private float DistanceAtAngle(List<Vector2> points, Classification T, float theta)
+    {
+        //1 newPoints ← ROTATE-BY(points, θ)
+        List<Vector2> newPoints = RotateBy(points, theta);
+        //2 d ← PATH-DISTANCE(newPoints, Tpoints)
+        float d = PathDistance(newPoints, T.points);
+        //3 return d
+        return d;
+    }
+
+    private float PathDistance(List<Vector2> A, List<Vector2> B)
+    {
+        //1 d ← 0 
+        float d = 0;
+
+        //2 for i from 0 to |A| step 1 do
+        for (int i = 0; i < A.Count; i++)
+        {
+            //3 d ← d + DISTANCE(Ai, Bi) 
+            d += Vector2.Distance(A[i], B[i]);
+        }
+
+        //4 return d / |A|
+        return d / A.Count;
     }
 }

@@ -18,6 +18,7 @@ public class SpellManager : MonoBehaviour
     private bool drawing = false;
 
     private string spell;
+    private int templates = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -63,8 +64,13 @@ public class SpellManager : MonoBehaviour
                 {
                     CancelInvoke("collectPoints");
                     Debug.Log(mouseInputPoints);
-                    mouseInputPoints = classifier.Resample(mouseInputPoints, 64);
-                    mouseInputPoints = classifier.RotateToZero(mouseInputPoints);
+                    if (templates < 2)
+                    {
+                        classifier.CreateTemplates(mouseInputPoints);
+                    } else
+                    {
+                        spell = classifier.Classify(mouseInputPoints);
+                    }
                     foreach (Vector2 point in mouseInputPoints)
                     {
                         Debug.Log(point.ToString());

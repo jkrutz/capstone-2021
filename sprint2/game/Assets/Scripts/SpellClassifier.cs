@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using UnityEditor;
 
 public class SpellClassifier : MonoBehaviour
 {
@@ -16,7 +18,15 @@ public class SpellClassifier : MonoBehaviour
 
     private List<Classification> templates = new List<Classification>();
 
-    public void CreateTemplates(List<Vector2> points)
+    private void Start()
+    {
+        ReadTemplate("Assets/Spell_Templates/check.txt", "check");
+        ReadTemplate("Assets/Spell_Templates/circle.txt", "circle");
+        //ReadTemplate("Assets/Spell_Templates/star.txt", "star");
+        //ReadTemplate("Assets/Spell_Templates/triangle.txt", "triangle");
+    }
+
+    public void CreateTemplates(List<Vector2> points, string path)
     {
         //Step 1. Resample a points path into n evenly spaced points.
         points = Resample(points, 64);
@@ -27,11 +37,39 @@ public class SpellClassifier : MonoBehaviour
         points = ScaleToSquare(points, size);
         points = TranslateToOrigin(points);
 
+        StreamWriter writer = new StreamWriter(path, false);
+
+        foreach(Vector2 p in points)
+        {
+            writer.WriteLine(p.x + " " + p.y);
+        }
+
+        writer.Close();
+        AssetDatabase.ImportAsset(path);
+    }
+
+    private void ReadTemplate(string pathname, string spellname)
+    {
+        List<Vector2> points = new List<Vector2>();
+
+        StreamReader reader = new StreamReader(pathname);
+        var contents = reader.ReadToEnd();
+        reader.Close();
+
+        var lines = contents.Split('\n');
+        foreach(string line in lines)
+        {
+            var coords = line.Split(' ');
+
+            float x = float.Parse(coords[0]);
+            float y = float.Parse(coords[1]);
+
+            points.Add(new Vector2(x, y));
+        }
+
         Classification T = new Classification();
         T.points = points;
-        T.name = "circle";
-        T.score = 0.0f;
-
+        T.name = spellname;
         templates.Add(T);
     }
 
@@ -46,8 +84,13 @@ public class SpellClassifier : MonoBehaviour
         points = ScaleToSquare(points, size);
         points = TranslateToOrigin(points);
         //Step 4. Match points against a set of templates
-        Classification spell = Recognize(points);
+        Classification spell = Recognize(points, templates);
 
+        Debug.Log(spell.score);
+        if (spell.score < 0.5f)
+        {
+            spell.name = "none";
+        }
         return spell.name;
     }
 
@@ -229,7 +272,7 @@ public class SpellClassifier : MonoBehaviour
         return newPoints;
     }
 
-    private Classification Recognize(List<Vector2> points)
+    private Classification Recognize(List<Vector2> points, List<Classification> templates)
     {
         Classification Tprime = new Classification();
 
@@ -252,7 +295,7 @@ public class SpellClassifier : MonoBehaviour
             }
         }
         //7 score ← 1 – b / 0.5√(size2+size2
-        Tprime.score = ((1 - b) / 0.5f) * Mathf.Sqrt(Mathf.Pow(size, 2) + Mathf.Pow(size, 2));
+        Tprime.score = 1 - (b / (0.5f * Mathf.Sqrt(Mathf.Pow(size, 2) + Mathf.Pow(size, 2))));
 
         //8 return 〈T′, score〉
         return Tprime;
@@ -322,7 +365,7 @@ public class SpellClassifier : MonoBehaviour
         //2 for i from 0 to |A| step 1 do
         for (int i = 0; i < A.Count; i++)
         {
-            //3 d ← d + DISTANCE(Ai, Bi) 
+            //3 d ← d + DISTANCE(Ai, Bi)
             d += Vector2.Distance(A[i], B[i]);
         }
 

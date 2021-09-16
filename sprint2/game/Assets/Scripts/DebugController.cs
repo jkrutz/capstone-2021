@@ -10,6 +10,7 @@ public class DebugController : MonoBehaviour
     public GameObject crosshair;
     private GameObject playerObject;
     private Player player;
+    private RectTransform canvas;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class DebugController : MonoBehaviour
         infoBox.enabled = false;
         playerObject = GameObject.Find("Temp Player");
         player = playerObject.GetComponent<Player>();
+        canvas = gameObject.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -82,14 +84,24 @@ public class DebugController : MonoBehaviour
         }
 
         int health = (int) player.getHealth();
-        string state = player.getState();
+        Player.PlayerState state = player.getState();
 
+
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.nearClipPlane;
+        var worldPosition = transform.InverseTransformPoint(Camera.main.ScreenToWorldPoint(mousePos));
+
+        Vector2 localpoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, mousePos, GetComponentInParent<Canvas>().worldCamera, out localpoint);
+
+        Vector2 normalizedPoint = Rect.PointToNormalized(canvas.rect, localpoint);
         infoBox.SetText(
             "XYZ: " + posX + " " + posY + " " + posZ + "\n" +
             "Direction: " + playerDir + "\n" + 
             "Health: " + health + "\n" + 
             "Spell: < None >\n" + 
-            "State: " + state
+            "State: " + state + "\n" +
+            "Mouse: (" + normalizedPoint.x * canvas.rect.width + ", " + normalizedPoint.y * canvas.rect.height + ")"
         );
     }
 }

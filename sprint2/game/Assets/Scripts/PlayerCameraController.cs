@@ -13,16 +13,14 @@ public class PlayerCameraController : MonoBehaviour
     public float speed = 1f;
 
     public GameObject followTransform;
-    private PlayerController controller;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //Rotate the Follow Target transform based on the input
         float xLook = Input.GetAxis("Mouse X");

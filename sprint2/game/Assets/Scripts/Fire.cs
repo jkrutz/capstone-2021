@@ -27,7 +27,7 @@ public class Fire : MonoBehaviour
     {
         if (c.gameObject.tag == "Player")
         {
-            player.setHealth(player.health - fireDamage * Time.deltaTime);
+            player.setHealth(player.getHealth() - fireDamage * Time.deltaTime);
         }
     }
 }

@@ -98,11 +98,6 @@ public class Player : MonoBehaviour
                 state = PlayerState.Resting;
             }
         }
-
-        if (c.gameObject.tag == "Fire")
-        {
-            InvokeRepeating("TakeDamage", damageDelay, damageTick);
-        }
     }
 
     private void OnCollisionExit(Collision c)
@@ -110,15 +105,6 @@ public class Player : MonoBehaviour
         if (c.gameObject.tag == "Fire")
         {
             CancelInvoke("TakeDamage");
-        }
-    }
-
-    private void TakeDamage()
-    {
-        if (health > 0)
-        {
-            health -= fireDamage;
-            Invoke("RestoreColor", damageTick / 4);
         }
     }
 

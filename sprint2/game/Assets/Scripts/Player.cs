@@ -7,48 +7,84 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     public float jumpSpeed = 5.0f;
-    public List<AudioClip> hurtSounds;
-    public List<AudioClip> deathSounds;
-    public List<AudioClip> spellSounds;
-    private AudioSource playerAudio;
-    private PlayerController controller;
-    private bool isGrounded = true;
 
-    private MeshRenderer playerMesh;
+    private PlayerController controller;
 
     private float health = 100.0f;
     private float damageDelay = 0.0f;
     private float damageTick = 1.0f;
     private float fireDamage = 10.0f;
-    private Color damageColor = Color.red;
-    private Color restColor;
+    private bool isGrounded = true;
+
+    public GameObject mainCamera;
+    public GameObject aimCamera;
+
+    Vector3 moveVec;
+
+    public enum PlayerState
+    {
+        Casting,
+        Resting,
+        Moving,
+        Jumping
+    }
+
+    private PlayerState state;
+
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<PlayerController>();
-        playerMesh = GetComponent<MeshRenderer>();
-        playerAudio = GetComponent<AudioSource>();
-        restColor = playerMesh.material.color;
+        state = PlayerState.Resting;
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool rightClickDown = Input.GetMouseButtonDown(1);
+        bool rightClickRelease = Input.GetMouseButtonUp(1);
+        if (health <= 0.0f)
+        {
+            controller.Die();
+        }
+
+        if (rightClickDown)
+        {
+            mainCamera.SetActive(false);
+            aimCamera.SetActive(true);
+            state = PlayerState.Casting;
+        }
+        if (rightClickRelease)
+        {
+            mainCamera.SetActive(true);
+            aimCamera.SetActive(false);
+            state = PlayerState.Resting;
+        }
+
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
         Vector3 moveDir = transform.TransformDirection(moveInput);
-        Vector3 moveVec = moveDir.normalized * moveSpeed;
+        moveVec = moveDir.normalized * moveSpeed;
+
+        if ((moveVec.x != 0 || moveVec.y != 0) && (state != PlayerState.Casting && isGrounded))
+        {
+            state = PlayerState.Moving;
+        }
+        else if ((moveVec.x == 0 || moveVec.y == 0) && (state != PlayerState.Casting && isGrounded))
+        {
+            state = PlayerState.Resting;
+        }
+    
         controller.Move(moveVec);
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
+            if (state != PlayerState.Casting)
+            {
+                state = PlayerState.Jumping;
+            }
             isGrounded = false;
-        }
-
-        if (health <= 0.0f)
-        {
-            controller.Die();
         }
     }
 
@@ -57,6 +93,10 @@ public class Player : MonoBehaviour
         if (c.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            if (state == PlayerState.Jumping)
+            {
+                state = PlayerState.Resting;
+            }
         }
 
         if (c.gameObject.tag == "Fire")
@@ -77,20 +117,28 @@ public class Player : MonoBehaviour
     {
         if (health > 0)
         {
-            playerAudio.PlayOneShot(hurtSounds[Random.Range(0, hurtSounds.Count)], 1.0f);
-            playerMesh.material.color = damageColor;
             health -= fireDamage;
             Invoke("RestoreColor", damageTick / 4);
         }
     }
 
-    private void RestoreColor()
-    {
-        playerMesh.material.color = restColor;
-    }
-
     public void setHealth(float _health)
     {
         health = _health;
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public void SetState(PlayerState _state)
+    {
+        state = _state;
+    }
+
+    public PlayerState getState()
+    {
+        return state;
     }
 }

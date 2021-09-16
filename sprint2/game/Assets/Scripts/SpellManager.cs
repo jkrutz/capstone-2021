@@ -10,7 +10,6 @@ public class SpellManager : MonoBehaviour
     public GameObject point;
     private GameObject playerObject;
     private SpellClassifier classifier;
-    public CameraController cameraController;
     private List<Vector2> mouseInputPoints = new List<Vector2>();
     private bool firstTime = true;
     private bool drawing = false;
@@ -22,7 +21,7 @@ public class SpellManager : MonoBehaviour
     {
         classifier = GetComponent<SpellClassifier>();
         playerObject = GameObject.Find("Temp Player");
-        cameraController = GetComponentInParent<CameraController>();
+        //cameraController = GetComponentInParent<CameraController>();
         spell = "None";
     }
 
@@ -31,12 +30,11 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 cameraToPlayerVector = playerObject.transform.position + (cameraController.rotation * cameraController.offset);
+            Vector3 cameraToPlayerVector = playerObject.transform.position;// + (cameraController.rotation * cameraController.offset);
 
             Vector3 spellTarget = new Vector3(cameraToPlayerVector.x, 0.55f, cameraToPlayerVector.z);
             if (spell == "Fire")
             {
-                playerObject.GetComponent<Player>().GetComponent<AudioSource>().PlayOneShot(playerObject.GetComponent<Player>().spellSounds[Random.Range(0, playerObject.GetComponent<Player>().spellSounds.Count)], 1.0f);
                 Instantiate(fire, spellTarget, Quaternion.identity);
                 spell = "None";
             }

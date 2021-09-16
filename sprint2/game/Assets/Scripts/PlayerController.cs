@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRigidBody;
     private GameObject playerObject;
 
+    private float rotateSpeed = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,20 +27,15 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
-
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         playerRigidBody.MovePosition(transform.position + velocity * Time.deltaTime);
+        
     }
 
     public void Move(Vector3 _velocity)
     {
         velocity = _velocity;
-    }
-
-    public void CameraRotate(float h)
-    {
-        playerObject.transform.Rotate(0.0f, h, 0.0f);
     }
 
     public void Jump(Vector3 jumpVec)

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Fire
+  - HUD
+  - Debug
+  - Crosshair
   layers:
   - Default
   - TransparentFX

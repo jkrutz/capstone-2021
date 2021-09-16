@@ -105,7 +105,6 @@ public class SpellManager : MonoBehaviour
         var newElement = Instantiate(image.transform, parentObj) as RectTransform;
         newElement.anchoredPosition = (new Vector3(mousePosition.x, mousePosition.y, 0.0f));
         newElement.SetParent(parentObj);
-
         mouseInputPoints.Add(mousePosition);
     }
 }

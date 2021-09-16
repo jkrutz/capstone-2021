@@ -1,4 +1,4 @@
-# Sprint 1
+# Sprint 2
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -8,16 +8,30 @@
       <a href="#Summary">Summary</a>
     </li>
     <li>
-      <a href="#Mario-Game">"Mario Game"</a>
+      <a href="#Deliverables">Deliverables</a>
     </li>
+    <ul>
+      <li>
+        <a href="#Gesture-Recognizer">Gesture Recognizer</a>
+      </li>
+      <li>
+        <a href="#Computer-Player">Computer Player</a>
+      </li>
+      <li>
+        <a href="#More-Spells">More Spells</a>
+      </li>
+      <li>
+        <a href="#Aiming-System">Aiming System</a>
+      </li>
+      <li>
+        <a href="#Debug-HUD">Debug HUD</a>
+      </li>
+      <li>
+        <a href="#Bug-Fixes">Bug Fixes</a>
+      </li>
+    </ul>
     <li>
-      <a href="#Sprint-Game">Sprint Game</a>
-    </li>
-    <li>
-      <a href="#Tutorials">Tutorials Used</a>
-    </li>
-    <li>
-      <a href="#Resources-Requested">Requested Resources</a>
+      <a href="#Tutorials">Tutorials</a>
     </li>
   </ol>
 </details>
@@ -27,195 +41,65 @@
 <!-- SUMMARY -->
 ## Summary
 
-To begin this Sprint, the team followed Unity's tutorial <a href="https://learn.unity.com/course/create-with-code">"Create with Code"</a>. This tutorial introduced C# fundamentals, basic player control, gameplay mechanics, sound and effects, and user interface creation. Examples of these units and the resulting example projects can be found <a href="/sprint1/tutorial/">here</a>. Following the tutorial walkthroughs, this team created a simple "Mario Game" that consists of the following features:
+Sprint 2 furthers the game's natural feel. We optimize player controls and add in more abilities. This Sprint gives way to an actual playable game at its end. With some enhanced graphics the game starts to slowly feel more complete.
 
-<ul>
-  <li>
-    <a href="#Player-Controls">Player Control</a>
-  </li>
-  <li>
-    <a href="#Third-Person-Camera">Third Person Camera</a>
-  </li>
-  <li>
-    <a href="#Enemy-Players">Enemy Players</a>
-  </li>
-</ul>
+<!-- Deliverables -->
+## Deliverables
 
-These features provide a good base that will later be applied to the development of the base game. The base game provided by the end of this Sprint will feature these same features along side:
+The following are all features and concepts we are tackling in this Sprint. Each feature adds or improves on the game to overall contribute to a much more fun game to play.
 
-<ul>
-  <li>
-    <a href="#Placeholder-Player-Model">Placeholder Player Model</a>
-  </li>
-  <li>
-    <a href="#Testing-Arena">Testing Arena</a>
-  </li>
-  <li>
-    <a href="#Health-System">Health System</a>
-  </li>
-  <li>
-    <a href="#Grid-Spell-Casting-System">Grid Spell Casting System</a>
-  </li>
-  <li>
-    <a href="#Fire-Spell">Fire Spell</a>
-  </li>
-  <li>
-    <a href="#Title-Screen--Menu">Title Screen & Menu</a>
-  </li>
-</ul>
+### Gesture Recognizer
 
-<!-- PRACTICE -->
-## "Mario Game"
+- [ ] Completed
 
-In order to practice the material learned in the Unity <a href="https://learn.unity.com/course/create-with-code">tutorial series</a>, a very rudimentary game was constructed that was inspired by the Nintendo Mario Classics. In this world, a player can move and jump and destroy enemies by jumping on them. The skills applied to this game are the base concepts that will also be applied to the game delivered at the end of this Sprint.
-
-### Player Controls
-
-Player movement is a core tenet of any interactive game. This enables a gamer to control where the on-screen avatar is located. We binded player movement to the most common controls, the W, A, S, D keys and the Up, Left, Down, Right keys. The SPACE bar when pressed applies an upward force to the player emulating a Jump.
-
-### Third Person Camera
-
-Third person camera mechanics increase useablility and level of comfort for our gamer base. When moving the mouse to the left or right, you are simulating a player looking left or right. With this feature added, moving feels "more natural" and less restrictive.
-
-### Enemy Players
-
-The presence of enemies makes the game interesting. You could take damage, you can deal damage, or you can run around the map away from the enemies. This game features waves of enemies (increasing with the progression of waves) that randomly spawn on the map. To make this game more like a "Mario Game," the way to kill an enemy is by simply jumping on their head. If an enemy collides with a player, the game ends and the player dies.
+Implementing the <a href="http://faculty.washington.edu/wobbrock/pubs/uist-07.01.pdf">$1 Gesture Recognizer</a>, this algorithm allows us to use Euclidean distance calculations to pretty accurately attribute a scribbled spell to a known dictionary of spells
 
 
-<!-- BASE GAME -->
-## Sprint Game
+### Computer Player
 
-Borrowing the concepts from the <a href="https://learn.unity.com/course/create-with-code">Unity tutorial</a> and <a href="#Mario-Game">"Mario Game"</a>, this game incorporates features that expand on the magical universe that is unofficially "Wizard 404." Giving players an arena and bestowing magical fire-casting powers upon them, the capsule shaped players finally feel at home in our wizarding world.
+- [ ] Completed
 
-### Placeholder Character
+This computer player moves around the map, can jump, and can most importantly cast spells.
 
-### Testing Arena
+### More Spells
 
-### Health System
+- [ ] Fire Spell Completed
+- [ ] Wall Spell Completed
+- [ ] Explosion Spell Completed
+- [ ] Disarm Spell Completed
 
-### Grid Spell Casting System
+Sprint 1 included one spell: Fire. This sprint improves fire mechanics, as well as adding in 3 new spells: Disarm, Wall, and Explosion. Disarm does exactly that, it prevents the player (or computer) from casting spells, until their wand or staff is retrieved. Wall summons a defensive barrier in front of players. And Explosion, manifests a ball of energy that damages and moves players across the map.
 
-### Fire Spell
+### Aiming System
 
-### Title Screen & Menu
+- [ ] Completed
+
+Spell casting is not necessarily easy at this point in time, and it is unclear on where a spell is being cast to. A crosshair system seeks to clear up this confusion.
+
+### Debug HUD
+
+- [ ] Completed
+
+A heads-up display (HUD) provides information that will be vital for the debug process. Containing universal coordinates, rotation, and health we can communicate to the programming team exactly what a player's attributes are and provide context for why things work/don't work.
+
+### Bug Fixes
+
+- [ ] Gravity Normalized Completed
+- [ ] Stair Collisions Completed
+- [ ] Spell Casting Depth Completed
+
+In this Sprint, we seek to correct the issues from Sprint 1, including but not limited to stair collisions, spell casting depth, and weird gravity.
 
 
 <!-- TUTORIALS -->
 ## Tutorials
 
+This section showcases all referenced tutorials and provides documentation on where code may have originated from.
+
 <ul>
   <li>
-    <a href="https://learn.unity.com/course/create-with-code">
-      Unity Tutorial
-    </a>
-    <ul>
-      <li>This is a 41 hours and 30 minutes tutorial that details Getting Started, Player Control, Basic Gameplay, Sound and Effects, Gameplay Mechanics, and User Interface</li>
-    </ul>
-  </li>
-  <li>
-    <a href="https://www.youtube.com/watch?v=SviIeTt2_Lc&list=PLFt_AvWsXl0ctd4dgE1F8g3uec4zKNRV0">
-      Sebastian Lague "Unity Create a Game Series"
-    </a>
-  </li>
-  <li>
-    <a href="https://gamedevacademy.org/unity-3d-first-and-third-person-view-tutorial/">
-      GameDevAcademy Third person camera
-    </a>
-  </li>
-  <li>
-    <a href="https://code.tutsplus.com/tutorials/unity3d-third-person-cameras--mobile-11230">
-      Code Tuts Plus TPC
-  </a>
-  </li>
-  <li>
-    <a href="https://answers.unity.com/questions/652694/destroy-parent-when-child-is-destroyed.html">
-      GameDevAcademy How to destroy parent when child is acted on
-    </a>
-  </li>
-  <li>
-    <a href="https://forum.unity.com/threads/invokerepeating-random-interval.105107/">
-      Invoke vs Invoke Repeating, when to use which
-    </a>
-  </li>
-  <li>
-    <a href="http://faculty.washington.edu/wobbrock/pubs/uist-07.01.pdf">
-      $1 gesture recognizer
-    </a>
-    <ul>
-      <li>A one press and hold euclidean distance gesture recognition tool. Could be very instrumental in the development of our spell casting system.</li>
-    </ul>
-  </li>
-  
-  
-  
-  
-</ul>
-
-<!-- RESOURCES REQUESTED -->
-## Resources Requested
-
-#### Minimum Specs Required
-<ul>
-  <li>
-    CPU - Intel Core i5 or AMD Ryzen 5
-  </li>
-  <li>
-    RAM - 8GB
-  </li>
-  <li>
-    Storage - 256GB SSD
-  </li>
-  <li>
-    Display - 15.6-inch
-  </li>
-  <li>
-    GPU - NVIDIA GeForce GTX
-  </li>
-  <li>
-    OS - Windows 10
-  </li>
-</ul>
-
-#### Recommended Specs
-<ul>
-  <li>
-    CPU - Intel Core i7 or AMD Ryzen 7
-  </li>
-  <li>
-    RAM - 16GB
-  </li>
-  <li>
-    Storage - 512GB SSD
-  </li>
-  <li>
-    Display - 17.0-inch
-  </li>
-  <li>
-    GPU - NVIDIA GeForce GTX
-  </li>
-  <li>
-    OS - Windows 10
-  </li>
-</ul>
-
-#### Options
-<ul>
-  <li>
-    <a href="https://www.amazon.com/dp/B08ZLC661T?tag=wuuff-20&linkCode=ogi&th=1&psc=1">
-      Low-End Game Development Laptop
-      $799.99
-    </a>
-  </li>
-  <li>
-    <a href="https://www.amazon.com/dp/B08FJ4F8ZG?tag=wuuff-20&linkCode=ogi&th=1&psc=1">
-      Mid-Range Game Development Laptop
-      $1,499.00
-    </a>
-  </li>
-  <li>
-    <a href="https://www.amazon.com/dp/B01GQVA114?tag=wuuff-20&linkCode=ogi&th=1">
-      High-End Game Development Laptop
-      $1,879.95
+    <a href="https://forum.unity.com/threads/draw-circles-or-primitives-on-the-new-ui-canvas.272488/">
+      Shapes on canvas
     </a>
   </li>
 </ul>

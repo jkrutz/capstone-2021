@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         playerRigidBody.MovePosition(transform.position + velocity * Time.deltaTime);
-        
+
     }
 
     public void Move(Vector3 _velocity)
@@ -47,5 +47,4 @@ public class PlayerController : MonoBehaviour
     {
         playerObject.SetActive(false);
     }
-
 }

@@ -11,9 +11,6 @@ public class Player : MonoBehaviour
     private PlayerController controller;
 
     private float health = 100.0f;
-    private float damageDelay = 0.0f;
-    private float damageTick = 1.0f;
-    private float fireDamage = 10.0f;
     private bool isGrounded = true;
 
     public GameObject mainCamera;
@@ -30,7 +27,6 @@ public class Player : MonoBehaviour
     }
 
     private PlayerState state;
-
 
     // Start is called before the first frame update
     void Start()
@@ -74,17 +70,21 @@ public class Player : MonoBehaviour
         {
             state = PlayerState.Resting;
         }
-    
         controller.Move(moveVec);
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
+            isGrounded = false;
             if (state != PlayerState.Casting)
             {
                 state = PlayerState.Jumping;
             }
-            isGrounded = false;
+        }
+
+        if (health <= 0.0f)
+        {
+            controller.Die();
         }
     }
 

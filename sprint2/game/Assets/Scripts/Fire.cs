@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+[RequireComponent(typeof(GameObject))]
+public class Fire : MonoBehaviour
 {
     private GameObject playerObject;
     private Player player;
+
+    private float fireDamage = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +20,14 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerObject.activeInHierarchy)
+        
+    }
+
+    private void OnCollisionStay(Collision c)
+    {
+        if (c.gameObject.tag == "Player")
         {
-            playerObject.transform.position = new Vector3(7.0f, 2.0f, 6.0f);
-            playerObject.SetActive(true);
-            player.setHealth(100.0f);
+            player.setHealth(player.health - fireDamage * Time.deltaTime);
         }
     }
 }

@@ -8,7 +8,7 @@
   <h3 align="center">Capstone 2021</h3>
 
   <p align="center">
-    A third-person fantasy combat game that positions players in the middle of a magic arena armed with nothing except a spell-casting wand. Team up and battle other mages. Become champion.
+    A third-person fantasy combat game that positions players in the middle of a magic arena armed with nothing except a spell-casting wand.
   </p>
 </p>
 
@@ -132,10 +132,6 @@ This option would enable us to fill in teams with Bots. Computer Players would o
 ### Interactive Environment
 
 Spells cast at buildings and the ground could now physically affect the environment.  Buildings can collapse, trees can fall, craters can be formed. All of these can damage a player and add a new dimension into our gameplay and strategy.
-
-### Cyber City Render
-
-Model the entirety of Cyber City in Blender as the battle arena. The buildings would be open for players to enter, and similar to above, may be destroyed or modified during game play. 
 
 
 <!-- PROCESS -->

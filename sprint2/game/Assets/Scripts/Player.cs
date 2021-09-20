@@ -100,14 +100,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision c)
-    {
-        if (c.gameObject.tag == "Fire")
-        {
-            CancelInvoke("TakeDamage");
-        }
-    }
-
     public void setHealth(float _health)
     {
         health = _health;

@@ -6,15 +6,17 @@ using UnityEngine;
 [RequireComponent(typeof(SpellClassifier))]
 public class SpellManager : MonoBehaviour
 {
-    public GameObject fire;
+    public GameObject fireObject;
+    private Fire fire;
+
     public GameObject point;
-    private GameObject playerObject;
 
     public GameObject image;
     public Camera mainCam;
     public Transform parentObj;
 
     private SpellClassifier classifier;
+    private RectTransform canvas;
 
     private List<Vector2> mouseInputPoints = new List<Vector2>();
     private bool firstTime = true;
@@ -26,7 +28,8 @@ public class SpellManager : MonoBehaviour
     void Start()
     {
         classifier = GetComponent<SpellClassifier>();
-        playerObject = GameObject.Find("Temp Player");
+        canvas = gameObject.GetComponent<RectTransform>();
+        fire = fireObject.GetComponent<Fire>();
         spell = "None";
     }
 
@@ -35,6 +38,22 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (spell == "circle")
+            {
+                fire.cast();
+                spell = "none";
+            } else if (spell == "star")
+            {
+                Debug.Log("cast explosion");
+                spell = "none";
+            } else if (spell == "check")
+            {
+                Debug.Log("cast wall");
+                spell = "none";
+            } else
+            {
+                Debug.Log("none");
+            }
         }
     }
 
@@ -78,8 +97,6 @@ public class SpellManager : MonoBehaviour
                     //classifier.CreateTemplates(mouseInputPoints, "Assets/Spell_Templates/star.txt");
                     
                     mouseInputPoints.Clear();
-
-                    Debug.Log(spell);
 
                     firstTime = true;
                     drawing = false;

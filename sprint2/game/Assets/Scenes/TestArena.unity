@@ -2543,7 +2543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2acbd1cad857be74698a904c42a86dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire: {fileID: 7007761070237993371, guid: 600b55b46428fbc4ea458fbfe668d40f, type: 3}
+  fireObject: {fileID: 100000, guid: f766cb0ed6750804ebf9a931fb5412f2, type: 3}
   point: {fileID: 0}
   image: {fileID: 506267726242170116, guid: f7a4d1d1b34cad4499e940b443fc558f, type: 3}
   mainCam: {fileID: 582630963}
@@ -2620,7 +2620,7 @@ GameObject:
   - component: {fileID: 1224995566}
   m_Layer: 0
   m_Name: Temp Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

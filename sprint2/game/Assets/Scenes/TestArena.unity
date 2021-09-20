@@ -2543,7 +2543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2acbd1cad857be74698a904c42a86dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireObject: {fileID: 100000, guid: f766cb0ed6750804ebf9a931fb5412f2, type: 3}
+  fireObject: {fileID: 3463525403069482550, guid: e7ad8f09f1fa82447a146e933fb95aa6,
+    type: 3}
   point: {fileID: 0}
   image: {fileID: 506267726242170116, guid: f7a4d1d1b34cad4499e940b443fc558f, type: 3}
   mainCam: {fileID: 582630963}
@@ -2556,7 +2557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197433851}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.95, y: -5.77, z: 3.22}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 582630964}

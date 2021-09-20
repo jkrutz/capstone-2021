@@ -40,19 +40,17 @@ public class SpellManager : MonoBehaviour
         {
             if (spell == "circle")
             {
+                Debug.Log(spell.ToString());
                 fire.cast();
                 spell = "none";
             } else if (spell == "star")
             {
-                Debug.Log("cast explosion");
+                Debug.Log(spell.ToString());
                 spell = "none";
             } else if (spell == "check")
             {
-                Debug.Log("cast wall");
+                Debug.Log(spell.ToString());
                 spell = "none";
-            } else
-            {
-                Debug.Log("none");
             }
         }
     }

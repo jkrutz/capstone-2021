@@ -22,13 +22,11 @@ public class Fire : MonoBehaviour
     void Update()
     {
         duration -= Time.deltaTime;
-        Debug.Log(duration);
         if (duration < 0)
         {
             Destroy(this.gameObject);
             duration = 5.0f;
         }
-        Debug.Log(player.getHealth());
     }
 
     private void OnCollisionStay(Collision c)

@@ -75,7 +75,7 @@ public class SpellManager : MonoBehaviour
                      */
                     spell = classifier.Classify(mouseInputPoints);
 
-                    //classifier.CreateTemplates(mouseInputPoints, "Assets/Spell_Templates/circle.txt");
+                    //classifier.CreateTemplates(mouseInputPoints, "Assets/Spell_Templates/star.txt");
                     
                     mouseInputPoints.Clear();
 

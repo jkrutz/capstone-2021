@@ -8,6 +8,7 @@ public class SpellClassifier : MonoBehaviour
 {
     private readonly float size = 350.0f;
     private readonly float fi = 0.5f * (-1 + Mathf.Sqrt(5));
+    private readonly float confidenceRequirement = 0.3f;
 
     private struct Classification
     {
@@ -22,7 +23,7 @@ public class SpellClassifier : MonoBehaviour
     {
         ReadTemplate("Assets/Spell_Templates/check.txt", "check");
         ReadTemplate("Assets/Spell_Templates/circle.txt", "circle");
-        //ReadTemplate("Assets/Spell_Templates/star.txt", "star");
+        ReadTemplate("Assets/Spell_Templates/star.txt", "star");
         //ReadTemplate("Assets/Spell_Templates/triangle.txt", "triangle");
     }
 
@@ -87,7 +88,7 @@ public class SpellClassifier : MonoBehaviour
         Classification spell = Recognize(points, templates);
 
         Debug.Log(spell.score);
-        if (spell.score < 0.5f)
+        if (spell.score < confidenceRequirement)
         {
             spell.name = "none";
         }

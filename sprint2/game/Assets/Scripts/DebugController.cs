@@ -24,7 +24,7 @@ public class DebugController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F3))
+        /*if (Input.GetKeyDown(KeyCode.F3))
         {
             infoBox.enabled = !infoBox.isActiveAndEnabled;
         }
@@ -35,7 +35,7 @@ public class DebugController : MonoBehaviour
         else if(Input.GetMouseButtonUp(1))
         {
             crosshair.SetActive(false);
-        }
+        }*/
         Vector3 playerPos = playerObject.transform.position;
         int posX = (int) playerPos.x;
         int posY = (int) playerPos.y;
@@ -87,7 +87,7 @@ public class DebugController : MonoBehaviour
         Player.PlayerState state = player.getState();
 
 
-        Vector3 mousePos = Input.mousePosition;
+        /*Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
         var worldPosition = transform.InverseTransformPoint(Camera.main.ScreenToWorldPoint(mousePos));
 
@@ -102,6 +102,6 @@ public class DebugController : MonoBehaviour
             "Spell: < None >\n" + 
             "State: " + state + "\n" +
             "Mouse: (" + normalizedPoint.x * canvas.rect.width + ", " + normalizedPoint.y * canvas.rect.height + ")"
-        );
+        );*/
     }
 }

@@ -33,18 +33,17 @@ public class SpellManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetMouseButtonDown(0))
         {
         }
     }
 
     private void LateUpdate()
     {
-        Vector2 mousePosition = Input.mousePosition;
-
-        if (Input.GetMouseButton(1))
+       // Vector2 mousePosition = Input.mousePosition;
+        if (false)
         {
-            if (Input.GetMouseButton(0))
+            if (false)
             {
                 if (firstTime)
                 {

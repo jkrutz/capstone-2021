@@ -38,26 +38,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool rightClickDown = Input.GetMouseButtonDown(1);
-        bool rightClickRelease = Input.GetMouseButtonUp(1);
-        if (health <= 0.0f)
-        {
-            controller.Die();
-        }
+        //   bool rightClickDown = Input.GetMouseButtonDown(1);
+        //  bool rightClickRelease = Input.GetMouseButtonUp(1);
+        //   if (health <= 0.0f)
+        //   {
+        //controller.Die();
+        //  }
 
-        if (rightClickDown)
-        {
-            mainCamera.SetActive(false);
-            aimCamera.SetActive(true);
-            state = PlayerState.Casting;
-        }
-        if (rightClickRelease)
-        {
-            mainCamera.SetActive(true);
-            aimCamera.SetActive(false);
-            state = PlayerState.Resting;
-        }
-
+        //   if (rightClickDown)
+        //   {
+        //   mainCamera.SetActive(false);
+        //  aimCamera.SetActive(true);
+        //  state = PlayerState.Casting;
+        //}
+        //      if (rightClickRelease)
+        //     {
+        //     mainCamera.SetActive(true);
+        //         aimCamera.SetActive(false);
+        //    state = PlayerState.Resting;
+        // }
+        /*
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
         Vector3 moveDir = transform.TransformDirection(moveInput);
         moveVec = moveDir.normalized * moveSpeed;
@@ -70,11 +70,11 @@ public class Player : MonoBehaviour
         {
             state = PlayerState.Resting;
         }
-        controller.Move(moveVec);
+        //controller.Move(moveVec);
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
+            //controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
             isGrounded = false;
             if (state != PlayerState.Casting)
             {
@@ -84,8 +84,8 @@ public class Player : MonoBehaviour
 
         if (health <= 0.0f)
         {
-            controller.Die();
-        }
+            //controller.Die();
+        }*/
     }
 
     private void OnCollisionEnter(Collision c)

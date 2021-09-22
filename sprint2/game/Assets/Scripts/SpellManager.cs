@@ -9,6 +9,9 @@ public class SpellManager : MonoBehaviour
     public GameObject fireObject;
     private Fire fire;
 
+    public GameObject explosionObject;
+    private Explosion explosion;
+
     public GameObject point;
 
     public GameObject image;
@@ -16,7 +19,7 @@ public class SpellManager : MonoBehaviour
     public Transform parentObj;
 
     private SpellClassifier classifier;
-    private RectTransform canvas;
+    public RectTransform canvas;
 
     private List<Vector2> mouseInputPoints = new List<Vector2>();
     private bool firstTime = true;
@@ -28,9 +31,11 @@ public class SpellManager : MonoBehaviour
     void Start()
     {
         classifier = GetComponent<SpellClassifier>();
-        canvas = gameObject.GetComponent<RectTransform>();
+
         fire = fireObject.GetComponent<Fire>();
-        spell = "None";
+        explosion = explosionObject.GetComponent<Explosion>();
+        canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        spell = "none";
     }
 
     // Update is called once per frame
@@ -40,16 +45,14 @@ public class SpellManager : MonoBehaviour
         {
             if (spell == "circle")
             {
-                Debug.Log(spell.ToString());
                 fire.cast();
                 spell = "none";
             } else if (spell == "star")
             {
-                Debug.Log(spell.ToString());
+                explosion.cast();
                 spell = "none";
             } else if (spell == "check")
             {
-                Debug.Log(spell.ToString());
                 spell = "none";
             }
         }
@@ -107,7 +110,8 @@ public class SpellManager : MonoBehaviour
     {
         Vector2 mousePosition = Input.mousePosition;
 
-        mousePosition = Vector3.Scale((mainCam.ScreenToViewportPoint(mousePosition) - new Vector3(0.5f, 0.5f, 0.0f)), new Vector3(1038.5f, 636.0f, 1.0f));
+        mousePosition = Vector3.Scale((mainCam.ScreenToViewportPoint(mousePosition) - new Vector3(0.5f, 0.5f, 0.0f)), new Vector3(canvas.rect.width, canvas.rect.height, 1.0f));
+        
         var newElement = Instantiate(image.transform, parentObj) as RectTransform;
         newElement.anchoredPosition = (new Vector3(mousePosition.x, mousePosition.y, 0.0f));
         newElement.SetParent(parentObj);

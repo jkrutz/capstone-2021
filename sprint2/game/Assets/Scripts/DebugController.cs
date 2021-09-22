@@ -84,7 +84,6 @@ public class DebugController : MonoBehaviour
         }
 
         int health = (int) player.getHealth();
-        Player.PlayerState state = player.getState();
 
 
         Vector3 mousePos = Input.mousePosition;
@@ -100,7 +99,6 @@ public class DebugController : MonoBehaviour
             "Direction: " + playerDir + "\n" + 
             "Health: " + health + "\n" + 
             "Spell: < None >\n" + 
-            "State: " + state + "\n" +
             "Mouse: (" + normalizedPoint.x * canvas.rect.width + ", " + normalizedPoint.y * canvas.rect.height + ")"
         );
     }

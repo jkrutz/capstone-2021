@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     private float health = 100.0f;
     private bool isGrounded = true;
+    private bool isArmed;
 
     public GameObject mainCamera;
     public GameObject aimCamera;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isArmed = true;
         controller = GetComponent<PlayerController>();
     }
 
@@ -80,4 +82,15 @@ public class Player : MonoBehaviour
     {
         return health;
     }
+
+    public bool getArmed()
+    {
+        return isArmed;
+    }
+
+    
+   public void setArmed(bool _isArmed)
+   {
+        isArmed = _isArmed;
+   }
 }

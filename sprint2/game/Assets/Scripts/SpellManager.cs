@@ -8,12 +8,8 @@ public class SpellManager : MonoBehaviour
 {
     public GameObject fireObject;
     private Fire fire;
-
     public GameObject explosionObject;
     private Explosion explosion;
-
-    public GameObject point;
-
     public GameObject image;
     public Camera mainCam;
     public Transform parentObj;
@@ -43,18 +39,29 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            RaycastHit hit;
+            Vector3 hitPoint;
+            float missDistance = 50;
+            if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, Mathf.Infinity))
+            {
+                hitPoint = hit.point;
+            }
+            else
+            {
+                hitPoint = mainCam.transform.position + mainCam.transform.forward * missDistance;
+            }
+
             if (spell == "circle")
             {
-                fire.cast();
-                spell = "none";
+                fire.cast(hitPoint);
+                
             } else if (spell == "star")
             {
                 explosion.cast();
-                spell = "none";
             } else if (spell == "check")
             {
-                spell = "none";
             }
+            spell = "none";
         }
     }
 

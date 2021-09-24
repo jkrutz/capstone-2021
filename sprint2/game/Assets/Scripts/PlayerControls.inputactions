@@ -38,7 +38,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Cast",
                     "type": "Button",
                     "id": "1b6daed7-c4d6-4ad2-a5e7-29fa20d020fa",
                     "expectedControlType": "Button",
@@ -142,7 +142,53 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "Cast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Debug",
+            "id": "f15ed23d-f19d-42fc-b699-8aef191cbe90",
+            "actions": [
+                {
+                    "name": "Debug",
+                    "type": "Button",
+                    "id": "47a57858-dc0a-4b2e-a6e6-9f51c0234e27",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Mouse Position",
+                    "type": "Value",
+                    "id": "b372d0aa-b7d3-4b4b-812b-50eeac8e2cee",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "06eeeb92-1fac-473f-bc39-5d9f08b9107c",
+                    "path": "<Keyboard>/f3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Debug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b245e4b4-a1ae-4f85-b386-f0b08962dbfb",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse Position",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

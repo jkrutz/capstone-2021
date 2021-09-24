@@ -4,22 +4,15 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float playerSpeed = 2.0f;
-    [SerializeField]
-    private float jumpHeight = 1.0f;
-    [SerializeField]
-    private float gravityValue = -9.81f;
-    [SerializeField]
-    private float rotationSpeed = 10f;
-    [SerializeField]
-    private GameObject bulletPrefab;
-    [SerializeField]
-    private Transform barrelTransform;
-    [SerializeField]
-    private Transform bulletParent;
-    [SerializeField]
-    private float missDistance = 25f;
+    [SerializeField] private float playerSpeed = 10.0f;
+    [SerializeField] private float jumpHeight = 1.5f;
+    [SerializeField] private float gravityValue = -16f;
+    //[SerializeField] private float rotationSpeed = 50f;
+    [SerializeField] private float missDistance = 25f;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform barrelTransform;
+    [SerializeField] private Transform bulletParent;
+    [SerializeField] private Player player;
 
     private CharacterController controller;
     private PlayerInput playerInput;
@@ -31,6 +24,9 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction shootAction;
+    private InputAction aimAction;
+
+    private bool aiming;
 
     private void Awake()
     {
@@ -40,44 +36,59 @@ public class PlayerController : MonoBehaviour
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
         shootAction = playerInput.actions["Shoot"];
+        aimAction = playerInput.actions["Aim"];
+        aiming = false;
 
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()
     {
-        shootAction.performed += _ => ShootGun();
+
+        shootAction.performed += _ => CastSpell();
+        aimAction.performed += _ => Aiming();
+        aimAction.canceled += _ => CancelAiming();
     }
 
     private void OnDisable()
     {
-        shootAction.performed -= _ => ShootGun();
+        shootAction.performed -= _ => CastSpell();
+        aimAction.performed -= _ => Aiming();
+        aimAction.canceled -= _ => CancelAiming();
     }
 
-    private void ShootGun()
+    private void Aiming()
+    {
+        aiming = true;
+    }
+
+    private void CancelAiming()
+    {
+        aiming = false;
+    }
+
+    private void CastSpell()
     {
         RaycastHit hit;
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
-        BulletController bulletController = bullet.GetComponent<BulletController>();
+        Vector3 pointHit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity))
         {
-            bulletController.target = hit.point;
-            bulletController.hit = true;
+            pointHit = hit.point;
         }
         else
         {
-            bulletController.target = cameraTransform.position + cameraTransform.forward * missDistance;
-            bulletController.hit = false;
+            pointHit = cameraTransform.position + cameraTransform.forward * missDistance;
         }
+        GameObject.Instantiate(bulletPrefab, pointHit, bulletPrefab.transform.rotation);
     }
 
     void Update()
     {
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-        }
+        /* States have the following order of precendence
+         * Casting
+         * Jumping
+         * Moving/Resting
+         */
 
         Vector2 input = moveAction.ReadValue<Vector2>();
         Vector3 move = new Vector3(input.x, 0, input.y);
@@ -94,10 +105,40 @@ public class PlayerController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+        if (move.x == 0 && move.z == 0)
+        {
+            player.SetState(Player.PlayerState.Resting);
+        }
+        else
+        {
+            player.SetState(Player.PlayerState.Moving);
+        }
+
+        groundedPlayer = controller.isGrounded;
+
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
+        else
+        {
+            player.SetState(Player.PlayerState.Jumping);
+        }
+
+        if (aiming)
+        {
+            player.SetState(Player.PlayerState.Casting);
+        }
+
         // Rotate towards camera direction
         Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = targetRotation;//Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         //reticle from https://www.kenney.nl/assets/crosshair-pack
         //splat from https://opengameart.org/content/splattexture
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
     }
 }

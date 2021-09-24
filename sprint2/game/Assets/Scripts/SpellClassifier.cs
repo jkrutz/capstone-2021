@@ -39,7 +39,7 @@ public class SpellClassifier : MonoBehaviour
 
         StreamWriter writer = new StreamWriter(path, false);
 
-        foreach(Vector2 p in points)
+        foreach (Vector2 p in points)
         {
             writer.WriteLine(p.x + " " + p.y);
         }
@@ -57,7 +57,7 @@ public class SpellClassifier : MonoBehaviour
         reader.Close();
 
         var lines = contents.Split('\n');
-        foreach(string line in lines)
+        foreach (string line in lines)
         {
             var coords = line.Split(' ');
 
@@ -124,7 +124,8 @@ public class SpellClassifier : MonoBehaviour
                 points.Insert(i, q);
                 //11 D ← 0 
                 D = 0;
-            } else
+            }
+            else
             {
                 //12 else D ← D + d
                 D += d;
@@ -280,7 +281,7 @@ public class SpellClassifier : MonoBehaviour
         float b = Mathf.Infinity;
 
         //2 foreach template T in templates do
-        foreach(Classification T in templates)
+        foreach (Classification T in templates)
         {
             //3 d ← DISTANCE-AT-BEST-ANGLE(points, T, -θ, θ, θ∆)
             float d = DistanceAtBestAngle(points, T, -45.0f, 45.0f, 2.0f);
@@ -328,7 +329,8 @@ public class SpellClassifier : MonoBehaviour
                 x1 = (fi * thetaA) + ((1 - fi) * thetaB);
                 //11 f1 ← DISTANCE-AT-ANGLE(points, T, x1)
                 f1 = DistanceAtAngle(points, T, x1);
-            } else //12 else
+            }
+            else //12 else
             {
                 //13 θa ← x1
                 thetaA = x1;

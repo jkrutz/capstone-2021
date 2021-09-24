@@ -4,8 +4,7 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerInput playerInput;
+    [SerializeField] private PlayerInput playerInput;
     [SerializeField]
     private int priorityBoostAmount = 10;
     [SerializeField]
@@ -15,11 +14,10 @@ public class CameraController : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
     private InputAction aimAction;
 
-
     void Awake()
     {
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
-        aimAction = playerInput.actions["Aim"];  
+        aimAction = playerInput.actions["Aim"];
     }
 
     private void OnEnable()
@@ -43,7 +41,7 @@ public class CameraController : MonoBehaviour
 
     private void CancelAim()
     {
-        virtualCamera.Priority -= priorityBoostAmount; 
+        virtualCamera.Priority -= priorityBoostAmount;
         aimCanvas.enabled = false;
         thirdPersonCanvas.enabled = true;
     }

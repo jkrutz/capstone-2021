@@ -57,7 +57,7 @@ public class SpellManager : MonoBehaviour
                 
             } else if (spell == "star")
             {
-                explosion.cast();
+                explosion.cast(hitPoint);
             } else if (spell == "check")
             {
             }

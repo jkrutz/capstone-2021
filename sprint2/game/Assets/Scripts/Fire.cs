@@ -29,7 +29,7 @@ public class Fire : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision c)
+    private void OnTriggerStay(Collider c)
     {
         if (c.gameObject.tag == "Player")
         {

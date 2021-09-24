@@ -91,6 +91,7 @@ public class SpellClassifier : MonoBehaviour
         {
             spell.name = "none";
         }
+        Debug.Log(spell.name);
         return spell.name;
     }
 

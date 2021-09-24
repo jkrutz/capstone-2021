@@ -2896,10 +2896,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireObject: {fileID: 3463525403069482550, guid: e7ad8f09f1fa82447a146e933fb95aa6,
     type: 3}
+  explosionObject: {fileID: 100006, guid: e076683e0305e35498b8e8834978c0fa, type: 3}
   point: {fileID: 0}
   image: {fileID: 506267726242170116, guid: f7a4d1d1b34cad4499e940b443fc558f, type: 3}
   mainCam: {fileID: 582630963}
   parentObj: {fileID: 2137354957}
+  canvas: {fileID: 0}
 --- !u!4 &1197433853
 Transform:
   m_ObjectHideFlags: 0
@@ -3003,7 +3005,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1224995561
 MonoBehaviour:

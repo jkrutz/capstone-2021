@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public float radius = 5.0f;
+    public float radius = 10.0f;
     public float power = 10.0f;
-    public float upForce = 1.0f;
+    public float upForce = 20.0f;
 
     private GameObject playerObject;
 

@@ -61,9 +61,10 @@ public class SpellManager : MonoBehaviour
     private void LateUpdate()
     {
         Vector2 mousePosition = Input.mousePosition;
-
+        Cursor.visible = false;
         if (Input.GetMouseButton(1))
         {
+            Cursor.visible = true;
             if (Input.GetMouseButton(0))
             {
                 if (firstTime)

@@ -7,7 +7,10 @@ using UnityEngine;
 public class SpellManager : MonoBehaviour
 {
     public GameObject fireObject;
+    public GameObject disarmObject;
+    public Player player;
     private Fire fire;
+    private Disarm disarm;
     public GameObject explosionObject;
     private Explosion explosion;
     public GameObject image;
@@ -27,9 +30,10 @@ public class SpellManager : MonoBehaviour
     void Start()
     {
         classifier = GetComponent<SpellClassifier>();
-
+        disarm = disarmObject.GetComponent<Disarm>();
         fire = fireObject.GetComponent<Fire>();
         explosion = explosionObject.GetComponent<Explosion>();
+        
         canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
         spell = "none";
     }
@@ -42,29 +46,41 @@ public class SpellManager : MonoBehaviour
             RaycastHit hit;
             Vector3 hitPoint;
             float missDistance = 50;
+            bool playerWasHit = false;
+            GameObject hitEntity = new GameObject();
+
             if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, Mathf.Infinity))
             {
                 hitPoint = hit.point;
+                hitEntity = hit.collider.gameObject;
+                playerWasHit = hitEntity.CompareTag("Player");
             }
             else
             {
                 hitPoint = mainCam.transform.position + mainCam.transform.forward * missDistance;
             }
 
-            if (spell == "circle")
+            if (player.getArmed())
             {
-                fire.cast(hitPoint);
-                
-            } else if (spell == "star")
-            {
-<<<<<<< HEAD
-                explosion.cast();
-=======
-                explosion.cast(hitPoint);
->>>>>>> parent of 35906dd (Disarm)
-            } else if (spell == "check")
-            {
+                if (spell == "circle")
+                {
+                    fire.cast(hitPoint);
+
+                }
+                else if (spell == "star")
+                {
+                    explosion.cast(hitPoint);
+                }
+                else if (spell == "check")
+                {
+                    if (playerWasHit)
+                    {
+                        disarm.cast(hitEntity);
+                    }
+
+                }
             }
+            
             spell = "none";
         }
     }

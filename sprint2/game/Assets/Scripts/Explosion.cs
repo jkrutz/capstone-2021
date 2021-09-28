@@ -22,9 +22,9 @@ public class Explosion : MonoBehaviour
         
     }
 
-    public void cast()
+    public void cast(Vector3 point)
     {
-        Instantiate(this, new Vector3(10.0f, 1.0f, 10.0f), Quaternion.identity);
+        Instantiate(this, point, Quaternion.identity);
         Collider[] colliders = Physics.OverlapSphere(new Vector3(10.0f, 1.0f, 10.0f), radius);
         foreach (Collider hit in colliders)
         {

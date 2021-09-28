@@ -39,6 +39,6 @@ public class Fire : MonoBehaviour
 
     public void cast(Vector3 point)
     {
-        Instantiate(this, point + new Vector3(0,3,0), Quaternion.identity);
+        Instantiate(this, point, Quaternion.identity);
     }
 }

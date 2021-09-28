@@ -87,10 +87,10 @@ public class DebugController : MonoBehaviour
         Vector2 normalizedPoint = Rect.PointToNormalized(canvas.rect, localpoint);
         infoBox.SetText(
             "XYZ: " + posX + " " + posY + " " + posZ + "\n" +
-            "Direction: " + playerDir + "\n" +
-            "Health: " + health + "\n" +
-            "Spell: < None >\n" +
-            "Mouse: (" + normalizedPoint.x * canvas.rect.width + ", " + normalizedPoint.y * canvas.rect.height + ")\n" +
-            "Is Armed: " + player.getArmed());
+            "Direction: " + playerDir + "\n" + 
+            "Health: " + health + "\n" + 
+            "Spell: < None >\n" + 
+            "Mouse: (" + normalizedPoint.x * canvas.rect.width + ", " + normalizedPoint.y * canvas.rect.height + ")"
+        );
     }
 }

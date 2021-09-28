@@ -8,7 +8,8 @@ public class Fire : MonoBehaviour
     private GameObject playerObject;
     private Player player;
 
-    private float fireDamage = 5.0f;
+    private float fireDamage = 10.0f;
+    private float duration = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +21,24 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        duration -= Time.deltaTime;
+        if (duration < 0)
+        {
+            Destroy(this.gameObject);
+            duration = 5.0f;
+        }
     }
 
-    private void OnCollisionStay(Collision c)
+    private void OnTriggerStay(Collider c)
     {
         if (c.gameObject.tag == "Player")
         {
             player.setHealth(player.getHealth() - fireDamage * Time.deltaTime);
         }
+    }
+
+    public void cast(Vector3 point)
+    {
+        Instantiate(this, point + new Vector3(0,3,0), Quaternion.identity);
     }
 }

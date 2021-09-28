@@ -87,11 +87,11 @@ public class SpellClassifier : MonoBehaviour
         //Step 4. Match points against a set of templates
         Classification spell = Recognize(points, templates);
 
-        Debug.Log(spell.score);
         if (spell.score < confidenceRequirement)
         {
             spell.name = "none";
         }
+        Debug.Log(spell.name);
         return spell.name;
     }
 

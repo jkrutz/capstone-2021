@@ -6,15 +6,19 @@ using UnityEngine;
 [RequireComponent(typeof(SpellClassifier))]
 public class SpellManager : MonoBehaviour
 {
-    public GameObject fire;
-    public GameObject point;
-    private GameObject playerObject;
-
+    public GameObject fireObject;
+    public GameObject disarmObject;
+    public Player player;
+    private Fire fire;
+    private Disarm disarm;
+    public GameObject explosionObject;
+    private Explosion explosion;
     public GameObject image;
     public Camera mainCam;
     public Transform parentObj;
 
     private SpellClassifier classifier;
+    public RectTransform canvas;
 
     private List<Vector2> mouseInputPoints = new List<Vector2>();
     private bool firstTime = true;
@@ -26,8 +30,12 @@ public class SpellManager : MonoBehaviour
     void Start()
     {
         classifier = GetComponent<SpellClassifier>();
-        playerObject = GameObject.Find("Temp Player");
-        spell = "None";
+        disarm = disarmObject.GetComponent<Disarm>();
+        fire = fireObject.GetComponent<Fire>();
+        explosion = explosionObject.GetComponent<Explosion>();
+        
+        canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        spell = "none";
     }
 
     // Update is called once per frame
@@ -35,15 +43,55 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            RaycastHit hit;
+            Vector3 hitPoint;
+            float missDistance = 50;
+            bool playerWasHit = false;
+            GameObject hitEntity = new GameObject();
+
+            if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, Mathf.Infinity))
+            {
+                hitPoint = hit.point;
+                hitEntity = hit.collider.gameObject;
+                playerWasHit = hitEntity.CompareTag("Player");
+            }
+            else
+            {
+                hitPoint = mainCam.transform.position + mainCam.transform.forward * missDistance;
+            }
+
+            if (player.getArmed())
+            {
+                if (spell == "circle")
+                {
+                    fire.cast(hitPoint);
+
+                }
+                else if (spell == "star")
+                {
+                    explosion.cast(hitPoint);
+                }
+                else if (spell == "check")
+                {
+                    if (playerWasHit)
+                    {
+                        disarm.cast(hitEntity);
+                    }
+
+                }
+            }
+            
+            spell = "none";
         }
     }
 
     private void LateUpdate()
     {
         Vector2 mousePosition = Input.mousePosition;
-
+        Cursor.visible = false;
         if (Input.GetMouseButton(1))
         {
+            Cursor.visible = true;
             if (Input.GetMouseButton(0))
             {
                 if (firstTime)
@@ -79,8 +127,6 @@ public class SpellManager : MonoBehaviour
                     
                     mouseInputPoints.Clear();
 
-                    Debug.Log(spell);
-
                     firstTime = true;
                     drawing = false;
                 }
@@ -92,7 +138,8 @@ public class SpellManager : MonoBehaviour
     {
         Vector2 mousePosition = Input.mousePosition;
 
-        mousePosition = Vector3.Scale((mainCam.ScreenToViewportPoint(mousePosition) - new Vector3(0.5f, 0.5f, 0.0f)), new Vector3(1038.5f, 636.0f, 1.0f));
+        mousePosition = Vector3.Scale((mainCam.ScreenToViewportPoint(mousePosition) - new Vector3(0.5f, 0.5f, 0.0f)), new Vector3(canvas.rect.width, canvas.rect.height, 1.0f));
+        
         var newElement = Instantiate(image.transform, parentObj) as RectTransform;
         newElement.anchoredPosition = (new Vector3(mousePosition.x, mousePosition.y, 0.0f));
         newElement.SetParent(parentObj);

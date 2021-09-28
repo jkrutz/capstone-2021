@@ -7,7 +7,6 @@ public class DebugController : MonoBehaviour
 {
 
     public TextMeshProUGUI infoBox;
-    public GameObject crosshair;
     private GameObject playerObject;
     private Player player;
     private RectTransform canvas;
@@ -27,14 +26,6 @@ public class DebugController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F3))
         {
             infoBox.enabled = !infoBox.isActiveAndEnabled;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            crosshair.SetActive(true);
-        }
-        else if(Input.GetMouseButtonUp(1))
-        {
-            crosshair.SetActive(false);
         }
         Vector3 playerPos = playerObject.transform.position;
         int posX = (int) playerPos.x;

@@ -17,14 +17,7 @@ public class PlayerController : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody>();
         playerObject = GameObject.Find("Temp Player");
     }
-
-    private void Update()
-    {
-        //if (Input.GetKey(KeyCode.Escape))
-        //{
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        //}
-    }
+    
     private void FixedUpdate()
     {
         playerRigidBody.MovePosition(transform.position + velocity * Time.deltaTime);

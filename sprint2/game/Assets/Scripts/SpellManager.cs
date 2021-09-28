@@ -57,7 +57,11 @@ public class SpellManager : MonoBehaviour
                 
             } else if (spell == "star")
             {
+<<<<<<< HEAD
                 explosion.cast();
+=======
+                explosion.cast(hitPoint);
+>>>>>>> parent of 35906dd (Disarm)
             } else if (spell == "check")
             {
             }

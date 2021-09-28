@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("s");
             controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
             isGrounded = false;
         }

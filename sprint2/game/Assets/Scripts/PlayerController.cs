@@ -20,17 +20,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
+        //if (Input.GetKey(KeyCode.Escape))
+        //{
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
+        //}
     }
     private void FixedUpdate()
     {
-        
         playerRigidBody.MovePosition(transform.position + velocity * Time.deltaTime);
-        Debug.Log("v:" + playerRigidBody.velocity);
-        //playerRigidBody.angularVelocity = new Vector3(0, 0, 0);
     }
 
     public void Move(Vector3 _velocity)
@@ -40,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(Vector3 jumpVec)
     {
+        Debug.Log("a");
         playerRigidBody.AddForce(jumpVec, ForceMode.Impulse);
     }
 

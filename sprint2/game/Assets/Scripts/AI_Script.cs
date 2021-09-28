@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AI_Script : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    public NavMeshAgent navMeshAgent;
 
     public Transform player;
 
@@ -30,8 +30,8 @@ public class AI_Script : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("PlayerObj").transform;
-        agent = GetComponent<NavMeshAgent>();
+        player = GameObject.Find("Player").transform;
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -48,16 +48,23 @@ public class AI_Script : MonoBehaviour
 
     private void Patrol()
     {
-        if (!walkPointSet) SearchWalkPoint();
+        if (!walkPointSet)
+        {
+            SearchWalkPoint();
+        }
 
         if (walkPointSet)
-            agent.SetDestination(walkPoint);
-
+        {
+            navMeshAgent.SetDestination(walkPoint);
+        }
+            
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f)
+        {
             walkPointSet = false;
+        }
     }
 
     private void SearchWalkPoint()
@@ -69,19 +76,21 @@ public class AI_Script : MonoBehaviour
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
             walkPointSet = true;
-         
+        }
+
     }
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        navMeshAgent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
         //make sure enemy doesn't move
-        agent.SetDestination(transform.position);
+        navMeshAgent.SetDestination(transform.position);
 
         transform.LookAt(player);
 

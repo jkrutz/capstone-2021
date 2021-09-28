@@ -17,11 +17,10 @@ public class PlayerController : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody>();
         playerObject = GameObject.Find("Temp Player");
     }
-
+    
     private void FixedUpdate()
     {
         playerRigidBody.MovePosition(transform.position + velocity * Time.deltaTime);
-
     }
 
     public void Move(Vector3 _velocity)
@@ -31,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(Vector3 jumpVec)
     {
+        Debug.Log("a");
         playerRigidBody.AddForce(jumpVec, ForceMode.Impulse);
     }
 

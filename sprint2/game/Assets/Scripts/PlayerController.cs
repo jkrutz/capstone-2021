@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Rigidbody playerRigidBody;
     private GameObject playerObject;
+    public Canvas pauseMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,14 @@ public class PlayerController : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody>();
         playerObject = GameObject.Find("Temp Player");
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            pauseMenu.enabled = !pauseMenu.enabled;
+        }
+    }
     private void FixedUpdate()
     {
         playerRigidBody.MovePosition(transform.position + velocity * Time.deltaTime);
@@ -30,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(Vector3 jumpVec)
     {
-        Debug.Log("a");
         playerRigidBody.AddForce(jumpVec, ForceMode.Impulse);
     }
 

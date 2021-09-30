@@ -76,6 +76,24 @@ public class DebugController : MonoBehaviour
 
         int health = (int) player.getHealth();
 
+        string spell = "None";
+
+        switch (player.GetActiveSpell())
+        {
+            case "circle":
+                spell = "Fire";
+                break;
+            case "star":
+                spell = "Explosion";
+                break;
+            case "check":
+                spell = "Disarm";
+                break;
+            case "spiral":
+                spell = "Wall";
+                break;
+
+        }
 
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
@@ -89,7 +107,7 @@ public class DebugController : MonoBehaviour
             "XYZ: " + posX + " " + posY + " " + posZ + "\n" +
             "Direction: " + playerDir + "\n" +
             "Health: " + health + "\n" +
-            "Spell: < None >\n" +
+            "Spell: " + spell + "\n" +
             "Mouse: (" + normalizedPoint.x * canvas.rect.width + ", " + normalizedPoint.y * canvas.rect.height + ")\n" +
             "Is Armed: " + player.getArmed());
     }

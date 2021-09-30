@@ -10,6 +10,8 @@ public class SpellClassifier : MonoBehaviour
     private readonly float fi = 0.5f * (-1 + Mathf.Sqrt(5));
     private readonly float confidenceRequirement = 0.3f;
 
+    public Player player;
+
     private struct Classification
     {
         public List<Vector2> points;
@@ -24,6 +26,7 @@ public class SpellClassifier : MonoBehaviour
         ReadTemplate("Assets/Spell_Templates/check.txt", "check");
         ReadTemplate("Assets/Spell_Templates/circle.txt", "circle");
         ReadTemplate("Assets/Spell_Templates/star.txt", "star");
+        ReadTemplate("Assets/Spell_Templates/spiral.txt", "spiral");
         //ReadTemplate("Assets/Spell_Templates/triangle.txt", "triangle");
     }
 
@@ -92,6 +95,7 @@ public class SpellClassifier : MonoBehaviour
             spell.name = "none";
         }
         Debug.Log(spell.name);
+        player.SetActiveSpell(spell.name);
         return spell.name;
     }
 

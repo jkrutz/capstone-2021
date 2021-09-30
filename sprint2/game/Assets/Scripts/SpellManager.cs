@@ -8,8 +8,11 @@ public class SpellManager : MonoBehaviour
 {
     public GameObject fireObject;
     public GameObject disarmObject;
+    public GameObject wallObject;
+    public GameObject playerObject;
     public Player player;
     private Fire fire;
+    private Wall wall;
     private Disarm disarm;
     public GameObject explosionObject;
     private Explosion explosion;
@@ -32,6 +35,7 @@ public class SpellManager : MonoBehaviour
         classifier = GetComponent<SpellClassifier>();
         disarm = disarmObject.GetComponent<Disarm>();
         fire = fireObject.GetComponent<Fire>();
+        wall = wallObject.GetComponent<Wall>();
         explosion = explosionObject.GetComponent<Explosion>();
         
         canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
@@ -47,7 +51,7 @@ public class SpellManager : MonoBehaviour
             Vector3 hitPoint;
             float missDistance = 50;
             bool playerWasHit = false;
-            GameObject hitEntity = new GameObject();
+            GameObject hitEntity = null;
 
             if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, Mathf.Infinity))
             {
@@ -79,9 +83,13 @@ public class SpellManager : MonoBehaviour
                     }
 
                 }
+                else if (spell == "spiral")
+                {
+                    wall.cast(new Vector3(hitPoint.x, 0, hitPoint.z), playerObject.transform.rotation);
+                }
             }
-            
             spell = "none";
+            player.SetActiveSpell(spell);
         }
     }
 
@@ -123,7 +131,7 @@ public class SpellManager : MonoBehaviour
                      */
                     spell = classifier.Classify(mouseInputPoints);
 
-                    //classifier.CreateTemplates(mouseInputPoints, "Assets/Spell_Templates/star.txt");
+                    //classifier.CreateTemplates(mouseInputPoints, "Assets/Spell_Templates/spiral.txt");
                     
                     mouseInputPoints.Clear();
 

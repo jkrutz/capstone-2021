@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private float health = 100.0f;
     private bool isGrounded = true;
     private bool isArmed;
+    private string activeSpell;
 
     public GameObject mainCamera;
     public GameObject aimCamera;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        activeSpell = "none";
         isArmed = true;
         controller = GetComponent<PlayerController>();
     }
@@ -93,4 +95,14 @@ public class Player : MonoBehaviour
    {
         isArmed = _isArmed;
    }
+
+    public void SetActiveSpell(string _activeSpell)
+    {
+        activeSpell = _activeSpell;
+    }
+
+    public string GetActiveSpell()
+    {
+        return activeSpell;
+    }
 }

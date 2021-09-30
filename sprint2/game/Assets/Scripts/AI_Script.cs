@@ -30,7 +30,7 @@ public class AI_Script : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("PlayerObj").transform;
+        player = GameObject.Find("Temp Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

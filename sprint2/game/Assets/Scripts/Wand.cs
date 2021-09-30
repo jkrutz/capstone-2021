@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Wand : MonoBehaviour
 {
-    private GameObject playerObject;
+    public GameObject playerObject;
     private Player player;
     private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerObject = GameObject.Find("Temp Player");
         player = playerObject.GetComponent<Player>();
         rb = GetComponent<Rigidbody>();
     }

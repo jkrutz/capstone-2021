@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private bool isArmed;
     private string activeSpell;
     private bool isPaused;
+    //public bool isComputer;
 
     public GameObject mainCamera;
     public GameObject aimCamera;

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     private bool isArmed;
     private string activeSpell;
+    private bool isPaused;
 
     public GameObject mainCamera;
     public GameObject aimCamera;
@@ -38,12 +39,12 @@ public class Player : MonoBehaviour
             controller.Die();
         }
 
-        if (rightClickDown)
+        if (rightClickDown && !isPaused)
         {
             mainCamera.SetActive(false);
             aimCamera.SetActive(true);
         }
-        if (rightClickRelease)
+        if (rightClickRelease && !isPaused)
         {
             mainCamera.SetActive(true);
             aimCamera.SetActive(false);
@@ -53,9 +54,12 @@ public class Player : MonoBehaviour
         Vector3 moveDir = transform.TransformDirection(moveInput);
         moveVec = moveDir.normalized * moveSpeed;
 
-        controller.Move(moveVec);
+        if (!isPaused)
+        {
+            controller.Move(moveVec);
+        }
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space) && !isPaused)
         {
             controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
             isGrounded = false;
@@ -104,5 +108,15 @@ public class Player : MonoBehaviour
     public string GetActiveSpell()
     {
         return activeSpell;
+    }
+    
+    public void TogglePaused()
+    {
+        isPaused = !isPaused;
+    }
+
+    public bool GetPaused()
+    {
+        return isPaused;
     }
 }

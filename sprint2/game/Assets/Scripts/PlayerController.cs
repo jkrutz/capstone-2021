@@ -12,23 +12,36 @@ public class PlayerController : MonoBehaviour
     private GameObject playerObject;
     public Canvas pauseMenu;
 
+    private Player player;
+
     // Start is called before the first frame update
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody>();
         playerObject = GameObject.Find("Temp Player");
+        player = playerObject.GetComponent<Player>();
     }
 
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            pauseMenu.enabled = !pauseMenu.enabled;
+            TogglePause();
         }
     }
     private void FixedUpdate()
     {
-        playerRigidBody.MovePosition(transform.position + velocity * Time.deltaTime);
+        if (!player.GetPaused())
+        {
+            playerRigidBody.MovePosition(transform.position + velocity * Time.deltaTime);
+        }
+        
+    }
+
+    public void TogglePause()
+    {
+        player.TogglePaused();
+        pauseMenu.enabled = player.GetPaused();
     }
 
     public void Move(Vector3 _velocity)

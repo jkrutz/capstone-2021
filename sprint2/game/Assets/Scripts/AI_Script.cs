@@ -10,7 +10,7 @@ public class AI_Script : MonoBehaviour
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
-
+    private bool isArmed;
     public float health;
 
     //Patrol Mode
@@ -30,6 +30,7 @@ public class AI_Script : MonoBehaviour
 
     private void Awake()
     {
+        isArmed = true;
         player = GameObject.Find("Temp Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -120,5 +121,16 @@ public class AI_Script : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
+    public bool getArmed()
+    {
+        return isArmed;
+    }
+
+
+    public void setArmed(bool _isArmed)
+    {
+        isArmed = _isArmed;
     }
 }

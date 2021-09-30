@@ -108,11 +108,11 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    agentHeight: 3
+    agentSlope: 50
+    agentClimb: 2
+    ledgeDropHeight: 8
+    maxJumpAcrossDistance: 4
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
@@ -3475,8 +3475,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109446744}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 2
+  m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -3532,7 +3532,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b0e9da3c5f52a7a458a9eb330d24a806, type: 2}
+  - {fileID: 2100000, guid: 5a779f1c8b1067f4aa82043d2b98a56b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3600,11 +3600,11 @@ MonoBehaviour:
     m_Bits: 64
   health: 50
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 15
+  walkPointRange: 10
   timeBetweenAttacks: 1
   projectile: {fileID: 6262740093098758682, guid: 2a13f9d6edf1d9c42a2a96cc84db6f29,
     type: 3}
-  sightRange: 20
+  sightRange: 100
   attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
@@ -3618,7 +3618,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 5
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -4013,7 +4013,7 @@ Rigidbody:
   m_GameObject: {fileID: 1224995558}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0

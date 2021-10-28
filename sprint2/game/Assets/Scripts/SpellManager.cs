@@ -138,9 +138,9 @@ public class SpellManager : MonoBehaviour
                      * 3) go into the template file and delete the empty line. Should be 64 lines in file total.
                      */
                     
-                    spell = classifier.Classify(mouseInputPoints);
+                    //spell = classifier.Classify(mouseInputPoints);
 
-                    /*bool isNumeric = true;
+                    bool isNumeric = true;
                     foreach(Vector2 pt in mouseInputPoints)
                     {
                         float ptx = pt.x;
@@ -177,7 +177,7 @@ public class SpellManager : MonoBehaviour
                     else
                     {
                         print("Point could not be saved");
-                    }*/
+                    }
                     mouseInputPoints.Clear();
 
                     firstTime = true;

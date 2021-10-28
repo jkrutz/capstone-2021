@@ -306,7 +306,7 @@ public class SpellClassifier : MonoBehaviour
             q.x = p.x - c.x;
             //4 qy ← py – cy
             //FIXME or not...
-            q.y = p.y - c.x;
+            q.y = p.y - c.y;
 
             //5 APPEND(newPoints, q)
             newPoints.Add(q);

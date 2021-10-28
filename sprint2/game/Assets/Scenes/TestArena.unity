@@ -854,7 +854,7 @@ MonoBehaviour:
   MaxConnections: 100
   MaxSentMessageQueueSize: 128
   ConnectAddress: 127.0.0.1
-  ConnectPort: 7777
+  ConnectPort: 7776
   ServerListenPort: 7777
   MessageSendMode: 0
 --- !u!114 &381650037

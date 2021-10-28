@@ -35,21 +35,55 @@ public class SpellClassifier : MonoBehaviour
         //Step 1. Resample a points path into n evenly spaced points.
         points = Resample(points, 64);
         //Step 2. Rotate points so that their indicative angle is at 0°
-        points = RotateToZero(points);
+        //points = RotateToZero(points);
         //Step 3. Scale points so that the resulting bounding box will be of size2 dimension
         //then translate points to the origin
         points = ScaleToSquare(points, size);
         points = TranslateToOrigin(points);
 
-        StreamWriter writer = new StreamWriter(path, false);
+        //normalize
+        points = Normalize(points);
 
-        foreach(Vector2 p in points)
+
+        bool isNumeric = true;
+        foreach (Vector2 pt in points)
         {
-            writer.WriteLine(p.x + " " + p.y);
+            float ptx = pt.x;
+            float pty = pt.y;
+            if (ptx < 0)
+            {
+                ptx *= -1;
+            }
+            if (pty < 0)
+            {
+                pty *= -1;
+            }
+            isNumeric = (!float.IsPositiveInfinity(ptx)) && (!float.IsNaN(ptx)) &&
+                (!float.IsPositiveInfinity(pty)) && (!float.IsNaN(pty));
+            if (!isNumeric)
+            {
+                break;
+            }
         }
 
-        writer.Close();
-        AssetDatabase.ImportAsset(path);
+        if (isNumeric)
+        {
+
+            StreamWriter writer = new StreamWriter(path, false);
+
+            foreach (Vector2 p in points)
+            {
+                writer.WriteLine(p.x + " " + p.y);
+            }
+
+            writer.Close();
+            AssetDatabase.ImportAsset(path);
+            print("Saved @ " + path);
+        }
+        else
+        {
+            Debug.Log("Data could not be saved.");
+        }
     }
 
     private void ReadTemplate(string pathname, string spellname)
@@ -82,11 +116,15 @@ public class SpellClassifier : MonoBehaviour
         //Step 1. Resample a points path into n evenly spaced points.
         points = Resample(points, 64);
         //Step 2. Rotate points so that their indicative angle is at 0°
-        points = RotateToZero(points);
+        //points = RotateToZero(points);
         //Step 3. Scale points so that the resulting bounding box will be of size2 dimension
         //then translate points to the origin
         points = ScaleToSquare(points, size);
         points = TranslateToOrigin(points);
+
+        //normalize
+        points = Normalize(points);
+
         //Step 4. Match points against a set of templates
         Classification spell = Recognize(points, templates);
 
@@ -224,11 +262,11 @@ public class SpellClassifier : MonoBehaviour
             }
             if (p.y < B.z)
             {
-                B.z = p.x;
+                B.z = p.y;
             }
-            if (p.x > B.w)
+            if (p.y > B.w)
             {
-                B.w = p.x;
+                B.w = p.y;
             }
         }
         float Bwidth = B.y - B.x;
@@ -267,6 +305,7 @@ public class SpellClassifier : MonoBehaviour
             //3 qx ← px – cx
             q.x = p.x - c.x;
             //4 qy ← py – cy
+            //FIXME or not...
             q.y = p.y - c.x;
 
             //5 APPEND(newPoints, q)
@@ -376,5 +415,53 @@ public class SpellClassifier : MonoBehaviour
 
         //4 return d / |A|
         return d / A.Count;
+    }
+
+    private float Get_Diagonal(List<Vector2> p, float min_x, float min_y)
+    {
+        float[] x_values = new float[p.Count];
+        float[] y_values = new float[p.Count];
+
+        for(int i = 0; i < p.Count; i++)
+        {
+            x_values[i] = Mathf.Abs(p[i].x);
+            y_values[i] = Mathf.Abs(p[i].y);
+        }
+
+        float max_x = Mathf.Max(x_values);
+        float max_y = Mathf.Max(y_values);
+
+        return Mathf.Sqrt((max_x - min_x) * (max_x - min_x) + (max_y - min_y) * (max_y - min_y));
+    }
+
+    private List<Vector2> Normalize(List<Vector2> p)
+    {
+        float[] x_values = new float[p.Count];
+        float[] y_values = new float[p.Count];
+
+        for (int i = 0; i < p.Count; i++)
+        {
+            x_values[i] = Mathf.Abs(p[i].x);
+            y_values[i] = Mathf.Abs(p[i].y);
+        }
+
+        float min_x = Mathf.Min(x_values);
+        float min_y = Mathf.Min(y_values);
+
+        float diagonal_len = Get_Diagonal(p, min_x, min_y);
+        List<Vector2> newPoints = new List<Vector2>();
+
+        foreach(Vector2 pt in p)
+        {
+            float x_val = pt.x;
+            float y_val = pt.y;
+            float x_norm = x_val < 0 ? (x_val + Mathf.Abs(min_x)) / diagonal_len : (x_val - Mathf.Abs(min_x)) / diagonal_len;
+            float y_norm = y_val < 0 ? (y_val + Mathf.Abs(min_y)) / diagonal_len : (y_val - Mathf.Abs(min_y)) / diagonal_len;
+            newPoints.Add(new Vector2(x_norm / 2.0f + 0.5f, y_norm / 2.0f + 0.5f));
+
+        }
+
+        return newPoints;
+
     }
 }

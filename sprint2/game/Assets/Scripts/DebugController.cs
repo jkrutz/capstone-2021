@@ -96,19 +96,14 @@ public class DebugController : MonoBehaviour
         }
 
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Camera.main.nearClipPlane;
-        var worldPosition = transform.InverseTransformPoint(Camera.main.ScreenToWorldPoint(mousePos));
-
-        Vector2 localpoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, mousePos, GetComponentInParent<Canvas>().worldCamera, out localpoint);
-
-        Vector2 normalizedPoint = Rect.PointToNormalized(canvas.rect, localpoint);
+        mousePos.x -= Screen.width / 2;
+        mousePos.y -= Screen.height / 2;
         infoBox.SetText(
             "XYZ: " + posX + " " + posY + " " + posZ + "\n" +
             "Direction: " + playerDir + "\n" +
             "Health: " + health + "\n" +
             "Spell: " + spell + "\n" +
-            "Mouse: (" + normalizedPoint.x * canvas.rect.width + ", " + normalizedPoint.y * canvas.rect.height + ")\n" +
+            "Mouse: (" + mousePos.x + ", " + mousePos.y + ")\n" +
             "Is Armed: " + player.getArmed());
     }
 }

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEngine.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(GameObject))]
@@ -16,12 +18,14 @@ public class SpellManager : MonoBehaviour
     private Disarm disarm;
     public GameObject explosionObject;
     private Explosion explosion;
-    public GameObject image;
+    public Image image;
     public Camera mainCam;
-    public Transform parentObj;
+    public Canvas canvas;
+    private Transform canvasTransform;
 
     private SpellClassifier classifier;
-    public RectTransform canvas;
+
+    public Dropdown dropdown;
 
     private List<Vector2> mouseInputPoints = new List<Vector2>();
     private bool firstTime = true;
@@ -37,8 +41,8 @@ public class SpellManager : MonoBehaviour
         fire = fireObject.GetComponent<Fire>();
         wall = wallObject.GetComponent<Wall>();
         explosion = explosionObject.GetComponent<Explosion>();
+        canvasTransform = canvas.transform;
         
-        canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
         spell = "none";
     }
 
@@ -97,7 +101,6 @@ public class SpellManager : MonoBehaviour
     {
         if (!player.GetPaused())
         {
-            Vector2 mousePosition = Input.mousePosition;
             Cursor.visible = false;
         }
 
@@ -117,7 +120,7 @@ public class SpellManager : MonoBehaviour
                 if (drawing)
                 {
                     CancelInvoke("collectPoints");
-                    foreach (Transform child in parentObj.transform)
+                    foreach (Transform child in canvasTransform)
                     {
                         Destroy(child.gameObject);
                     }
@@ -133,10 +136,9 @@ public class SpellManager : MonoBehaviour
                      * 2) add in a read teamplate call in SpellClassifier for the new template
                      * 3) go into the template file and delete the empty line. Should be 64 lines in file total.
                      */
+                    
                     spell = classifier.Classify(mouseInputPoints);
 
-                    //classifier.CreateTemplates(mouseInputPoints, "Assets/Spell_Templates/spiral.txt");
-                    
                     mouseInputPoints.Clear();
 
                     firstTime = true;
@@ -149,12 +151,11 @@ public class SpellManager : MonoBehaviour
     private void collectPoints()
     {
         Vector2 mousePosition = Input.mousePosition;
-
-        mousePosition = Vector3.Scale((mainCam.ScreenToViewportPoint(mousePosition) - new Vector3(0.5f, 0.5f, 0.0f)), new Vector3(canvas.rect.width, canvas.rect.height, 1.0f));
-        
-        var newElement = Instantiate(image.transform, parentObj) as RectTransform;
-        newElement.anchoredPosition = (new Vector3(mousePosition.x, mousePosition.y, 0.0f));
-        newElement.SetParent(parentObj);
+  
+        Image newElement = Instantiate(image, canvasTransform) as Image;
+        newElement.transform.position = (new Vector3(mousePosition.x, mousePosition.y, 0.0f));
+        mousePosition.x -= Screen.width / 2;
+        mousePosition.y -= Screen.height / 2;
         mouseInputPoints.Add(mousePosition);
     }
 }

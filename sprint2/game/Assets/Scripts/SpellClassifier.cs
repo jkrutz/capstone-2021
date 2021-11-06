@@ -23,6 +23,15 @@ public class SpellClassifier : MonoBehaviour
     private readonly float size = 350.0f;
     private readonly float fi = 0.5f * (-1 + Mathf.Sqrt(5));
 
+    public string bestGuess;
+    [Serializable]
+    public struct modelOutput
+    {
+        public string type;
+        public float probability;
+    }
+    public modelOutput[] output;
+
     public NNModel modelFile;
     private Model m_RuntimeModel;
     private IWorker m_Worker;
@@ -43,6 +52,7 @@ public class SpellClassifier : MonoBehaviour
     {
         m_RuntimeModel = ModelLoader.Load(modelFile);
         m_Worker = WorkerFactory.CreateWorker(WorkerFactory.Type.ComputePrecompiled, m_RuntimeModel);
+        output = new modelOutput[spell.Length];
     }
 
     public void CreateTemplates(List<Vector2> points, string path)
@@ -110,7 +120,7 @@ public class SpellClassifier : MonoBehaviour
         reader.Close();
 
         var lines = contents.Split('\n');
-        foreach(string line in lines)
+        foreach (string line in lines)
         {
             var coords = line.Split(' ');
 
@@ -128,6 +138,9 @@ public class SpellClassifier : MonoBehaviour
 
     public string Classify(List<Vector2> points)
     {
+
+        bestGuess = "None";
+        output = new modelOutput[spell.Length];
         //Step 1. Resample a points path into n evenly spaced points.
         points = Resample(points, 64);
         //Step 2. Rotate points so that their indicative angle is at 0°
@@ -141,26 +154,17 @@ public class SpellClassifier : MonoBehaviour
         points = Normalize(points);
         //create image
 
-        //Step 0. Add points to 28x28 array
+        //Step 0. Create 28 x 28 MNIST base
         float[,] img_array = new float[28, 28];
 
-        //Step 1. Round to nearest pixel in 28x28
-        for (int i = 0; i < points.Count; i++)
-        {
-            Vector2 p = points[i];
-            p.x = (int)(p.x * 28);
-            p.y = (int)(p.y * 28);
-            img_array[(int)p.x, (int)p.y] = 1;
-        }
-
-        //Step 2. Connect the points
+        //List to hold all points after connections made
         List<Vector2> matrix = new List<Vector2>(points);
 
-        for(int i = 1; i < points.Count; i++)
+        for (int i = 1; i < points.Count; i++)
         {
             Vector2 curPoint = points[i];
             Vector2 prevPoint = points[i - 1];
-            matrix = new List<Vector2>(bresenham(matrix, (int) prevPoint.x, (int) prevPoint.y, (int) curPoint.x, (int) curPoint.y));
+            matrix = new List<Vector2>(bresenham(matrix, (int)prevPoint.x, (int)prevPoint.y, (int)curPoint.x, (int)curPoint.y));
         }
 
         //Step 1. Round to nearest pixel in 28x28
@@ -169,12 +173,9 @@ public class SpellClassifier : MonoBehaviour
             Vector2 p = matrix[i];
             p.x = (int)(p.x * 28);
             p.y = (int)(p.y * 28);
-            img_array[(int)p.x, (int)p.y] = 1;
+            img_array[27 - (int)p.y, (int)p.x] = 1;
         }
         img_array[0, 0] = 0;
-
-        //apply Guassian blur
-        img_array = gaussianblur(img_array);
 
         print_coords(img_array);
 
@@ -182,11 +183,11 @@ public class SpellClassifier : MonoBehaviour
         float[,] padded_img_array = new float[32, 32];
         for (int r = 0; r < 32; r++)
         {
-            for(int c = 0; c < 32; c++)
+            for (int c = 0; c < 32; c++)
             {
                 var ir = r - 2;
                 var ic = c - 2;
-                if(ir >= 0 && ir < 28 && ic >= 0 && ic < 28)
+                if (ir >= 0 && ir < 28 && ic >= 0 && ic < 28)
                 {
                     padded_img_array[r, c] = img_array[ir, ic];
                 }
@@ -199,7 +200,7 @@ public class SpellClassifier : MonoBehaviour
         {
             for (int c = 0; c < 32; c++)
             {
-                oned_points[r*32 + c] = padded_img_array[r, c];
+                oned_points[r * 32 + c] = padded_img_array[r, c];
             }
         }
 
@@ -207,43 +208,18 @@ public class SpellClassifier : MonoBehaviour
         m_Worker.Execute(input);
         Tensor O = m_Worker.PeekOutput("dense_2");
         string selspell = spell[O.ArgMax()[0]];
+        for(int s = 0; s < spell.Length; s++)
+        {
+            output[s] = new modelOutput();
+            output[s].type = spell[s];
+            output[s].probability = O.AsFloats()[s];
+        }
+        bestGuess = selspell;
         input.Dispose();
 
         player.SetActiveSpell(selspell);
 
         return selspell;
-    }
-
-    private float[,] gaussianblur(float[,] img_array)
-    {
-        float[,] blur = new float[28, 28];
-        for(int r = 0; r < 28; r++)
-        {
-            for(int c = 0; c < 28; c++)
-            {
-                var top_left = (c == 0 || r == 0) ? 0 : img_array[r - 1, c - 1];
-                var top_mid = (r == 0) ? 0 : img_array[r - 1, c];
-                var top_right = (c == 27 || r == 0) ? 0 : img_array[r - 1, c + 1];
-                var mid_left = (c == 0) ? 0 : img_array[r, c - 1];
-                var mid = img_array[r, c];
-                var mid_right = (c == 27) ? 0 : img_array[r, c + 1];
-                var bot_left = (c == 0 || r == 27) ? 0 : img_array[r + 1, c - 1];
-                var bot_mid = (r == 27) ? 0 : img_array[r + 1, c];
-                var bot_right = (c == 27 || r == 27) ? 0 : img_array[r + 1, c + 1];
-
-                float sum = top_left + top_mid + top_right + mid_left + mid + mid_right + bot_left + bot_mid + bot_right;
-                sum /= 9;
-                if(img_array[r, c] >= 1)
-                {
-                    blur[r, c] = 1;
-                }
-                else
-                {
-                    blur[r, c] = sum;
-                }
-            }
-        }
-        return blur;
     }
 
     private List<Vector2> bresenham(List<Vector2> matrix, int x1, int y1, int x2,
@@ -314,7 +290,8 @@ public class SpellClassifier : MonoBehaviour
                 points.Insert(i, q);
                 //11 D ← 0 
                 D = 0;
-            } else
+            }
+            else
             {
                 //12 else D ← D + d
                 D += d;
@@ -471,7 +448,7 @@ public class SpellClassifier : MonoBehaviour
         float b = Mathf.Infinity;
 
         //2 foreach template T in templates do
-        foreach(Classification T in templates)
+        foreach (Classification T in templates)
         {
             //3 d ← DISTANCE-AT-BEST-ANGLE(points, T, -θ, θ, θ∆)
             float d = DistanceAtBestAngle(points, T, -45.0f, 45.0f, 2.0f);
@@ -519,7 +496,8 @@ public class SpellClassifier : MonoBehaviour
                 x1 = (fi * thetaA) + ((1 - fi) * thetaB);
                 //11 f1 ← DISTANCE-AT-ANGLE(points, T, x1)
                 f1 = DistanceAtAngle(points, T, x1);
-            } else //12 else
+            }
+            else //12 else
             {
                 //13 θa ← x1
                 thetaA = x1;
@@ -569,7 +547,7 @@ public class SpellClassifier : MonoBehaviour
         float[] x_values = new float[p.Count];
         float[] y_values = new float[p.Count];
 
-        for(int i = 0; i < p.Count; i++)
+        for (int i = 0; i < p.Count; i++)
         {
             x_values[i] = Mathf.Abs(p[i].x);
             y_values[i] = Mathf.Abs(p[i].y);
@@ -598,7 +576,7 @@ public class SpellClassifier : MonoBehaviour
         float diagonal_len = Get_Diagonal(p, min_x, min_y);
         List<Vector2> newPoints = new List<Vector2>();
 
-        foreach(Vector2 pt in p)
+        foreach (Vector2 pt in p)
         {
             float x_val = pt.x;
             float y_val = pt.y;

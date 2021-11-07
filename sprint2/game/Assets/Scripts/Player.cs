@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private bool isArmed;
     private string activeSpell;
     private bool isPaused;
+    private Animator animator;
     //public bool isComputer;
 
     public GameObject mainCamera;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         activeSpell = "none";
         isArmed = true;
         controller = GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     {
         bool rightClickDown = Input.GetMouseButtonDown(1);
         bool rightClickRelease = Input.GetMouseButtonUp(1);
+        animator.SetBool("casting", Input.GetMouseButton(0));
         if (health <= 0.0f)
         {
             controller.Die();
@@ -58,11 +61,14 @@ public class Player : MonoBehaviour
         if (!isPaused)
         {
             controller.Move(moveVec);
+            animator.SetFloat("Speed", new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).magnitude);
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         }
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space) && !isPaused)
         {
             controller.Jump(new Vector3(0.0f, jumpSpeed, 0.0f));
+            animator.SetBool("jump", true);
             isGrounded = false;
         }
 
@@ -76,6 +82,7 @@ public class Player : MonoBehaviour
     {
         if (c.gameObject.tag == "Ground")
         {
+            animator.SetBool("jump", false);
             isGrounded = true;
         }
     }

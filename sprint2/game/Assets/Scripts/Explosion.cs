@@ -9,22 +9,14 @@ public class Explosion : MonoBehaviour
     public float upForce = 20.0f;
 
     private GameObject playerObject;
+    public GameObject projectile;
+    private GameObject bomb;
+    private Vector3 playerPosition;
+    private Vector3 target;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerObject = GameObject.Find("Temp Player");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void cast(Vector3 point)
-    {
-        Instantiate(this, point, Quaternion.identity);
         Collider[] colliders = Physics.OverlapSphere(new Vector3(10.0f, 1.0f, 10.0f), radius);
         foreach (Collider hit in colliders)
         {
@@ -38,5 +30,19 @@ public class Explosion : MonoBehaviour
             if (player != null)
                 player.setHealth(player.getHealth() - 50.0f);
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void cast(Vector3 point, Vector3 playerPos)
+    {
+        target = point;
+        playerPosition = playerPos;
+        bomb = Instantiate(projectile, playerPos + new Vector3(0,3,0), Quaternion.identity);
+        bomb.GetComponent<Rigidbody>().velocity = point - playerPos;
     }
 }

@@ -9785,6 +9785,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89fe4791ee9dc064b9b637af68ead007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 10
+  power: 10
+  upForce: 20
+  projectile: {fileID: 3485878160718909998, guid: ce248e3ffb6cf554eb09c4ce9614d223,
+    type: 3}
 --- !u!1 &100008
 GameObject:
   m_ObjectHideFlags: 0

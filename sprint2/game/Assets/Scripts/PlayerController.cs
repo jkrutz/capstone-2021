@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRigidBody;
     private GameObject playerObject;
     public Canvas pauseMenu;
+    public float fallMultiplier = 2.5f;
 
     private Player player;
 
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(Vector3 jumpVec)
     {
-        playerRigidBody.AddForce(jumpVec, ForceMode.Impulse);
+        playerRigidBody.velocity += Vector3.Scale(Vector3.up, jumpVec);
     }
 
     public void Die()

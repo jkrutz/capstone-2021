@@ -53,6 +53,7 @@ public class SpellClassifier : MonoBehaviour
         m_RuntimeModel = ModelLoader.Load(modelFile);
         m_Worker = WorkerFactory.CreateWorker(WorkerFactory.Type.ComputePrecompiled, m_RuntimeModel);
         output = new modelOutput[spell.Length];
+
     }
 
     public void CreateTemplates(List<Vector2> points, string path)

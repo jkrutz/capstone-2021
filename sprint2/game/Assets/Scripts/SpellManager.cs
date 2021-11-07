@@ -42,6 +42,7 @@ public class SpellManager : MonoBehaviour
         wall = wallObject.GetComponent<Wall>();
         explosion = explosionObject.GetComponent<Explosion>();
         canvasTransform = canvas.transform;
+        player = playerObject.GetComponent<Player>();
         
         spell = "none";
     }
@@ -77,7 +78,7 @@ public class SpellManager : MonoBehaviour
                 }
                 else if (spell == "star")
                 {
-                    explosion.cast(hitPoint);
+                    explosion.cast(hitPoint, playerObject.transform.position + playerObject.transform.forward*2);
                 }
                 else if (spell == "check")
                 {

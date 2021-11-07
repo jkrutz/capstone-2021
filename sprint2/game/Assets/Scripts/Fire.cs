@@ -10,12 +10,16 @@ public class Fire : MonoBehaviour
 
     private float fireDamage = 10.0f;
     private float duration = 5.0f;
+    private int numFires;
+
+    private Vector3 pos;
 
     // Start is called before the first frame update
     void Start()
     {
         playerObject = GameObject.Find("Temp Player");
         player = playerObject.GetComponent<Player>();
+        numFires = 0;
     }
 
     // Update is called once per frame
@@ -26,6 +30,11 @@ public class Fire : MonoBehaviour
         {
             Destroy(this.gameObject);
             duration = 5.0f;
+        }
+
+        if (numFires > 5)
+        {
+            CancelInvoke();
         }
     }
 
@@ -39,6 +48,14 @@ public class Fire : MonoBehaviour
 
     public void cast(Vector3 point)
     {
-        Instantiate(this, point + new Vector3(0,3,0), Quaternion.identity);
+        pos = point;
+        InvokeRepeating(nameof(spawnfire), 0f, 1f);
+    }
+
+    private void spawnfire()
+    {
+        Debug.Log("cast");
+        Instantiate(this, pos + new Vector3(Random.Range(-5f, 5f), 3, Random.Range(-5f, 5f)), Quaternion.identity);
+        numFires++;
     }
 }

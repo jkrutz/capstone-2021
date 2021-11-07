@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wall : MonoBehaviour
+public class bomb : MonoBehaviour
 {
+    public GameObject explosion;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.transform.Rotate(new Vector3(-90, 0, 0));
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    public void cast(Vector3 point, Quaternion direction)
+    private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(this, point + new Vector3(0, 2.5f, 0), direction);
+        Instantiate(explosion, this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }

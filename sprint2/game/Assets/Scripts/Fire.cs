@@ -54,7 +54,6 @@ public class Fire : MonoBehaviour
 
     private void spawnfire()
     {
-        Debug.Log("cast");
         Instantiate(this, pos + new Vector3(Random.Range(-5f, 5f), 3, Random.Range(-5f, 5f)), Quaternion.identity);
         numFires++;
     }

@@ -80,7 +80,7 @@ public class SpellManager : MonoBehaviour
                 {
                     explosion.cast(hitPoint, playerObject.transform.position + playerObject.transform.forward*2);
                 }
-                else if (spell == "check")
+                else if (spell == "triangle")
                 {
                     if (playerWasHit)
                     {
@@ -88,7 +88,7 @@ public class SpellManager : MonoBehaviour
                     }
 
                 }
-                else if (spell == "spiral")
+                else if (spell == "square")
                 {
                     wall.cast(new Vector3(hitPoint.x, 0, hitPoint.z), playerObject.transform.rotation);
                 }
@@ -152,8 +152,8 @@ public class SpellManager : MonoBehaviour
     private void collectPoints()
     {
         Vector2 mousePosition = Input.mousePosition;
-  
-        Image newElement = Instantiate(image, canvasTransform) as Image;
+
+        Image newElement = Instantiate(image, canvasTransform);
         newElement.transform.position = (new Vector3(mousePosition.x, mousePosition.y, 0.0f));
         mousePosition.x -= Screen.width / 2;
         mousePosition.y -= Screen.height / 2;

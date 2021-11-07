@@ -949,7 +949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576716200
 GameObject:
@@ -1994,7 +1994,7 @@ RectTransform:
   - {fileID: 1487783641}
   - {fileID: 576716201}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2339,12 +2339,12 @@ MonoBehaviour:
   wallObject: {fileID: 7003602149352870400, guid: 664f616d52d6aa143bcc7e4307f33cca,
     type: 3}
   playerObject: {fileID: 585446259}
-  player: {fileID: 0}
+  player: {fileID: 585446261}
   explosionObject: {fileID: 100006, guid: e076683e0305e35498b8e8834978c0fa, type: 3}
-  image: {fileID: 506267726242170116, guid: f7a4d1d1b34cad4499e940b443fc558f, type: 3}
+  image: {fileID: 441519988358150733, guid: f7a4d1d1b34cad4499e940b443fc558f, type: 3}
   mainCam: {fileID: 582630963}
-  parentObj: {fileID: 2137354957}
-  canvas: {fileID: 0}
+  canvas: {fileID: 2137354956}
+  dropdown: {fileID: 0}
 --- !u!4 &1197433853
 Transform:
   m_ObjectHideFlags: 0
@@ -2371,6 +2371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117e8aeddb7f6cc44b331429e3901ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bestGuess: 
+  output: []
+  modelFile: {fileID: 5022602860645237092, guid: bf6376dd7bcee1c4a8cba3c5be338ac1,
+    type: 3}
   player: {fileID: 585446261}
 --- !u!54 &1197433856
 Rigidbody:
@@ -3451,7 +3455,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0e07c5a03a3af274fa88a168cb7159df,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e07c5a03a3af274fa88a168cb7159df,
         type: 3}

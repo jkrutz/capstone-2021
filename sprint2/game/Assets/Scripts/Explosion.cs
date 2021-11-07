@@ -43,6 +43,6 @@ public class Explosion : MonoBehaviour
         target = point;
         playerPosition = playerPos;
         bomb = Instantiate(projectile, playerPos + new Vector3(0,3,0), Quaternion.identity);
-        bomb.GetComponent<Rigidbody>().velocity = point - playerPos;
+        bomb.GetComponent<Rigidbody>().velocity = point - playerPos + new Vector3(0, -1f, 0);
     }
 }

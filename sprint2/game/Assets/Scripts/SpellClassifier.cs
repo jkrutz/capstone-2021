@@ -1,20 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEditor;
-using System.Linq;
-using System.Collections.Generic;
-
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using UnityEngine;
-using Unity.MLAgents.Sensors;
-using Unity.MLAgents.Demonstrations;
-using Unity.MLAgents.Policies;
 using Unity.Barracuda;
-using UnityEngine.Serialization;
 
 public class SpellClassifier : MonoBehaviour
 {
@@ -178,8 +167,6 @@ public class SpellClassifier : MonoBehaviour
         }
         img_array[0, 0] = 0;
 
-        print_coords(img_array);
-
         //Padding
         float[,] padded_img_array = new float[32, 32];
         for (int r = 0; r < 32; r++)
@@ -217,6 +204,7 @@ public class SpellClassifier : MonoBehaviour
         }
         bestGuess = selspell;
         input.Dispose();
+        O.Dispose();
 
         player.SetActiveSpell(selspell);
 

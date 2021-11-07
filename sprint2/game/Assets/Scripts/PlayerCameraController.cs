@@ -42,6 +42,7 @@ public class PlayerCameraController : MonoBehaviour
             //Clamp the Up/Down rotation
             float fov = 10;
 
+
             if (Xangle > 180 && Xangle < 360 - fov)
             {
                 angles.x = 360 - fov;

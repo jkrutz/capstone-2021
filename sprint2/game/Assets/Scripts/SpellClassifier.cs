@@ -23,6 +23,8 @@ public class SpellClassifier : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("Temp Player").GetComponent<Player>();
+
         ReadTemplate("Assets/Spell_Templates/check.txt", "check");
         ReadTemplate("Assets/Spell_Templates/circle.txt", "circle");
         ReadTemplate("Assets/Spell_Templates/star.txt", "star");

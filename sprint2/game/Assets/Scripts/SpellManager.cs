@@ -37,6 +37,7 @@ public class SpellManager : MonoBehaviour
         fire = fireObject.GetComponent<Fire>();
         wall = wallObject.GetComponent<Wall>();
         explosion = explosionObject.GetComponent<Explosion>();
+        player = playerObject.GetComponent<Player>();
         
         canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
         spell = "none";
@@ -73,7 +74,7 @@ public class SpellManager : MonoBehaviour
                 }
                 else if (spell == "star")
                 {
-                    explosion.cast(hitPoint);
+                    explosion.cast(hitPoint, playerObject.transform.position + playerObject.transform.forward*2);
                 }
                 else if (spell == "check")
                 {

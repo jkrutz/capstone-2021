@@ -76,7 +76,7 @@ public class SpellManager : MonoBehaviour
                 }
                 else if (spell == "star")
                 {
-                    explosion.cast(hitPoint, playerObject.transform.position + playerObject.transform.forward*2);
+                    explosion.cast(hitPoint, playerObject);
                 }
                 else if (spell == "triangle")
                 {

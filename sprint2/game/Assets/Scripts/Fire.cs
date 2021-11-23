@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(GameObject))]
 public class Fire : MonoBehaviour
 {
-    public GameObject playerObject;
-    private Player player;
 
     private float fireDamage = 10.0f;
     private float duration = 5.0f;
@@ -17,7 +15,6 @@ public class Fire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = playerObject.GetComponent<Player>();
         numFires = 0;
     }
 
@@ -41,7 +38,8 @@ public class Fire : MonoBehaviour
     {
         if (c.gameObject.tag == "Player")
         {
-            player.setHealth(player.getHealth() - fireDamage * Time.deltaTime);
+            Player player = c.gameObject.GetComponent<Player>();
+            player.GetComponent<Player>().setHealth(player.getHealth() - fireDamage * Time.deltaTime);
         }
     }
 

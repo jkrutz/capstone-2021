@@ -190,7 +190,7 @@ Transform:
   - {fileID: 592435436}
   - {fileID: 697587775}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &131023107
 GameObject:
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Spell Settings
+  m_text: Help
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -949,7 +949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576716200
 GameObject:
@@ -2449,7 +2449,7 @@ GameObject:
   - component: {fileID: 1066800227}
   - component: {fileID: 1066800226}
   m_Layer: 5
-  m_Name: Redraw Button
+  m_Name: Help Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2649,7 +2649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2acbd1cad857be74698a904c42a86dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireObject: {fileID: 3463525403069482550, guid: e7ad8f09f1fa82447a146e933fb95aa6,
+  fireObject: {fileID: 7696683250029514146, guid: 8beade1949d74d5499181852621422ab,
     type: 3}
   disarmObject: {fileID: 6794319690959830807, guid: a95416b744335b243bffe4249d3c1eb3,
     type: 3}
@@ -2660,7 +2660,8 @@ MonoBehaviour:
   image: {fileID: 441519988358150733, guid: f7a4d1d1b34cad4499e940b443fc558f, type: 3}
   mainCam: {fileID: 582630963}
   canvas: {fileID: 2137354956}
-  explosionObject: {fileID: 100006, guid: e076683e0305e35498b8e8834978c0fa, type: 3}
+  explosionObject: {fileID: 4421816691263505220, guid: fc6ace68ca6704d438367896b54826eb,
+    type: 3}
 --- !u!4 &1197433853
 Transform:
   m_ObjectHideFlags: 0
@@ -3284,7 +3285,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 585446263}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: TogglePause
         m_Mode: 1
@@ -3400,7 +3401,7 @@ Transform:
   - {fileID: 164139483}
   - {fileID: 267255875}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1756126334
 PrefabInstance:
@@ -3772,7 +3773,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0e07c5a03a3af274fa88a168cb7159df,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e07c5a03a3af274fa88a168cb7159df,
         type: 3}
@@ -3838,6 +3839,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Basic Arena
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0e07c5a03a3af274fa88a168cb7159df,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0e07c5a03a3af274fa88a168cb7159df,
         type: 3}
@@ -3938,7 +3944,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

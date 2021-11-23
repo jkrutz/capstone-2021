@@ -5,6 +5,7 @@ using UnityEngine;
 public class bomb : MonoBehaviour
 {
     public GameObject explosion;
+    public Vector3 hitPt;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +19,9 @@ public class bomb : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnParticleCollision(GameObject collision)
     {
-        Instantiate(explosion, this.transform.position, Quaternion.identity);
+        Instantiate(explosion, hitPt, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

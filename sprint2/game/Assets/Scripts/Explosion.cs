@@ -36,9 +36,17 @@ public class Explosion : MonoBehaviour
 
     }
 
-    public void cast(Vector3 point, Vector3 playerPos)
+    public void cast(Vector3 point, GameObject player)
     {
-        bomb = Instantiate(projectile, playerPos + new Vector3(0,3,0), Quaternion.identity);
-        bomb.GetComponent<Rigidbody>().velocity = point - playerPos + new Vector3(0, -1f, 0);
+        Vector3 dir = player.transform.position - point;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.Euler(0f, 0f, angle);
+        var proj = Instantiate(projectile, player.transform.position + new Vector3(0, 3, 0), Camera.main.transform.rotation);
+        proj.GetComponent<bomb>().hitPt = point;
+        proj.transform.LookAt(point);
+        //bomb.GetComponent<Rigidbody>().velocity = point - playerPos + new Vector3(0, -1f, 0);
+
+//bomb = Instantiate(projectile, playerPos + new Vector3(0, 3, 0), Quaternion.identity);
+       // bomb.GetComponent<Rigidbody>().velocity = point - playerPos + new Vector3(0, -1f, 0);
     }
 }

@@ -40,24 +40,23 @@ public class PlayerCameraController : MonoBehaviour
             float Yangle = followTransform.transform.localEulerAngles.y;
 
             //Clamp the Up/Down rotation
-            float fov = 10;
-
+            float fov = 70;
 
             if (Xangle > 180 && Xangle < 360 - fov)
             {
                 angles.x = 360 - fov;
             }
-            else if (Xangle < 180 && Xangle > 2 * fov)
+            else if (Xangle < 180 && Xangle > fov)
             {
-                angles.x = 2 * fov;
+                angles.x = fov;
             }
             if (Yangle > 180 && Yangle < 360 - fov)
             {
                 angles.y = 360 - fov;
             }
-            else if (Yangle < 180 && Yangle > 2 * fov)
+            else if (Yangle < 180 && Yangle > fov)
             {
-                angles.y = 2 * fov;
+                angles.y = fov;
             }
 
             /*

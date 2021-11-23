@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(GameObject))]
 public class Fire : MonoBehaviour
 {
-    private GameObject playerObject;
+    public GameObject playerObject;
     private Player player;
 
     private float fireDamage = 10.0f;
@@ -17,7 +17,6 @@ public class Fire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerObject = GameObject.Find("Temp Player");
         player = playerObject.GetComponent<Player>();
         numFires = 0;
     }

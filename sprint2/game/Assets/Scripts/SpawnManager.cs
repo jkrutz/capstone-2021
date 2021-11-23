@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    private GameObject playerObject;
+    public GameObject playerObject;
     private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerObject = GameObject.Find("Temp Player");
         player = playerObject.GetComponent<Player>();
     }
 

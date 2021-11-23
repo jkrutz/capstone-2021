@@ -8,6 +8,7 @@ public class AI_Script : MonoBehaviour
     public NavMeshAgent agent;
 
     public Transform player;
+    public GameObject playerObject;
 
     public LayerMask whatIsGround, whatIsPlayer;
     private bool isArmed;
@@ -31,7 +32,7 @@ public class AI_Script : MonoBehaviour
     private void Awake()
     {
         isArmed = true;
-        player = GameObject.Find("Temp Player").transform;
+        player = playerObject.transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

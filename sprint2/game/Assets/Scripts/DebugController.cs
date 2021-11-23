@@ -7,7 +7,7 @@ public class DebugController : MonoBehaviour
 {
 
     public TextMeshProUGUI infoBox;
-    private GameObject playerObject;
+    public GameObject playerObject;
     private Player player;
     private RectTransform canvas;
 
@@ -15,7 +15,6 @@ public class DebugController : MonoBehaviour
     void Start()
     {
         infoBox.enabled = false;
-        playerObject = GameObject.Find("Temp Player");
         player = playerObject.GetComponent<Player>();
         canvas = gameObject.GetComponent<RectTransform>();
     }

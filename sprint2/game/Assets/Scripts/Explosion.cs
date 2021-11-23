@@ -8,11 +8,9 @@ public class Explosion : MonoBehaviour
     public float power = 10.0f;
     public float upForce = 20.0f;
 
-    private GameObject playerObject;
     public GameObject projectile;
     private GameObject bomb;
-    private Vector3 playerPosition;
-    private Vector3 target;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +38,6 @@ public class Explosion : MonoBehaviour
 
     public void cast(Vector3 point, Vector3 playerPos)
     {
-        target = point;
-        playerPosition = playerPos;
         bomb = Instantiate(projectile, playerPos + new Vector3(0,3,0), Quaternion.identity);
         bomb.GetComponent<Rigidbody>().velocity = point - playerPos + new Vector3(0, -1f, 0);
     }

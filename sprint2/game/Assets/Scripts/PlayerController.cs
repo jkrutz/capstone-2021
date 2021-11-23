@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
 {
     private Vector3 velocity;
     private Rigidbody playerRigidBody;
-    private GameObject playerObject;
     public Canvas pauseMenu;
     public float fallMultiplier = 2.5f;
 
@@ -19,8 +18,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody>();
-        playerObject = GameObject.Find("Temp Player");
-        player = playerObject.GetComponent<Player>();
+        player = GetComponent<Player>();
     }
 
     private void Update()
@@ -57,6 +55,6 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        playerObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

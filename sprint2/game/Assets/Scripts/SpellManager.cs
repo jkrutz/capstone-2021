@@ -13,19 +13,17 @@ public class SpellManager : MonoBehaviour
     public GameObject wallObject;
     public GameObject playerObject;
     public Player player;
+    public Image image;
+    public Camera mainCam;
+    public Canvas canvas;
+
     private Fire fire;
     private Wall wall;
     private Disarm disarm;
     public GameObject explosionObject;
     private Explosion explosion;
-    public Image image;
-    public Camera mainCam;
-    public Canvas canvas;
     private Transform canvasTransform;
-
     private SpellClassifier classifier;
-
-    public Dropdown dropdown;
 
     private List<Vector2> mouseInputPoints = new List<Vector2>();
     private bool firstTime = true;

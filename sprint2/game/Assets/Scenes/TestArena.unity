@@ -2105,6 +2105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5481cc5f58545864ea2feb8b12d92d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 585446259}
 --- !u!4 &985488049
 Transform:
   m_ObjectHideFlags: 0
@@ -2340,11 +2341,10 @@ MonoBehaviour:
     type: 3}
   playerObject: {fileID: 585446259}
   player: {fileID: 585446261}
-  explosionObject: {fileID: 100006, guid: e076683e0305e35498b8e8834978c0fa, type: 3}
   image: {fileID: 441519988358150733, guid: f7a4d1d1b34cad4499e940b443fc558f, type: 3}
   mainCam: {fileID: 582630963}
   canvas: {fileID: 2137354956}
-  dropdown: {fileID: 0}
+  explosionObject: {fileID: 100006, guid: e076683e0305e35498b8e8834978c0fa, type: 3}
 --- !u!4 &1197433853
 Transform:
   m_ObjectHideFlags: 0
@@ -2585,6 +2585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoBox: {fileID: 844814148}
+  playerObject: {fileID: 585446259}
 --- !u!1 &1345584027
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,7 +3151,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b4ce80f8d19703943bd561d629a86ad8,
         type: 3}
       propertyPath: m_Name
-      value: Temp Player
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b4ce80f8d19703943bd561d629a86ad8,
         type: 3}

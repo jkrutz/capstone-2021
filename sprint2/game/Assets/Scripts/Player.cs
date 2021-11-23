@@ -21,6 +21,11 @@ public class Player : MonoBehaviour
     public GameObject mainCamera;
     public GameObject aimCamera;
 
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip[] jump_clips;
+
     Vector3 moveVec;
 
     // Start is called before the first frame update
@@ -30,6 +35,7 @@ public class Player : MonoBehaviour
         isArmed = true;
         controller = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,6 +90,9 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("jump", false);
             isGrounded = true;
+            AudioClip clip = GetRandomClip(jump_clips);
+            audioSource.PlayOneShot(clip);
+
         }
     }
 
@@ -126,5 +135,10 @@ public class Player : MonoBehaviour
     public bool GetPaused()
     {
         return isPaused;
+    }
+
+    private AudioClip GetRandomClip(AudioClip[] clips)
+    {
+        return clips[Random.Range(0, clips.Length)];
     }
 }

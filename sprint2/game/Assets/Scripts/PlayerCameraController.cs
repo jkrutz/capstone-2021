@@ -18,7 +18,7 @@ public class PlayerCameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Camera.main.transform.LookAt(followTransform.transform);
     }
 
     // Update is called once per frame

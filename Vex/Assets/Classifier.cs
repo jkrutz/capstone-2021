@@ -43,61 +43,7 @@ public class Classifier : MonoBehaviour
 
     }
 
-    public void CreateTemplates(List<Vector2> points, string path)
-    {
-        //Step 1. Resample a points path into n evenly spaced points.
-        points = Resample(points, 64);
-        //Step 2. Rotate points so that their indicative angle is at 0°
-        //points = RotateToZero(points);
-        //Step 3. Scale points so that the resulting bounding box will be of size2 dimension
-        //then translate points to the origin
-        points = ScaleToSquare(points, size);
-        points = TranslateToOrigin(points);
-
-        //normalize
-        points = Normalize(points);
-
-
-        bool isNumeric = true;
-        foreach (Vector2 pt in points)
-        {
-            float ptx = pt.x;
-            float pty = pt.y;
-            if (ptx < 0)
-            {
-                ptx *= -1;
-            }
-            if (pty < 0)
-            {
-                pty *= -1;
-            }
-            isNumeric = (!float.IsPositiveInfinity(ptx)) && (!float.IsNaN(ptx)) &&
-                (!float.IsPositiveInfinity(pty)) && (!float.IsNaN(pty));
-            if (!isNumeric)
-            {
-                break;
-            }
-        }
-
-        if (isNumeric)
-        {
-
-            StreamWriter writer = new StreamWriter(path, false);
-
-            foreach (Vector2 p in points)
-            {
-                writer.WriteLine(p.x + " " + p.y);
-            }
-
-            writer.Close();
-            AssetDatabase.ImportAsset(path);
-            print("Saved @ " + path);
-        }
-        else
-        {
-            Debug.Log("Data could not be saved.");
-        }
-    }
+    
 
     private void ReadTemplate(string pathname, string spellname)
     {

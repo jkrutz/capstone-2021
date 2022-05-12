@@ -13,8 +13,13 @@ public class DrawSpell : MonoBehaviour
     public float maxRay = 10;
     public LayerMask layerMask;
     public Material material;
+    public Material magicMaterial, fireMaterial, waterMaterial;
     public ParticleSystem magicalParticles;
+    public ParticleSystem fireParticles;
+    public ParticleSystem waterParticles;
     public GameObject bullet;
+    public string spell;
+    public GameObject cursor;
 
     private List<Vector2> inputPoints = new List<Vector2>();
     private Color[] _colors;
@@ -47,16 +52,20 @@ public class DrawSpell : MonoBehaviour
                 stoppedDrawing = false;
                 awaitingCast = false;
                 magicalParticles.Stop();
+                fireParticles.Stop();
+                waterParticles.Stop();
             }
             Draw();
         }
         else if (awaitingCast)
         {
-            device.TryGetFeatureValue(CommonUsages.secondaryButton, out bool fire);
-            if (fire)
+            device.TryGetFeatureValue(CommonUsages.secondaryButton, out bool shoot);
+            if (shoot)
             {
-                Shoot();
+                Shoot(spell);
                 magicalParticles.Stop();
+                fireParticles.Stop();
+                waterParticles.Stop();
                 awaitingCast = false;
             }
         }
@@ -65,15 +74,34 @@ public class DrawSpell : MonoBehaviour
             if (!stoppedDrawing)
             {
                 magicalParticles.Stop();
+                fireParticles.Stop();
+                waterParticles.Stop();
                 canvasDrawer.ClearTexture();
                 _touchedLastFrame = false;
                 stoppedDrawing = true;
                 if (inputPoints.Count > 10)
                 {
-                    var spell = classifier.Classify(inputPoints);
+                    spell = classifier.Classify(inputPoints);
                     var output = classifier.output;
-                    awaitingCast = true;
-                    magicalParticles.Play();
+                    
+
+                    switch (spell)
+                    {
+                        case ("circle"):
+                            magicalParticles.Play();
+                            awaitingCast = true;
+                            break;
+                        case ("star"):
+                            fireParticles.Play();
+                            awaitingCast = true;
+                            break;
+                        case ("square"):
+                            waterParticles.Play();
+                            awaitingCast = true;
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 else
                 {
@@ -113,6 +141,7 @@ public class DrawSpell : MonoBehaviour
                         var lerpX = (int)Mathf.Lerp(_lastTouchPos.x, x, f);
                         var lerpY = (int)Mathf.Lerp(_lastTouchPos.y, y, f);
                         canvasDrawer.texture.SetPixels(lerpX, lerpY, penSize, penSize, _colors);
+                        cursor.transform.position = new Vector3(lerpX, lerpY, 0);//_touch.textureCoord.x, _touch.textureCoord.y, _touch.textureCoord.z);
                         print(_colors[0].a);
                     }
 
@@ -129,12 +158,27 @@ public class DrawSpell : MonoBehaviour
         _touchedLastFrame = false;
     }
 
-    private void Shoot()
+    private void Shoot(string spell)
     {
         print("shot");
         GameObject fired = Instantiate(bullet, transform.position, transform.rotation);
-        fired.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+        switch (spell)
+        {
+            case ("circle"):
+                fired.GetComponent<MeshRenderer>().material = magicMaterial;
+                break;
+            case ("star"):
+                fired.GetComponent<MeshRenderer>().material = fireMaterial;
+                break;
+            case ("square"):
+                fired.GetComponent<MeshRenderer>().material = waterMaterial;
+                break;
+            default:
+                break;
+        }
+        fired.GetComponent<Rigidbody>().AddForce(transform.forward* 1000);
         Destroy(fired, 3);
+
         awaitingCast = true;
     }
 }
